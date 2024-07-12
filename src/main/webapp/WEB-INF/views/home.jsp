@@ -15,9 +15,9 @@
 </head>
 <body>
 	<jsp:include page="/resources/common/header.jsp" />
-
+<jsp:include page="/resources/common/detailPost.jsp" />
 	<!-- 임시로 만들어둠 나중에 c:forEach로 반복문돌림 -->
-	<div id="detailPost"></div>
+	<!-- <div id="detailPost"></div> -->
     <div class="container">
     
 			<div class="box">

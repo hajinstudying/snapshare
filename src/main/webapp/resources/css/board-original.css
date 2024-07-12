@@ -105,20 +105,7 @@
 .login a:hover {
     background-color: #e0e0e0;
 }
-.user-info {
-	/* float: right; */
-    margin-right: 20px;
-}
-.user-info p {
-    display: inline;
-    margin-right: 10px;
-}
-<!-- -->
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
+
 
 .new-content {
 	width: 1200px;
@@ -136,6 +123,87 @@
 	columns: 4;
 	column-gap: 20px;
 	padding: 0 100px; /* 왼쪽과 오른쪽에 간격을 만들기 위해 패딩 추가 */
+}
+
+.more {
+	display: flex;
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    width: 100%;
+    padding: 0 100px;
+    margin-bottom: 16px;
+}
+
+.detailPost-container {
+    display: flex;
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    width: 100%;
+    padding: 0 100px;
+    margin-bottom: 30px;
+}
+
+.post-box {
+    border-radius: 15px;
+    width: 80%;
+    display: flex;
+    align-items: stretch; /* Align children to stretch to the same height */
+    justify-content: flex-start; /* Align children to the start (left) */
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1), 0 0 6px rgba(0, 0, 0, 0.1), 0 0 6px rgba(0, 0, 0, 0.1), 0 0 6px rgba(0, 0, 0, 0.1);
+    /* margin-bottom: 16px; */
+    height: 100%; /* 부모 요소의 높이를 차지하도록 설정 */
+}
+
+.info-box {
+	flex-direction: column;
+	display: flex;
+    width: 100%;
+    flex: 1;
+    padding: 10px;
+    display: flex; /* To ensure the content inside .info-box aligns properly */
+    align-items: center; /* Vertical alignment of content inside .info-box */
+}
+
+.post-menu, .post-title, .user-info, .reply, .reply-box {
+	width: 100%;
+	padding: 10px;
+}
+
+.post-menu {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.reply {
+	margin-top: 40px;
+}
+
+.reply-box {
+	height: 100%;
+}
+
+.reply-insert {
+  position: sticky;
+  bottom:0;
+  width: 100%;
+  padding: 10px;
+}
+
+.reply-menu {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.reply-insert input {
+	text-align: center;
+	width: 300px;
+	height: 40px;
+	border-radius: 15px;
+}
+
+.post-box img {
+    width: 50%;
+    border-radius: 15px 0 0 15px;
 }
 
 @media (max-width: 480px) {
@@ -193,7 +261,7 @@
   color: #333; /* 텍스트 색상 지정할 수 있습니다 */
 }
 
-.container .box img:hover {
+.container .box:hover img {
     filter: brightness(65%);
 }
 

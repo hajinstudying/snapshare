@@ -36,10 +36,10 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		
-		<!-- 별명파일(Alias) -->
-		<property name="mapperLocations" value="classpath:com/snapshare/web/mapper/*Mapper.xml" />
+		<!-- 매퍼파일 위치 -->
+		<!-- <property name="mapperLocations" value="classpath:com/snapshare/web/mapper/*Mapper.xml" /> -->
 			
-		<!-- 매퍼 XML에서 사용할 vo 설정 -->
+		<!-- 매퍼 XML에서 사용할 vo경로 alias 설정 -->
 		<property name="typeAliasesPackage" value="com.snapshare.web.vo" />
 		
 		<!-- mapUnderscoreToCarmelCase -->

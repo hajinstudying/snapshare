@@ -18,10 +18,7 @@ public class BoardVo {
 
 	private int boardId;		// 게시물id
 	private String memberId;	// 회원id
-	private String filename;	// 이미지 첨부파일 이름
-	private int replyGroup;    	// 댓글 그룹
-	private int replyOrder;    	// 댓글 그룹내 정렬순서
-	private int replyIndent;	// 댓글 들여쓰기
+	private String fileName;	// 이미지 첨부파일 이름
 	
 	// 페이징 관련 속성(필드, 멤버변수)
 	private String pageNum = "1";        // 요청 페이지번호(기본값 1)

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!-- 서비스 레이어 스캔 -->
+	<context:component-scan base-package="com.javalab.board.service" />
+	<!-- 리파지토리 레이어 스캔 -->
+    <context:component-scan base-package="com.javalab.board.mapper" />
+	<!-- 매퍼 인터페이스의 위치를 지정하는 설정 --> 
+	<mybatis-spring:scan base-package="com.javalab.board.mapper"/>
+	
+	<context:property-placeholder location="classpath:config/database.properties" />
+ 	
+    <!-- HikariCP 설정 -->
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+    	<property name="driverClassName" value="${jdbc.driver}"/>
+    	<property name="jdbcUrl" value="${jdbc.url}"/>
+    	<property name="username" value="${jdbc.username}" />
+    	<property name="password" value="${jdbc.password}" />
+    </bean>   
+   
+    <!-- HikariCP DataSource 설정 -->
+    <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
+      	  destroy-method="close">
+    	<constructor-arg ref="hikariConfig" />
+    </bean>
+    
+    <!-- SqlSessionFactory 설정 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		
+		<!-- 별명파일(Alias) -->
+		<property name="mapperLocations" value="classpath:com/snapshare/web/mapper/*Mapper.xml" />
+			
+		<!-- 매퍼 XML에서 사용할 vo 설정 -->
+		<property name="typeAliasesPackage" value="com.snapshare.web.vo" />
+		
+		<!-- mapUnderscoreToCarmelCase -->
+		<property name="configuration">
+        	<bean class="org.apache.ibatis.session.Configuration">
+            	<property name="mapUnderscoreToCamelCase" value="true"></property>
+         	</bean>
+      	</property>
+		
+	</bean>
+	
+	<!-- SqlSessionTemplate 설정 -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean> 
+	
+	
+</beans>

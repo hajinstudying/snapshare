@@ -1,0 +1,269 @@
+@charset "UTF-8";
+
+.header {
+	position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: background-color: RGB(239, 233, 224);;
+    margin: 0;
+    height: 90px;
+}
+.logo {
+	position: absolute;
+	left: 10px;
+}
+nav {
+    flex-grow: 1;
+    text-align: center;
+}
+nav a {
+	
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+.user-info {
+    margin-right: 20px;
+}
+.user-info p {
+    display: inline;
+    margin-right: 10px;
+}
+<!-- -->
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background-color: RGB(239, 233, 224);
+}
+.container {
+			
+            display: flex;
+            justify-content: space-between;
+            margin: 20px auto;
+            max-width: 1600px; /* Adjust as needed */
+        }
+        
+h1 {
+	color: #938C95;
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+.listbox1, .listbox2, .listbox3, .listbox4 {
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    padding: 20px; /* Adjust padding for inner spacing */
+}
+
+.list p {
+    margin-left: 10px; /* Remove default margins */
+    text-align: left; /* Align text to the left */
+    display: flex;
+    align-items: center; /* Vertically center items */
+    height: 100%; /* Ensure full height */
+}
+
+.listbox1 {
+	background-color: #C5CEBD;
+	width: 1400px;
+	margin: 20px auto; /* 위, 왼쪽, 아래, 오른쪽 */
+	columns: 1;
+	column-gap: 20px;
+	padding: 0 20px;
+	margin-left: 20px;
+	margin-right: 20px; 
+}
+
+.listbox2 {
+	background-color: #D5C5C5;
+ 	width: 1400px;
+	margin: 20px auto;
+	columns: 1;
+	column-gap: 20px;
+    padding: 0 20px; 
+    margin-right: 20px;
+}
+
+.listbox3 {
+	background-color: #C0C4D0;
+ 	height: auto;
+	width: 1400px;
+	margin: 20px auto;
+	columns: 1;
+	column-gap: 20px;
+	padding: 0 20px; 
+	margin-right: 20px;
+}
+
+.listbox4 {
+	background-color: #BDC6C0;
+ 	height: auto;
+	width: 1400px;
+	margin: 20px auto;
+	columns: 1;
+	column-gap: 20px;
+    padding: 0 20px; 
+    margin-right: 20px;
+}
+
+
+@media (max-width: 480px) {
+    .container {
+        columns: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        columns: 2;
+    }
+}
+
+@media (max-width: 1200px) {
+    .container {
+        width: calc(100% - 40px);
+    }
+}
+
+.container .box {
+	background-color: #E6E6E6;
+	border-radius: 15px;
+	position: relative;
+	width: 100%;
+	margin-bottom: 10px;
+	break-inside: avoid;
+	overflow: hidden;
+	margin-bottom: 20px;
+}
+/* .list {
+	position: relative;
+	height: 30px;
+	margin: 20px 10px 20px 10px; 위, 왼쪽, 아래, 오른쪽
+	border-radius: 15px;
+	background-color: white;
+} */
+
+.container .box .list {
+	margin: 20px 10px 20px 10px; /*위, 왼쪽, 아래, 오른쪽*/
+	background-color: white;
+	height: 30px;
+	position: relative;
+    transition: filter 0.3s;
+	max-width: 100%;
+	border-radius: 15px;
+	display: block;
+}
+
+
+.container .box .info {
+  position: relative;
+  bottom: 10px;
+  left: 10px; /* 왼쪽 위치 조정할 수 있습니다 */
+  bottom: 10px; /* 아래 위치 조정할 수 있습니다 */
+  display: flex;
+  align-items: center;
+  /* margin-bottom: 5px;
+  margin-left: 10px; */
+}
+
+.container .box .info img {
+  width: 30px; /* 이미지 크기 조정할 수 있습니다 */
+  height: 30px; /* 이미지 크기 조정할 수 있습니다 */
+  border-radius: 50%; /* 이미지를 둥글게 처리합니다 */
+  margin-right: 10px; /* 이미지와 텍스트 사이 간격 조정할 수 있습니다 */
+}
+
+.container .box .info p {
+  margin-top: 3px; /* 기본 마진 제거 */
+  color: #333; /* 텍스트 색상 지정할 수 있습니다 */
+}
+
+.container .box .list:hover {
+    filter: brightness(85%);
+}
+
+/* .container .box:hover {
+    filter: brightness(65%);
+} */
+
+.container .box .bookmark-button {
+    position: absolute;
+    /* 이미지 오른쪽 하단에서 고정되도록 설정 */
+    top: 0;
+    right: 10px;
+    padding: 5px 10px;
+    border-radius: 3px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1; /* 버튼이 이미지 위에 나타나도록 설정 */
+}
+
+
+.container .list:hover .bookmark-button {
+    opacity: 1;
+}
+
+.box a {
+	color: red;
+	font-size: 20px;
+}
+
+.container .box .more-button {
+    position: absolute;
+    /* 이미지 오른쪽 하단에서 고정되도록 설정 */
+    bottom: 15px;
+    right: 15px;
+    /* background-color: gray; */
+    color: white;
+    padding: 5px 10px;
+    /* border-radius: 100%; */
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1; /* 버튼이 이미지 위에 나타나도록 설정 */
+}
+
+.container .box .share-button {
+    position: absolute;
+    /* 이미지 오른쪽 하단에서 고정되도록 설정 */
+    bottom: 15px;
+    right: 45px;
+    /* background-color: gray; */
+    padding: 5px 10px;
+    /* border-radius: 100%; */
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1; /* 버튼이 이미지 위에 나타나도록 설정 */
+}
+
+.container .box .download-button {
+    position: absolute;
+    /* 이미지 오른쪽 하단에서 고정되도록 설정 */
+    bottom: 15px;
+    right: 75px;
+    /* background-color: gray; */
+    padding: 5px 10px;
+    /* border-radius: 100%; */
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1; /* 버튼이 이미지 위에 나타나도록 설정 */
+}
+
+.container .box:hover .more-button {
+    opacity: 1;
+}
+
+.container .box:hover .share-button {
+    opacity: 1;
+}
+
+.container .box:hover .download-button {
+    opacity: 1;
+}
+

@@ -4,7 +4,7 @@ package com.snapshare.web.vo;
  * 댓글 도메인 클래스
  * - 기존과 다르게 하나의 게시물 안에 들어가는 댓글들이므로 따로 뺐습니다. 
  */
-public class Reply {
+public class ReplyVo {
 	
 	private int replyId; 	 // 댓글id
 	private int boardId; 	 // 게시물id

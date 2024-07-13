@@ -10,11 +10,11 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
 	<!-- 서비스 레이어 스캔 -->
-	<context:component-scan base-package="com.javalab.board.service" />
+	<context:component-scan base-package="com.snapshare.web.service" />
 	<!-- 리파지토리 레이어 스캔 -->
-    <context:component-scan base-package="com.javalab.board.mapper" />
+    <context:component-scan base-package="com.snapshare.web.repository" />
 	<!-- 매퍼 인터페이스의 위치를 지정하는 설정 --> 
-	<mybatis-spring:scan base-package="com.javalab.board.mapper"/>
+	<mybatis-spring:scan base-package="com.snapshare.web.repository"/>
 	
 	<context:property-placeholder location="classpath:config/database.properties" />
  	
@@ -36,10 +36,10 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		
-		<!-- 별명파일(Alias) -->
+		<!-- 매퍼파일 위치 -->
 		<property name="mapperLocations" value="classpath:com/snapshare/web/mapper/*Mapper.xml" />
 			
-		<!-- 매퍼 XML에서 사용할 vo 설정 -->
+		<!-- 매퍼 XML에서 사용할 vo경로 alias 설정 -->
 		<property name="typeAliasesPackage" value="com.snapshare.web.vo" />
 		
 		<!-- mapUnderscoreToCarmelCase -->
@@ -48,7 +48,6 @@
             	<property name="mapUnderscoreToCamelCase" value="true"></property>
          	</bean>
       	</property>
-		
 	</bean>
 	
 	<!-- SqlSessionTemplate 설정 -->

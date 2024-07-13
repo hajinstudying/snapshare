@@ -10,11 +10,11 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
 	<!-- 서비스 레이어 스캔 -->
-	<context:component-scan base-package="com.javalab.board.service" />
+	<context:component-scan base-package="com.snapshare.web.service" />
 	<!-- 리파지토리 레이어 스캔 -->
-    <context:component-scan base-package="com.javalab.board.mapper" />
+    <context:component-scan base-package="com.snapshare.web.repository" />
 	<!-- 매퍼 인터페이스의 위치를 지정하는 설정 --> 
-	<mybatis-spring:scan base-package="com.javalab.board.mapper"/>
+	<mybatis-spring:scan base-package="com.snapshare.web.repository"/>
 	
 	<context:property-placeholder location="classpath:config/database.properties" />
  	

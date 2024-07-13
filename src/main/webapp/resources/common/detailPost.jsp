@@ -35,14 +35,13 @@
 			<div class="reply-box">댓글입니다.</div>
 			<div class="reply-box">댓글입니다.</div>
 			</div>
-			<div class="reply-insert">
+		<div class="reply-insert">
 			<hr>
 			<div class="reply-menu"><h3>댓글 #개</h3></div>
 			<div class="input-box">
 			<input type="text" />
 			</div>
 			</div>
-			
 		</div>
 		
 	</div>

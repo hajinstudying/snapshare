@@ -170,6 +170,7 @@
   position: sticky;
   bottom: 10px;
   width: 100%;
+  height: auto;
   padding: 0px 10px 10px 20px;
   background-color: white;
 }
@@ -223,6 +224,7 @@
     scrollbar-width:none;
     margin-bottom: 0;
     height: 100%;
+    
 }
 
 .reply-box {

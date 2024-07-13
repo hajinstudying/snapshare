@@ -156,24 +156,33 @@
 }
 
 .info-box {
-	flex-direction: column;
-	display: flex;
-    width: auto;
-    flex: 1;
+    display: flex;
+    flex-direction: column; /* 수직으로 요소 배치 */
     padding: 10px;
-    display: flex; /* To ensure the content inside .info-box aligns properly */
-    align-items: center; /* Vertical alignment of content inside .info-box */
+    align-items: center;
+    width: 50%;
+    
 }
 
-.post-title, .user-info, .reply, .reply-box {
+.reply-insert {
+  flex: 1;
+  /* margin-top: auto; */
+  position: sticky;
+  bottom: 10px;
+  width: 100%;
+  padding: 0px 10px 10px 20px;
+  background-color: white;
+}
+
+.post-title, .reply, .reply-box {
 	width: 100%;
 	padding: 10px;
 }
 
 .post-menu {
-	
+	float: left;
 	width: 100%;
-	padding: 20px 10px 0 0;	
+	padding: 20px 10px 20px 0;	
 }
 
 .post-menu {
@@ -182,6 +191,7 @@
 }
 
 .post-menu a {
+	
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -189,13 +199,14 @@
     height: 40px;
     border-radius: 50%;
     background-color: white;
-    margin: 0 5px;
+    margin: 0;
     text-decoration: none;
 }
 
 .post-menu a i {
     color: black;
     font-size: 20px;
+    
 }
 
 .post-menu a:hover {
@@ -207,24 +218,18 @@
 }
 .reply-container {
     overflow: auto;
-    max-height: 300px; /* Set a max height for the scrollable area */
-    padding: 10px; /* Add padding to prevent content from sticking to the edges */
+    /* max-height: 100%; */ /* Set a max height for the scrollable area */
+    padding: 10px 10px 0 10px; /* Add padding to prevent content from sticking to the edges */
     scrollbar-width:none;
     margin-bottom: 0;
+    height: 100%;
 }
 
 .reply-box {
-	height: 30%;
+	height: 10%;
 }
 
-.reply-insert {
-  /* margin-top: auto; */
-  position: sticky;
-  bottom:0;
-  width: 100%;
-  padding: 0px 10px 10px 10px;
-  background-color: white;
-}
+
 
 .reply-menu {
 	margin-top: 30px;
@@ -255,7 +260,10 @@
     width: 100%;
 }
 
-
+.user-info {
+	width: 100%;
+	padding: 30px 10px 10px 10px;;
+}
 
 
 .post-box img {

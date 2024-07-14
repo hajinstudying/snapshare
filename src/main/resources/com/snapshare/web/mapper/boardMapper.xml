@@ -6,7 +6,7 @@
 	<mapper namespace="com.snapshare.web.repository.BoardMapperInterface">
 		
 		<!-- 게시물 상세 조회 쿼리 메소드 -->	
-		<select id="getBoard" resultType="BoardVo">
+		<select id="getBoard" resultType="BoardVo" parameterType="int">
 			SELECT board_id,
 				file_name,
 				member_id,
@@ -19,20 +19,20 @@
 		<select id="listBoard" resultType="BoardVo">
 			SELECT board_id,
 				file_name,
-				member_id,
+				member_id
 			FROM board
 			ORDER BY board_id
 		</select>
 	
-		<!-- 게시물 등록 메소드2(selectKey 사용) -->
+		<!-- 게시물 등록 메소드(selectKey 사용) -->
 		<insert id="createBoardSelectKey" parameterType="BoardVo">
-			<selectKey keyProperty="bno" resultType="int" order="BEFORE">
-				SELECT seq_board.nextval FROM dual				
+			<selectKey keyProperty="boardId" resultType="int" order="BEFORE">
+				SELECT seq_board_id.nextval FROM dual				
 			</selectKey>
 				INSERT INTO board(
-					board_id
+					board_id,
 					file_name,
-					member_id
+					member_id,
 					bookmark_count)
 				VALUES(
 					#{boardId},

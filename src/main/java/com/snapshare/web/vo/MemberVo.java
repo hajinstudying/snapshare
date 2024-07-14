@@ -20,4 +20,9 @@ public class MemberVo {
 	private String password; // 비밀번호
 	private String email;	 // 이메일
 	private String name;	 // 이름
+	
+	// Board 컨트롤러 테스트를 위한 생성자
+	public MemberVo(String memberId) {
+		this.memberId = memberId;
+	}
 }

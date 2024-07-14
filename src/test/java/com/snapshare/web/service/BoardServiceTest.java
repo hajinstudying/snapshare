@@ -44,7 +44,7 @@ public class BoardServiceTest {
 	 */
 	@Test @Ignore
 	public void testGetBoard() {
-		int boardId = 5;
+		int boardId = 7;
 		BoardVo boardVo = boardService.getBoard(boardId);
 		assertNotNull(boardVo);
 		log.info("서비스에서 조회한 getBoard : " + boardVo);
@@ -83,7 +83,7 @@ public class BoardServiceTest {
 	 */
 	@Test //@Ignore
 	public void testDeleteBoard() {
-		int boardId = 6;
+		int boardId = 27;
 		
 		// 객체 삭제
 		int result = boardService.deleteBoard(boardId);

@@ -10,16 +10,28 @@
 			SELECT board_id,
 				file_name,
 				member_id,
-				bookmark_count
+				bookmark_count,
+				reg_date,
+				hit_no
 			FROM board
 			WHERE board_id = #{boardId}
 		</select>
+		
+		<!-- 게시물 조회수 증가 쿼리 메소드 -->
+		<update id="incrementHitNo" parameterType="int">
+			UPDATE board
+			SET hit_no = hit_no + 1
+			WHERE board_id = #{boardId}
+		</update>
 		
 		<!-- 게시물 목록 조회 쿼리 메소드 -->
 		<select id="listBoard" resultType="BoardVo">
 			SELECT board_id,
 				file_name,
-				member_id
+				member_id,
+				bookmark_count,
+				reg_date,
+				hit_no
 			FROM board
 			ORDER BY board_id
 		</select>
@@ -33,11 +45,15 @@
 					board_id,
 					file_name,
 					member_id,
-					bookmark_count)
+					bookmark_count,
+					reg_date,
+					hit_no)
 				VALUES(
 					#{boardId},
 					#{fileName},
 					#{memberId},
+					0,
+					sysdate,
 					0)
 		</insert>
 		

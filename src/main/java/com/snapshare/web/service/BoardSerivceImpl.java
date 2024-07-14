@@ -24,9 +24,12 @@ public class BoardSerivceImpl implements BoardService {
 	
 	/**
 	 * 게시물 상세 조회 메소드
+	 * - 조회수 증가 메소드를 트랜잭션으로 실행
 	 */
 	@Override
+	@Transactional
 	public BoardVo getBoard(int boardId) {
+		boardMapper.incrementHitNo(boardId);
 		return boardMapper.getBoard(boardId);
 	}
 

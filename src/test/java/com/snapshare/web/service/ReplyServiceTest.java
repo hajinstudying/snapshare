@@ -19,7 +19,6 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * 단위테스트
  * - SpringJUnit4ClassRunner 의존성이 안들어오는 경우 pom.xml에 spring-test 확인할것.
- *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -32,7 +31,7 @@ public class ReplyServiceTest {
 	@Autowired
 	private ReplyService replyService;
 	
-	@Test @Ignore
+	@Test //@Ignore
 	public void testReplyService() {
 		assertNotNull(replyService);
 		log.info("replyService 인터페이스 : " + replyService); // ReplyServiceImpl@7063686f
@@ -40,25 +39,26 @@ public class ReplyServiceTest {
 	
 	@Test @Ignore
 	public void testGetReply() {
-		int replyId = 2;
+		int replyId = 11;
 		ReplyVo replyVo = replyService.getReply(replyId);
 		assertNotNull(replyVo);
 		log.info("서비스에서 조회한 getReply() : " + replyVo);
 	}
 	
-	@Test @Ignore
+	@Test //@Ignore
 	public void testListReply() {
 		assertTrue(replyService.listReply().size() > 0);
 		List<ReplyVo> replyList = replyService.listReply();
 		replyList.forEach(reply -> log.info(reply.toString()));		
 	}
 	 
-	@Test @Ignore
+	@Test //@Ignore
 	public void testCreateReplySelectKey() {
 		// 저장할 객체 생성
 		ReplyVo replyVo = new ReplyVo();
 		replyVo.setMemberId("test");
-		replyVo.setBoardId(1);
+		replyVo.setReplyContent("새로운 댓글 내용"); 
+		replyVo.setBoardId(12);
 		replyVo.setReplyGroup(0);
 		replyVo.setReplyOrder(0);
 		replyVo.setReplyIndent(0);
@@ -69,24 +69,25 @@ public class ReplyServiceTest {
 		log.info("저장된 행수 : " + result);
 	}
 	
-	@Test @Ignore
+	@Test //@Ignore
 	public void testUpdateReply() {
 		 // 수정할 객체 생성
 		 ReplyVo replyVo = new ReplyVo();
-		 replyVo.setReplyId(2);	// 실제로 DB에 있는 replyId
+		 replyVo.setReplyId(12);	// 실제로 DB에 있는 replyId
 		 replyVo.setMemberId("test");
 		 replyVo.setBoardId(1);
 		 replyVo.setReplyGroup(0);
 		 replyVo.setReplyOrder(1);
 		 replyVo.setReplyIndent(1);
+		 replyVo.setReplyContent("수정된 댓글 내용"); // replyContent 설정
 		 
 		 // 객체 수정
 		 int result = replyService.updateReply(replyVo);
 		 assertTrue(result > 0);
 		 log.info("수정된 행수 : " + result);		
 	}
-
-	@Test //@Ignore
+	 
+	@Test @Ignore
 	public void testDeleteReply() {
 		int replyId = 8;	// 삭제할 replyId, DB에 있는 번호
 		 
@@ -96,4 +97,5 @@ public class ReplyServiceTest {
 		log.info("삭제된 행수 : " + result);
 	}	
 	
+
 }

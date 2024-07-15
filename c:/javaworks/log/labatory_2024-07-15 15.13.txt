@@ -1,8 +1,0 @@
-2024-07-15 15:58:37 [HikariPool-1 connection closer] [jdbc.connection] - 2. Connection closed
-2024-07-15 15:58:37 [HikariPool-1 connection closer] [jdbc.connection] - 2. Connection closed
-2024-07-15 15:58:37 [HikariPool-1 connection closer] [jdbc.connection] - 3. Connection closed
-2024-07-15 15:58:37 [HikariPool-1 connection closer] [jdbc.connection] - 3. Connection closed
-2024-07-15 15:58:37 [HikariPool-1 connection adder] [jdbc.connection] - 4. Connection opened
-2024-07-15 15:58:37 [HikariPool-1 connection closer] [jdbc.connection] - 4. Connection closed
-2024-07-15 15:58:37 [HikariPool-1 connection closer] [jdbc.connection] - 4. Connection closed
-2024-07-15 15:58:37 [Thread-3] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.

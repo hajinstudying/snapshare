@@ -80,6 +80,7 @@ public class ReplyMapperTest {
 	    replyVo.setReplyGroup(0);
 	    replyVo.setReplyOrder(0);
 	    replyVo.setReplyIndent(0);
+	    replyVo.setReplyContent("새로운 댓글 내용"); 
 	     
 	    // 객체 저장
 	    int result = replyMapper.createReplySelectKey(replyVo);
@@ -92,12 +93,13 @@ public class ReplyMapperTest {
 	public void testUpdateReply() {
 		// 수정할 객체 생성
 		ReplyVo replyVo = new ReplyVo();
-		replyVo.setReplyId(1);	
+		replyVo.setReplyId(2);	
 		replyVo.setMemberId("test");
 		replyVo.setBoardId(2);
 		replyVo.setReplyGroup(0);
 		replyVo.setReplyOrder(1);
 		replyVo.setReplyIndent(1);
+		replyVo.setReplyContent("수정된 댓글 내용"); // replyContent 설정
 		 
 		// 객체 수정
 		int result = replyMapper.updateReply(replyVo);
@@ -108,7 +110,7 @@ public class ReplyMapperTest {
 	// 댓글 삭제 테스트
 	@Test //@Ignore
 	public void testDeleteReply() {
-		int replyId = 1;	// 삭제할 replyId, DB에 있는 번호
+		int replyId = 2;	// 삭제할 replyId, DB에 있는 번호
 		 
 		// 객체 삭제
 		int result = replyMapper.deleteReply(replyId);

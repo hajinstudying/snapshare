@@ -12,7 +12,8 @@
 			board_id,
 			reply_group,
 			reply_order,
-			reply_indent
+			reply_indent,
+			reply_content  <!-- reply_content 추가 -->
 		from reply
 		where reply_id = #{replyId}
 	</select>
@@ -24,7 +25,8 @@
 			board_id,
 			reply_group,
 			reply_order,
-			reply_indent
+			reply_indent,
+			reply_content  <!-- reply_content 추가 -->
 		from reply
 		order by reply_id desc					
 	</select>
@@ -41,14 +43,18 @@
 			board_id,
 			reply_group,
 			reply_order,
-			reply_indent)
+			reply_indent,
+			reply_content  <!-- reply_content 추가 -->
+		)
 		values (
 			#{replyId},
 			#{memberId}, 
 			#{boardId},
 			#{replyGroup},
 			#{replyOrder},
-			#{replyIndent})
+			#{replyIndent},
+			#{replyContent}  <!-- replyContent 추가 -->
+		)
 	</insert>
 	
 	<!-- 댓글 수정 메소드 -->
@@ -58,7 +64,8 @@
 			board_id = #{boardId},
 			reply_group = #{replyGroup},
 			reply_order = #{replyOrder},
-			reply_indent = #{replyIndent}
+			reply_indent = #{replyIndent},
+			reply_content = #{replyContent}  <!-- replyContent 추가 -->
 		where reply_id = #{replyId}
 	</update>
 

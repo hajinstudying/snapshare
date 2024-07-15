@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 Manifest-Version: 1.0
 Built-By: yeriyang
 Build-Jdk: 11.0.11
 Created-By: Maven Integration for Eclipse
 
+=======
+Manifest-Version: 1.0
+Built-By: minjae
+Build-Jdk: 11.0.22
+Created-By: Maven Integration for Eclipse
+
+>>>>>>> ed297cfd406d5935542b4e2c130d72bad6500651

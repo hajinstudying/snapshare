@@ -144,13 +144,7 @@ public class BoardController {
 		// 세션에서 사용자 정보 조회
 		MemberVo memberVo = (MemberVo) session.getAttribute("memberVo");
 		
-		// 사용자 정보가 없을 경우 로그인 페이지로 리다이렉트
-	    if (memberVo == null) {
-	        redirectAttributes.addFlashAttribute("error", "로그인 후 이용해주세요.");
-	        return "redirect:/login";
-	    }
-		
-		// 해당 글의 사용자 정보 조회를 위한 게시물 조회
+		// 해당 글의 작성자 정보 조회를 위한 게시물 조회
 	    BoardVo boardVo = boardService.getBoard(boardId);
 		// 게시물이 존재하지 않는 경우 처리
 	    if (boardVo == null) {

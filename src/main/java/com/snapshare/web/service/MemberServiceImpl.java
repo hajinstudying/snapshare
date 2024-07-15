@@ -2,7 +2,7 @@ package com.snapshare.web.service;
 
 import org.springframework.stereotype.Service;
 
-import com.snapshare.web.mapper.MemberMapper;
+import com.snapshare.web.mapper.MemberMapperInterface;
 import com.snapshare.web.vo.MemberVo;
 
 import lombok.RequiredArgsConstructor;
@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
 
-    private final MemberMapper memberMapper;
+    private final MemberMapperInterface memberMapper;
 
     @Override
     public int createMember(MemberVo memberVo) {

@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.snapshare.web.mapper.BookmarkMapperInterface;
 import com.snapshare.web.vo.BookmarkVo;
 
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +34,7 @@ public class BookmarkMapperTest {
 	@Autowired
 	private BookmarkMapperInterface bookmarkMapper;
 	
-	@Test //@Ignore
+	@Test @Ignore
 	public void testDataSource() {
 		try(Connection conn = dataSource.getConnection()){
 			assertNotNull(conn);
@@ -56,7 +55,7 @@ public class BookmarkMapperTest {
 
 	// 북마크 상세보기 테스트
 	@Test @Ignore
-	public void testGetBookmark() {
+	public void tesgetBookmark() {
 		int bookmarkId = 1; // 실제 북마크 ID
 		BookmarkVo bookmarkVo = bookmarkMapper.getBookmark(bookmarkId);
 		log.info("북마크 : " + bookmarkVo);
@@ -72,33 +71,19 @@ public class BookmarkMapperTest {
 	}
 	 
 	// 북마크 등록 테스트
-	@Test @Ignore
-	public void testCreateBookmark() {
-		// 저장할 객체 생성
-		BookmarkVo bookmarkVo = new BookmarkVo();
-		bookmarkVo.setMemberId("java");
-		bookmarkVo.setBoardId(1);
-		 
-		// 객체 저장
-		int result = bookmarkMapper.createBookmark(bookmarkVo);
-		assertTrue(result > 0);
-		log.info("저장된 행수 : " + result);
+	@Test //@Ignore
+	public void testcreateBookmarkSelectKey() {
+	    // 저장할 객체 생성
+	    BookmarkVo bookmarkVo = new BookmarkVo();
+	    bookmarkVo.setMemberId("test");
+	    bookmarkVo.setBoardId(5); 
+
+	    // 객체 저장
+	    int result = bookmarkMapper.createBookmarkSelectKey(bookmarkVo);
+	    assertTrue(result > 0);
+	    log.info("저장된 행수 : " + result);
 	}
 	 
-	// 북마크 수정 테스트
-	@Test @Ignore
-	public void testUpdateBookmark() {
-		// 수정할 객체 생성
-		BookmarkVo bookmarkVo = new BookmarkVo();
-		bookmarkVo.setBookmarkId(1);	// 실제로 DB에 있는 bookmarkId
-		bookmarkVo.setMemberId("java");
-		bookmarkVo.setBoardId(2);
-		 
-		// 객체 수정
-		int result = bookmarkMapper.updateBookmark(bookmarkVo);
-		assertTrue(result > 0);
-		log.info("수정된 행수 : " + result);
-	}
 	 
 	// 북마크 삭제 테스트
 	@Test @Ignore

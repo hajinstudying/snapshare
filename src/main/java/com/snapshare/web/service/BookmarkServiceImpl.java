@@ -36,11 +36,6 @@ public class BookmarkServiceImpl implements BookmarkService {
     }
 
     @Override
-    public int updateBookmark(BookmarkVo bookmarkVo) {
-        return bookmarkMapper.updateBookmark(bookmarkVo);
-    }
-
-    @Override
     public int deleteBookmark(int bookmarkId) {
         return bookmarkMapper.deleteBookmark(bookmarkId);
     }

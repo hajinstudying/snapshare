@@ -80,20 +80,6 @@ public class BookmarkServiceTest {
 	}
 	
 	@Test @Ignore
-	public void testUpdateBookmark() {
-		 // 수정할 객체 생성
-		 BookmarkVo bookmarkVo = new BookmarkVo();
-		 bookmarkVo.setBookmarkId(1);	// 실제로 DB에 있는 bookmarkId
-		 bookmarkVo.setMemberId("java");
-		 bookmarkVo.setBoardId(2);
-		 
-		 // 객체 수정
-		 int result = bookmarkService.updateBookmark(bookmarkVo);
-		 assertTrue(result > 0);
-		 log.info("수정된 행수 : " + result);		
-	}
-
-	@Test @Ignore
 	public void testDeleteBookmark() {
 		int bookmarkId = 1;	// 삭제할 bookmarkId, DB에 있는 번호
 		 

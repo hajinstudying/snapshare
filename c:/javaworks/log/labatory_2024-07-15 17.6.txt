@@ -1,0 +1,20 @@
+2024-07-15 17:07:14 [HikariPool-1 connection closer] [jdbc.connection] - 3. Connection closed
+2024-07-15 17:07:14 [HikariPool-1 connection adder] [jdbc.connection] - 4. Connection opened
+2024-07-15 17:07:14 [HikariPool-1 connection closer] [jdbc.connection] - 4. Connection closed
+2024-07-15 17:07:14 [HikariPool-1 connection closer] [jdbc.connection] - 4. Connection closed
+2024-07-15 17:07:14 [Thread-3] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
+2024-07-15 17:07:29 [main] [o.s.t.c.s.DefaultTestContextBootstrapper] - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2024-07-15 17:07:29 [main] [o.s.t.c.s.DefaultTestContextBootstrapper] - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@4bff7da0, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@3f1d2e23, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@536dbea0, org.springframework.test.context.support.DirtiesContextTestExecutionListener@47c81abf, org.springframework.test.context.transaction.TransactionalTestExecutionListener@776a6d9b, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@21d03963]
+2024-07-15 17:07:29 [main] [o.s.b.f.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [file:src/main/webapp/WEB-INF/spring/root-context.xml]
+2024-07-15 17:07:30 [main] [o.s.c.s.GenericApplicationContext] - Refreshing org.springframework.context.support.GenericApplicationContext@4e07b95f: startup date [Mon Jul 15 17:07:30 KST 2024]; root of context hierarchy
+2024-07-15 17:07:31 [main] [o.s.b.f.a.AutowiredAnnotationBeanPostProcessor] - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2024-07-15 17:07:31 [main] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+2024-07-15 17:07:31 [main] [jdbc.connection] - 1. Connection opened
+2024-07-15 17:07:31 [main] [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@359ff4d9
+2024-07-15 17:07:31 [main] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+2024-07-15 17:07:32 [HikariPool-1 connection adder] [jdbc.connection] - 2. Connection opened
+2024-07-15 17:07:32 [HikariPool-1 connection adder] [jdbc.connection] - 3. Connection opened
+2024-07-15 17:07:32 [main] [c.s.web.service.ReplyServiceTest] - replyService 인터페이스 : com.snapshare.web.service.ReplyServiceImpl@3c69362a
+2024-07-15 17:07:32 [main] [jdbc.sqlonly] - select reply_id, member_id, board_id, reply_group, reply_order, reply_indent, reply_content 
+from reply order by reply_id desc 
+

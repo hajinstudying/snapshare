@@ -1,0 +1,31 @@
+2024-07-15 17:07:12 [main] [o.s.c.s.GenericApplicationContext] - Refreshing org.springframework.context.support.GenericApplicationContext@48c76607: startup date [Mon Jul 15 17:07:12 KST 2024]; root of context hierarchy
+2024-07-15 17:07:12 [main] [o.s.b.f.a.AutowiredAnnotationBeanPostProcessor] - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2024-07-15 17:07:12 [main] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+2024-07-15 17:07:13 [main] [jdbc.connection] - 1. Connection opened
+2024-07-15 17:07:13 [main] [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@5fc930f0
+2024-07-15 17:07:13 [main] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+2024-07-15 17:07:13 [HikariPool-1 connection adder] [jdbc.connection] - 2. Connection opened
+2024-07-15 17:07:14 [HikariPool-1 connection adder] [jdbc.connection] - 3. Connection opened
+2024-07-15 17:07:14 [main] [jdbc.sqlonly] - select reply_id, member_id, board_id, reply_group, reply_order, reply_indent, reply_content 
+from reply where reply_id = 11 
+
+2024-07-15 17:07:14 [main] [jdbc.sqltiming] -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. select reply_id, member_id, board_id, reply_group, reply_order, reply_indent, reply_content 
+from reply where reply_id = 11 
+ {executed in 50 msec}
+2024-07-15 17:07:14 [main] [jdbc.resultsettable] - 
+|---------|----------|---------|------------|------------|-------------|--------------|
+|reply_id |member_id |board_id |reply_group |reply_order |reply_indent |reply_content |
+|---------|----------|---------|------------|------------|-------------|--------------|
+|11       |test      |11       |0           |0           |0            |새로운 댓글 내용     |
+|---------|----------|---------|------------|------------|-------------|--------------|
+
+2024-07-15 17:07:14 [main] [c.s.web.service.ReplyServiceTest] - 서비스에서 조회한 getReply() : ReplyVo(replyId=11, boardId=11, memberId=test, replyContent=새로운 댓글 내용, replyGroup=0, replyOrder=0, replyIndent=0)
+2024-07-15 17:07:14 [main] [c.s.web.service.ReplyServiceTest] - replyService 인터페이스 : com.snapshare.web.service.ReplyServiceImpl@3a894088
+2024-07-15 17:07:14 [Thread-3] [o.s.c.s.GenericApplicationContext] - Closing org.springframework.context.support.GenericApplicationContext@48c76607: startup date [Mon Jul 15 17:07:12 KST 2024]; root of context hierarchy
+2024-07-15 17:07:14 [Thread-3] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
+2024-07-15 17:07:14 [HikariPool-1 connection closer] [jdbc.connection] - 1. Connection closed
+2024-07-15 17:07:14 [HikariPool-1 connection closer] [jdbc.connection] - 1. Connection closed
+2024-07-15 17:07:14 [HikariPool-1 connection closer] [jdbc.connection] - 2. Connection closed
+2024-07-15 17:07:14 [HikariPool-1 connection closer] [jdbc.connection] - 2. Connection closed
+2024-07-15 17:07:14 [HikariPool-1 connection closer] [jdbc.connection] - 3. Connection closed

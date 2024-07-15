@@ -1,0 +1,44 @@
+2024-07-15 17:09:28 [main] [o.s.c.s.GenericApplicationContext] - Refreshing org.springframework.context.support.GenericApplicationContext@28b46423: startup date [Mon Jul 15 17:09:28 KST 2024]; root of context hierarchy
+2024-07-15 17:09:28 [main] [o.s.b.f.a.AutowiredAnnotationBeanPostProcessor] - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2024-07-15 17:09:29 [main] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+2024-07-15 17:09:29 [main] [jdbc.connection] - 1. Connection opened
+2024-07-15 17:09:29 [main] [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@5fc930f0
+2024-07-15 17:09:29 [main] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+2024-07-15 17:09:30 [HikariPool-1 connection adder] [jdbc.connection] - 2. Connection opened
+2024-07-15 17:09:30 [HikariPool-1 connection adder] [jdbc.connection] - 3. Connection opened
+2024-07-15 17:09:30 [main] [jdbc.sqlonly] - update reply set member_id = 'test', board_id = 1, reply_group = 0, reply_order = 1, reply_indent 
+= 1, reply_content = '수정된 댓글 내용' where reply_id = 12 
+
+2024-07-15 17:09:30 [main] [jdbc.sqltiming] -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. update reply set member_id = 'test', board_id = 1, reply_group = 0, reply_order = 1, reply_indent 
+= 1, reply_content = '수정된 댓글 내용' where reply_id = 12 
+ {executed in 16 msec}
+2024-07-15 17:09:30 [main] [c.s.web.service.ReplyServiceTest] - 수정된 행수 : 1
+2024-07-15 17:09:30 [main] [jdbc.sqlonly] - select seq_reply_id.nextval from dual 
+
+2024-07-15 17:09:30 [main] [jdbc.sqltiming] -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. select seq_reply_id.nextval from dual 
+ {executed in 48 msec}
+2024-07-15 17:09:30 [main] [jdbc.resultsettable] - 
+|--------|
+|nextval |
+|--------|
+|13      |
+|--------|
+
+2024-07-15 17:09:30 [main] [jdbc.sqlonly] - insert into reply( reply_id, member_id, board_id, reply_group, reply_order, reply_indent, reply_content 
+) values ( 13, 'test', 12, 0, 0, 0, '새로운 댓글 내용' ) 
+
+2024-07-15 17:09:30 [main] [jdbc.sqltiming] -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. insert into reply( reply_id, member_id, board_id, reply_group, reply_order, reply_indent, reply_content 
+) values ( 13, 'test', 12, 0, 0, 0, '새로운 댓글 내용' ) 
+ {executed in 16 msec}
+2024-07-15 17:09:30 [main] [c.s.web.service.ReplyServiceTest] - 저장된 행수 : 1
+2024-07-15 17:09:30 [main] [c.s.web.service.ReplyServiceTest] - replyService 인터페이스 : com.snapshare.web.service.ReplyServiceImpl@597f0937
+2024-07-15 17:09:30 [main] [jdbc.sqlonly] - select reply_id, member_id, board_id, reply_group, reply_order, reply_indent, reply_content 
+from reply order by reply_id desc 
+
+2024-07-15 17:09:30 [main] [jdbc.sqltiming] -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. select reply_id, member_id, board_id, reply_group, reply_order, reply_indent, reply_content 
+from reply order by reply_id desc 
+ {executed in 19 msec}

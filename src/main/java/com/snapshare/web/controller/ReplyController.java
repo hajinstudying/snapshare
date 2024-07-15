@@ -60,7 +60,7 @@ public class ReplyController {
 		// 세션에서 사용자 정보 조회
 		MemberVo memberVo = (MemberVo) session.getAttribute("memberVo");
 		if (memberVo == null) {
-			return "redirect:/login";
+			return "redirect:/reply/list";
 		}
 		model.addAttribute("replyVo", new ReplyVo());
 		return "reply/replyCreate";
@@ -74,7 +74,7 @@ public class ReplyController {
 		// 세션에서 사용자 정보 조회
 		MemberVo memberVo = (MemberVo) session.getAttribute("memberVo");
 		if (memberVo == null) {
-			return "redirect:/login";
+			return "redirect:/reply/list";
 		}
 		// 세션에서 조회한 사용자를 작성자로 설정
 		replyVo.setMemberId(memberVo.getMemberId());
@@ -91,7 +91,7 @@ public class ReplyController {
 		// 세션에서 사용자 정보 조회
 		MemberVo memberVo = (MemberVo) session.getAttribute("memberVo");
 		if (memberVo == null) {
-			return "redirect:/login";
+			return "redirect:/reply/list";
 		}
 		ReplyVo replyVo = replyService.getReply(replyId);
 		model.addAttribute("replyVo", replyVo); // 화면에 보여줄 댓글을 모델에 저장
@@ -106,7 +106,7 @@ public class ReplyController {
 		// 세션에서 사용자 정보 조회
 		MemberVo memberVo = (MemberVo) session.getAttribute("memberVo");
 		if (memberVo == null) {
-			return "redirect:/login";
+			return "redirect:/reply/list";
 		}
 		// 세션에서 조회한 사용자를 작성자로 설정
 		replyVo.setMemberId(memberVo.getMemberId());

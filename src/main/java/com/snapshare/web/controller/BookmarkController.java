@@ -36,7 +36,7 @@ public class BookmarkController {
 
 		BookmarkVo bookmarkVo = bookmarkService.getBookmark(bookmarkId);
 		model.addAttribute("bookmarkVo", bookmarkVo);
-		return "bookmark/bookmarkDetail"; // 반환할 JSP 이름
+		return "board/boardDetail"; // 반환할 JSP 이름
 	}
 	
 	/**
@@ -44,12 +44,13 @@ public class BookmarkController {
 	 */
 	@GetMapping("/list")
 	public String listBookmark(Model model) {
-		log.info("BookmarkController listBookmark");
+	    log.info("BookmarkController listBookmark");
 
-		List<BookmarkVo> listBookmark = bookmarkService.listBookmark();
-		model.addAttribute("listBookmark", listBookmark);
-		return "bookmark/bookmarkList"; // 반환할 JSP 이름
+	    List<BookmarkVo> listBookmark = bookmarkService.listBookmark();
+	    model.addAttribute("listBookmark", listBookmark);
+	    return "bookmark/bookmarkList"; // 반환할 JSP 이름
 	}
+
 	
 	/**
 	 * 북마크 등록 메소드(post 방식)
@@ -63,8 +64,9 @@ public class BookmarkController {
 		}
 		// 세션에서 조회한 사용자를 작성자로 설정
 		bookmarkVo.setMemberId(memberVo.getMemberId());
+		int boardId = bookmarkVo.getBoardId();
 
-		bookmarkService.createBookmarkSelectKey(bookmarkVo); // 선택 키를 사용하는 메서드 호출
+		 bookmarkService.createBookmark(memberVo.getMemberId(), boardId);
 		return "redirect:/bookmark/list";	// 목록 요청(listBookmark() 호출)
 	}
 	

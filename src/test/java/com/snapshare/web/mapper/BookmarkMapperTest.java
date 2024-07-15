@@ -20,79 +20,112 @@ import com.snapshare.web.vo.BookmarkVo;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 단위테스트
- * - SpringJUnit4ClassRunner 의존성이 안들어오는 경우 pom.xml에 spring-test 확인할것.
+ * 북마크 매퍼 테스트 클래스
  */
+@Slf4j
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-        "file:src/main/webapp/WEB-INF/spring/root-context.xml"})
-@Slf4j
+        "file:src/main/webapp/WEB-INF/spring/root-context.xml"
+})
 public class BookmarkMapperTest {
-	 
-	@Autowired
-	private DataSource dataSource;
-	@Autowired
-	private BookmarkMapperInterface bookmarkMapper;
-	
-	@Test @Ignore
-	public void testDataSource() {
-		try(Connection conn = dataSource.getConnection()){
-			assertNotNull(conn);
-			System.out.println("획득한 커넥션 : " + conn);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	/**
-	 * 매퍼 인터페이스의 의존성 주입이 정상적으로 되는지 확인하는 테스트 메소드
-	 */
-	@Test @Ignore
-	public void testBookmarkMapper() {
-		assertNotNull(bookmarkMapper);		
-		log.info("bookmarkMapper 객체 : " + bookmarkMapper);
-	}
 
-	// 북마크 상세보기 테스트
-	@Test @Ignore
-	public void tesgetBookmark() {
-		int bookmarkId = 1; // 실제 북마크 ID
-		BookmarkVo bookmarkVo = bookmarkMapper.getBookmark(bookmarkId);
-		log.info("북마크 : " + bookmarkVo);
-	}
-	 
-	// 북마크 목록보기 테스트
-	@Test @Ignore
-	public void testListBookmark() {
-		List<BookmarkVo> bookmarkList = bookmarkMapper.listBookmark();
-		assertNotNull(bookmarkList);
-		assertTrue(bookmarkList.size() > 0);
-		bookmarkList.forEach(bookmark -> System.out.println(bookmark));
-	}
-	 
-	// 북마크 등록 테스트
-	@Test //@Ignore
-	public void testcreateBookmarkSelectKey() {
-	    // 저장할 객체 생성
-	    BookmarkVo bookmarkVo = new BookmarkVo();
-	    bookmarkVo.setMemberId("test");
-	    bookmarkVo.setBoardId(5); 
+    @Autowired
+    private DataSource dataSource;
 
-	    // 객체 저장
-	    int result = bookmarkMapper.createBookmarkSelectKey(bookmarkVo);
-	    assertTrue(result > 0);
-	    log.info("저장된 행수 : " + result);
-	}
-	 
-	 
-	// 북마크 삭제 테스트
-	@Test @Ignore
-	public void testDeleteBookmark() {
-		int bookmarkId = 1;	// 삭제할 bookmarkId, DB에 있는 번호
-		 
-		// 객체 삭제
-		int result = bookmarkMapper.deleteBookmark(bookmarkId);
-		assertTrue(result > 0);
-		log.info("삭제된 행수 : " + result);
-	}
+    @Autowired
+    private BookmarkMapperInterface bookmarkMapper;
+
+    @Test @Ignore
+    public void testDataSource() {
+        try (Connection conn = dataSource.getConnection()) {
+            assertNotNull(conn);
+            System.out.println("획득한 커넥션 : " + conn);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test @Ignore
+    public void testBookmarkMapper() {
+        assertNotNull(bookmarkMapper);
+        log.info("bookmarkMapper 객체 : " + bookmarkMapper);
+    }
+
+    /**
+     * 북마크 조회 테스트 메소드
+     */
+    @Test @Ignore
+    public void testGetBookmark() {
+        int bookmarkId = 1; // 조회할 북마크 ID
+        BookmarkVo bookmarkVo = bookmarkMapper.getBookmark(bookmarkId);
+        log.info("조회된 북마크 : " + bookmarkVo);
+        assertNotNull(bookmarkVo);
+    }
+
+    /**
+     * 북마크 목록 조회 테스트 메소드
+     */
+    @Test @Ignore
+    public void testListBookmark() {
+        List<BookmarkVo> bookmarkList = bookmarkMapper.listBookmark();
+        assertNotNull(bookmarkList);
+        assertTrue(bookmarkList.size() > 0);
+        bookmarkList.forEach(bookmark -> log.info("북마크 : " + bookmark));
+    }
+
+    /**
+     * 북마크 등록 테스트 메소드
+     */
+    @Test //@Ignore
+    public void testcreateBookmarkSelectKey() {
+        String memberId = "test"; // 회원 ID
+        int boardId = 12; // 게시판 ID
+
+        // 북마크 생성
+        int result = bookmarkMapper.createBookmarkSelectKey(memberId, boardId);
+        assertTrue(result > 0);
+        log.info("북마크 생성 결과 : " + result);
+
+        // 생성된 북마크 정보 조회
+        BookmarkVo createdBookmark = bookmarkMapper.getBookmark(result);
+        assertNotNull(createdBookmark);
+        log.info("생성된 북마크 정보 : " + createdBookmark);
+    }
+
+    /**
+     * 북마크 삭제 테스트 메소드
+     */
+    @Test @Ignore
+    public void testDeleteBookmark() {
+        int bookmarkId = 1; // 삭제할 북마크 ID
+
+        // 북마크 삭제
+        int result = bookmarkMapper.deleteBookmark(bookmarkId);
+        assertTrue(result > 0);
+        log.info("북마크 삭제 결과 : " + result);
+    }
+
+    /**
+     * 북마크 등록 및 조회수 업데이트 테스트 메소드
+     */
+    @Test
+    @Ignore
+    public void testCreateBookmarkAndIncrementCount() {
+        String memberId = "test"; // 회원 ID
+        int boardId = 1; // 게시판 ID
+
+        // 북마크 생성
+        int createdBookmarkId = bookmarkMapper.createBookmarkSelectKey(memberId, boardId);
+        assertTrue(createdBookmarkId > 0);
+
+        // 생성된 북마크 조회
+        BookmarkVo createdBookmark = bookmarkMapper.getBookmark(createdBookmarkId);
+        assertNotNull(createdBookmark);
+        log.info("생성된 북마크 정보 : " + createdBookmark);
+
+        // 게시판의 북마크 조회수 업데이트
+        int updateCountResult = bookmarkMapper.updateBoardBookmarkCount(boardId);
+        assertTrue(updateCountResult > 0);
+        log.info("게시판 북마크 조회수 업데이트 결과 : " + updateCountResult);
+    }
 }

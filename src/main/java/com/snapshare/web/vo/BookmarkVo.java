@@ -19,5 +19,6 @@ public class BookmarkVo {
 	private int bookmarkId;  // 북마크id
 	private String memberId; // 회원id
 	private int boardId;	 // 게시물id
+	
 
 }

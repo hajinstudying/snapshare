@@ -23,6 +23,8 @@ public class BoardVo {
 	private String fileName;	// 이미지 첨부파일 이름
 	private Date regDate; 		// 게시물 생성날짜
 	private int hitNo;			// 조회수
+	private int bookmarkCount;			// 조회수
+	
 	
 	// 페이징 관련 속성(필드, 멤버변수)
 	private String pageNum = "1";        // 요청 페이지번호(기본값 1)

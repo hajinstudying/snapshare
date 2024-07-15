@@ -54,34 +54,22 @@ public class BookmarkServiceTest {
 	}
 	
 	@Test @Ignore
-	public void testCreateBookmark() {
-		 // 저장할 객체 생성
-		 BookmarkVo bookmarkVo = new BookmarkVo();
-		 bookmarkVo.setMemberId("java");
-		 bookmarkVo.setBoardId(1);
-		 
-		 // 객체 저장
-		 int result = bookmarkService.createBookmark(bookmarkVo);
-		 assertTrue(result > 0);
-		 log.info("저장된 행수 : " + result);		
-	}
-	 
-	@Test
 	public void testCreateBookmarkSelectKey() {
 		// 저장할 객체 생성
 		BookmarkVo bookmarkVo = new BookmarkVo();
-		bookmarkVo.setMemberId("java");
-		bookmarkVo.setBoardId(1);
+		bookmarkVo.setMemberId("test");
+		bookmarkVo.setBookmarkId(5);
+		bookmarkVo.setBoardId(6);
 		
 		// 객체 저장
-		int result = bookmarkService.createBookmark(bookmarkVo);
+		int result = bookmarkService.createBookmarkSelectKey(bookmarkVo);
 		assertTrue(result > 0);
 		log.info("저장된 행수 : " + result);
 	}
 	
-	@Test @Ignore
+	@Test //@Ignore
 	public void testDeleteBookmark() {
-		int bookmarkId = 1;	// 삭제할 bookmarkId, DB에 있는 번호
+		int bookmarkId = 6;	
 		 
 		// 객체 삭제
 		int result = bookmarkService.deleteBookmark(bookmarkId);

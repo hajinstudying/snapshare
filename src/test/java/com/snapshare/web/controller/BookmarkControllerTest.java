@@ -74,22 +74,23 @@ public class BookmarkControllerTest {
 
 	// 북마크 내용 보기 메소드 테스트
 	@Test 
-	public void testGetBookmark() throws Exception{
-		// given : 대전제 - service.getBookmark(1)이라는 요청을 하게 되면
-		// 그러면 응답으로 bookmarkVo 객체가 돌아올 것이다.
-		BookmarkVo bookmarkVo = new BookmarkVo(1, "java", 1);
-		Mockito.when(service.getBookmark(1)).thenReturn(bookmarkVo);
-		
-		// when
-		// get방식으로 "/getBookmark"라는 요청을 하면서 파라미터로 /getBookmark?bookmarkId=1 을 전달하겠다.
-		this.mockMvc.perform(get("/bookmark/detail").param("bookmarkId", "1"))	
-		
-		// then
-		.andExpect(status().isOk())		// 응답 상태가 200인지 확인한다.
-		.andExpect(view().name("board/boardDetail"))	// boardDetail.jsp로 이동하는지 확인한다.
-		.andExpect(model().attributeExists("bookmarkVo"))	// model에 bookmarkVo이 있는지 확인한다.
-		.andExpect(model().attribute("bookmarkVo", bookmarkVo));
+	public void testGetBookmark() throws Exception {
+	    // given: 대전제 - service.getBookmark(1)이라는 요청을 하게 되면
+	    // 그러면 응답으로 bookmarkVo 객체가 돌아올 것이다.
+	    BookmarkVo bookmarkVo = new BookmarkVo(1, "test", 1);
+	    Mockito.when(service.getBookmark(1)).thenReturn(bookmarkVo);
+	    
+	    // when
+	    // get방식으로 "/getBookmark"라는 요청을 하면서 파라미터로 /getBookmark?bookmarkId=1 을 전달하겠다.
+	    this.mockMvc.perform(get("/getBookmark").param("bookmarkId", "1"))	
+	    
+	    // then
+	    .andExpect(status().isOk())		// 응답 상태가 200인지 확인한다.
+	    .andExpect(view().name("board/boardDetail"))	// boardDetail.jsp로 이동하는지 확인한다.
+	    .andExpect(model().attributeExists("bookmarkVo"))	// model에 bookmarkVo이 있는지 확인한다.
+	    .andExpect(model().attribute("bookmarkVo", bookmarkVo));
 	}
+
 	
 	// 북마크 목록 테스트
 	@Test @Ignore
@@ -97,10 +98,8 @@ public class BookmarkControllerTest {
 		// given : 대전제 - service.listBookmark() 이라는 요청을 하게 되면
 		// 그러면 응답으로 bookmarkList 객체가 돌아올 것이다.
 		BookmarkVo bookmarkVo1 = new BookmarkVo(1, "java", 1);
-		BookmarkVo bookmarkVo2 = new BookmarkVo(2, "java", 2);		
 		List<BookmarkVo> bookmarkList = new ArrayList<>();
 		bookmarkList.add(bookmarkVo1);
-		bookmarkList.add(bookmarkVo2);
 		
 		Mockito.when(service.listBookmark()).thenReturn(bookmarkList);
 		
@@ -120,11 +119,11 @@ public class BookmarkControllerTest {
 	 * - service.createBookmark() 메소드 테스트
 	 */
 	@Test @Ignore
-    public void testCreateBookmark() throws Exception {
+    public void testcreateBookmarkSelectKey() throws Exception {
         // Given: 테스트를 위한 전제 조건을 설정한다.
         // BookmarkVo 객체를 생성하고, service.createBookmark 메서드가 호출될 때 1을 반환하도록 설정.
         BookmarkVo bookmarkVo = new BookmarkVo(0, "java", 1);
-        Mockito.when(service.createBookmark(Mockito.any(BookmarkVo.class))).thenReturn(1);
+        Mockito.when(service.createBookmarkSelectKey(Mockito.any(BookmarkVo.class))).thenReturn(1);
 
         // When: /createBookmark라는 요청을 보내는 행동을 함.
         // 요청 시, BookmarkVo 객체의 memberId, boardId 파라미터를 함께 전달한다.
@@ -140,7 +139,7 @@ public class BookmarkControllerTest {
     }
 	
 	// 삭제 메소드 테스트
-    @Test //@Ignore
+    @Test @Ignore
     public void testDeleteBookmark() throws Exception{
      // given
      int bookmarkId = 1;

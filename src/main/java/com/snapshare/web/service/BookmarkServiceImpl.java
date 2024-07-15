@@ -20,8 +20,7 @@ public class BookmarkServiceImpl implements BookmarkService {
 
     @Override
     public BookmarkVo getBookmark(int bookmarkId) {
-        BookmarkVo bookmarkVo = bookmarkMapper.getBookmark(bookmarkId);
-        return bookmarkVo;
+        return bookmarkMapper.getBookmark(bookmarkId);
     }
 
     @Override
@@ -31,8 +30,10 @@ public class BookmarkServiceImpl implements BookmarkService {
 
     @Override
     @Transactional
-    public int createBookmark(BookmarkVo bookmarkVo) {
-        return bookmarkMapper.createBookmark(bookmarkVo);
+    public int createBookmark(String memberId, int boardId) {
+        // 북마크 생성 및 board 테이블의 북마크 조회수 업데이트
+        bookmarkMapper.createBookmark(memberId, boardId); // 북마크 추가
+        return bookmarkMapper.updateBoardBookmarkCount(boardId); // board 테이블의 북마크 조회수 업데이트
     }
 
     @Override
@@ -43,5 +44,10 @@ public class BookmarkServiceImpl implements BookmarkService {
     @Override
     public int createBookmarkSelectKey(BookmarkVo bookmarkVo) {
         return bookmarkMapper.createBookmarkSelectKey(bookmarkVo);
+    }
+
+    @Override
+    public int updateBoardBookmarkCount(int boardId) {
+        return bookmarkMapper.updateBoardBookmarkCount(boardId);
     }
 }

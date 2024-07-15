@@ -69,7 +69,7 @@ public class ReplyServiceTest {
 		log.info("저장된 행수 : " + result);
 	}
 	
-	@Test //@Ignore
+	@Test @Ignore
 	public void testUpdateReply() {
 		 // 수정할 객체 생성
 		 ReplyVo replyVo = new ReplyVo();
@@ -87,9 +87,9 @@ public class ReplyServiceTest {
 		 log.info("수정된 행수 : " + result);		
 	}
 	 
-	@Test @Ignore
+	@Test //@Ignore
 	public void testDeleteReply() {
-		int replyId = 8;	// 삭제할 replyId, DB에 있는 번호
+		int replyId = 12;	// 삭제할 replyId, DB에 있는 번호
 		 
 		// 객체 삭제
 		int result = replyService.deleteReply(replyId);

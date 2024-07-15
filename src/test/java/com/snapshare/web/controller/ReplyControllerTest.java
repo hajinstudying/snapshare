@@ -82,6 +82,7 @@ public class ReplyControllerTest {
 		ReplyVo replyVo = new ReplyVo();
 		replyVo.setReplyId(2);
 		replyVo.setMemberId("test");
+		replyVo.setReplyContent("새로운 댓글 내용"); 
 		replyVo.setBoardId(1);
 		replyVo.setReplyGroup(0);
 		replyVo.setReplyOrder(0);
@@ -104,25 +105,18 @@ public class ReplyControllerTest {
 	public void testListReply() throws Exception{
 		// given : 대전제 - service.listReply() 이라는 요청을 하게 되면
 		// 그러면 응답으로 replyList 객체가 돌아올 것이다.
-		ReplyVo replyVo1 = new ReplyVo();
-		replyVo1.setReplyId(2);
-		replyVo1.setMemberId("test");
-		replyVo1.setBoardId(1);
-		replyVo1.setReplyGroup(0);
-		replyVo1.setReplyOrder(0);
-		replyVo1.setReplyIndent(0);
+		ReplyVo replyVo = new ReplyVo();
+		replyVo.setReplyId(2);
+		replyVo.setMemberId("test");
+		replyVo.setReplyContent("새로운 댓글 내용"); 
+		replyVo.setBoardId(1);
+		replyVo.setReplyGroup(0);
+		replyVo.setReplyOrder(0);
+		replyVo.setReplyIndent(0);
 		
-		ReplyVo replyVo2 = new ReplyVo();
-		replyVo2.setReplyId(3);
-		replyVo2.setMemberId("java");
-		replyVo2.setBoardId(2);
-		replyVo2.setReplyGroup(1);
-		replyVo2.setReplyOrder(1);
-		replyVo2.setReplyIndent(1);		
 		
 		List<ReplyVo> replyList = new ArrayList<>();
-		replyList.add(replyVo1);
-		replyList.add(replyVo2);
+		replyList.add(replyVo);
 		
 		Mockito.when(service.listReply()).thenReturn(replyList);
 		
@@ -147,6 +141,7 @@ public class ReplyControllerTest {
         // ReplyVo 객체를 생성하고, service.createReply 메서드가 호출될 때 1을 반환하도록 설정.
         ReplyVo replyVo = new ReplyVo();
         replyVo.setMemberId("test");
+        replyVo.setReplyContent("새로운 댓글 내용"); 
         replyVo.setBoardId(2);
 		replyVo.setReplyGroup(0);
 		replyVo.setReplyOrder(0);
@@ -181,6 +176,7 @@ public class ReplyControllerTest {
 		replyVo.setReplyGroup(1);
 		replyVo.setReplyOrder(1);
 		replyVo.setReplyIndent(1);
+		replyVo.setReplyContent("수정된 댓글 내용");
         Mockito.when(service.updateReply(Mockito.any(ReplyVo.class))).thenReturn(1);
 
         // Given: 세션에 로그인된 사용자 정보를 설정합니다.

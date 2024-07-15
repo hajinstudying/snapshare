@@ -2,7 +2,7 @@
 <configuration scan="true" debug="true" scanPeriod="30 seconds">
 
 	<!-- 이 부분에서 로그 저장소를 별도의 위치에 저장하도록 설정한다. -->
-    <property name="LOGS_PATH" value="c:/javaworks/log" />
+    <property name="LOGS_PATH" value="/Library/javaworks/log" />
 
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>

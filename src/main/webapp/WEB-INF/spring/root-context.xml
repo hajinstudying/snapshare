@@ -7,8 +7,6 @@
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
-	<!-- Root Context: defines shared resources visible to all other web components -->
-	
 	<!-- 서비스 레이어 스캔 -->
 	<context:component-scan base-package="com.snapshare.web.service" />
 	<!-- 리파지토리 레이어 스캔 -->
@@ -35,17 +33,11 @@
     <!-- SqlSessionFactory 설정 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		
-		<!-- 매퍼파일 위치 -->
-		<property name="mapperLocations" value="classpath:com/snapshare/web/mapper/*Mapper.xml" />
-			
-		<!-- 매퍼 XML에서 사용할 vo경로 alias 설정 -->
+		<property name="mapperLocations" value="classpath*:/com/snapshare/web/mapper/*Mapper.xml" />
 		<property name="typeAliasesPackage" value="com.snapshare.web.vo" />
-		
-		<!-- mapUnderscoreToCarmelCase -->
 		<property name="configuration">
         	<bean class="org.apache.ibatis.session.Configuration">
-            	<property name="mapUnderscoreToCamelCase" value="true"></property>
+            	<property name="mapUnderscoreToCamelCase" value="true"/>
          	</bean>
       	</property>
 	</bean>
@@ -53,7 +45,5 @@
 	<!-- SqlSessionTemplate 설정 -->
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory" />
-	</bean> 
-	
-	
+	</bean>
 </beans>

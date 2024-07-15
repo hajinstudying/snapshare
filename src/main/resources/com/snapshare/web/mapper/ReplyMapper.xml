@@ -12,7 +12,8 @@
 			board_id,
 			reply_group,
 			reply_order,
-			reply_indent
+			reply_indent,
+			reply_content  <!-- reply_content 추가 -->
 		from reply
 		where reply_id = #{replyId}
 	</select>
@@ -24,32 +25,17 @@
 			board_id,
 			reply_group,
 			reply_order,
-			reply_indent
+			reply_indent,
+			reply_content  <!-- reply_content 추가 -->
 		from reply
 		order by reply_id desc					
 	</select>
-	
-	<!-- 댓글 등록 메소드 -->
-	<insert id="createReply" parameterType="ReplyVo">
-		insert into reply(
-			member_id, 
-			board_id,
-			reply_group,
-			reply_order,
-			reply_indent)
-		values (
-			#{memberId}, 
-			#{boardId},
-			#{replyGroup},
-			#{replyOrder},
-			#{replyIndent})
-	</insert>		
 		
 	<!-- 댓글 등록 메소드 (selectKey 사용) -->
 	<insert id="createReplySelectKey" parameterType="ReplyVo">
 		<!-- selectKey를 사용하여 시퀀스 값 가져오기 -->
 		<selectKey keyProperty="replyId" resultType="int" order="BEFORE">
-			select seq_reply_id_seq.nextval from dual
+			select seq_reply_id.nextval from dual
 		</selectKey>
 		insert into reply(
 			reply_id,
@@ -57,14 +43,18 @@
 			board_id,
 			reply_group,
 			reply_order,
-			reply_indent)
+			reply_indent,
+			reply_content  <!-- reply_content 추가 -->
+		)
 		values (
 			#{replyId},
 			#{memberId}, 
 			#{boardId},
 			#{replyGroup},
 			#{replyOrder},
-			#{replyIndent})
+			#{replyIndent},
+			#{replyContent}  <!-- replyContent 추가 -->
+		)
 	</insert>
 	
 	<!-- 댓글 수정 메소드 -->
@@ -74,7 +64,8 @@
 			board_id = #{boardId},
 			reply_group = #{replyGroup},
 			reply_order = #{replyOrder},
-			reply_indent = #{replyIndent}
+			reply_indent = #{replyIndent},
+			reply_content = #{replyContent}  <!-- replyContent 추가 -->
 		where reply_id = #{replyId}
 	</update>
 

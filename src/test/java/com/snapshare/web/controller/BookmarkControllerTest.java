@@ -20,7 +20,6 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -30,7 +29,6 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.snapshare.web.service.BookmarkService;
 import com.snapshare.web.vo.BookmarkVo;
-import com.snapshare.web.vo.MemberVo;
 
 /**
  * 웹 어플리케이션 컨텍스트를 사용하겠다. 즉, 웹 어플리케이션의 설정파일을 사용하겠다.
@@ -139,36 +137,6 @@ public class BookmarkControllerTest {
         // 그리고 리다이렉트되는 URL이 "/bookmark/list"인지 확인한다.
         .andExpect(status().is3xxRedirection())
         .andExpect(redirectedUrl("/bookmark/list")); // 북마크 목록요청
-    }
-	
-	// 수정 메소드 테스트
-	@Test @Ignore
-    public void testUpdateBookmark() throws Exception{
-        // Given: 테스트를 위한 전제 조건을 설정합니다.
-        // 여기서는 service.updateBookmark() 호출이 1을 반환하도록 설정합니다.
-        BookmarkVo bookmarkVo = new BookmarkVo(1, "java", 2);
-        Mockito.when(service.updateBookmark(Mockito.any(BookmarkVo.class))).thenReturn(1);
-
-        // Given: 세션에 로그인된 사용자 정보를 설정합니다.
-        MemberVo memberVo = new MemberVo("java", "1234", "name", "email");
-        MockHttpSession session = new MockHttpSession();
-        session.setAttribute("memberVo", memberVo);
-
-        // When: 실제 테스트하는 동작을 수행합니다.
-        // 여기서는 /updateBookmark 엔드포인트에 POST 요청을 수행합니다.
-        // 요청 시, BookmarkVo 객체의 bookmarkId, memberId, boardId 파라미터를 전달하고, 세션 정보를 포함합니다.    
-        mockMvc.perform(post("/bookmark/update")
-             .session(session) // <-- 로그인된 사용자 세션 추가
-             .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-             .param("bookmarkId", String.valueOf(bookmarkVo.getBookmarkId()))
-             .param("memberId", bookmarkVo.getMemberId())
-             .param("boardId", String.valueOf(bookmarkVo.getBoardId())))
-        
-       // Then: When에서 수행한 행동의 결과를 검증합니다.
-        // 기대한 결과가 실제로 발생했는지 확인합니다.
-        // 예: 상태 코드가 3xx 리다이렉션인지, 리다이렉트되는 URL이 "/bookmark/list"인지 확인합니다.
-        .andExpect(status().is3xxRedirection())      
-        .andExpect(redirectedUrl("/bookmark/list"));   // 북마크 목록 요청
     }
 	
 	// 삭제 메소드 테스트

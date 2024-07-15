@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/header.css' />?v=${now}" />
 	<header class="header">
 	 <div class="login">
-            <a class="create" href="#">만들기</a>
-            <a class="home" href="#">홈</a>
+            <a class="create" href="/board/create">만들기</a>
+            <a class="home" href="/">홈</a>
         </div>
         
         <div class="search-box">
@@ -13,7 +13,7 @@
             <input type="text" placeholder="검색어를 입력하세요">
         </div>
        <div class="logo">
-            <a href="#">SNAPSHARE</a>
+            <a href="/">SNAPSHARE</a>
         </div>
     </header>
     <script>

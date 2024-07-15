@@ -8,6 +8,7 @@ import java.util.UUID;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -34,6 +35,10 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/board") 
 public class BoardController {
 	
+	// 업로드 파일 경로 읽어오기 WEB-INF/config/file.properties
+	@Value("${file.path}")
+	private String filePath;
+
 	@Autowired
 	private BoardService boardService;
 	
@@ -80,23 +85,22 @@ public class BoardController {
 	                          @RequestParam("file") MultipartFile file,
 	                          HttpSession session,
 	                          RedirectAttributes redirectAttributes) {
-		// 로그인 세션 확인
+		// 로그인 memberId를 boardVo에 저장
 	    MemberVo memberVo = (MemberVo) session.getAttribute("memberVo");
-	    if (memberVo == null) {
-	        redirectAttributes.addFlashAttribute("error", "회원만 게시물을 작성할 수 있습니다.");
-	        return "redirect:/login";
-	    }
-
 	    boardVo.setMemberId(memberVo.getMemberId());
 
 	    // 파일 업로드 처리
 	    if (!file.isEmpty()) {
 	        try {
+	        	
+	        	
 	            String fileRealName = file.getOriginalFilename();
 	            String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."));
 	            
+	            
+	            
 	            // 파일 업로드 경로 설정 (상대 경로 사용 예시. 원래 절대경로로 해야함)
-	            String uploadPath = "/upload";
+	            String uploadPath = filePath;
 	            File uploadDir = new File(uploadPath);
 	            if (!uploadDir.exists()) {
 	                uploadDir.mkdirs();

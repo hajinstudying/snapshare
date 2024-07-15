@@ -60,7 +60,7 @@ public class BoardController {
 	public String listBoard(Model model) {
 		List<BoardVo> boardList = boardService.listBoard();
 		model.addAttribute("boardList", boardList);
-		return "board/boardList";
+		return "home";
 	}
 	
 	/**
@@ -93,11 +93,9 @@ public class BoardController {
 	    if (!file.isEmpty()) {
 	        try {
 	        	
-	        	
 	            String fileRealName = file.getOriginalFilename();
+	            String fileNameWithoutExtension = fileRealName.substring(0, fileRealName.lastIndexOf("."));
 	            String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."));
-	            
-	            
 	            
 	            // 파일 업로드 경로 설정 (상대 경로 사용 예시. 원래 절대경로로 해야함)
 	            String uploadPath = filePath;
@@ -110,7 +108,7 @@ public class BoardController {
 	            String uuid = UUID.randomUUID().toString();  // 하이픈으로 연결되는 랜덤문자열 발행
 	            String[] uuids = uuid.toString().split("-"); // 하이픈을 구분자로 배열로 저장
 	    		String randomStr = uuids[0]; // 너무 길어서 0번째 인덱스만 사용
-	            String uniqueFileName = fileRealName + "_" + randomStr + fileExtension;
+	            String uniqueFileName = fileNameWithoutExtension + "_" + randomStr + fileExtension;
 	            log.info("저장되는 파일명 : " + uniqueFileName); // 원래파일명_랜덤문자열.확장자
 	            
 	            // 파일 저장

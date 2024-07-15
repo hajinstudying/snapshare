@@ -30,7 +30,6 @@
                         <input type="reset" value="다시쓰기">
                     </div>
                 </form>
-     
         </main>
     </div>
 </body>

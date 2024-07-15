@@ -3,7 +3,7 @@
    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
    <!-- 매퍼 XML -->
-	<mapper namespace="com.snapshare.web.repository.BoardMapperInterface">
+	<mapper namespace="com.snapshare.web.mapper.BoardMapperInterface">
 		
 		<!-- 게시물 상세 조회 쿼리 메소드 -->	
 		<select id="getBoard" resultType="BoardVo" parameterType="int">

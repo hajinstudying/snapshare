@@ -1,9 +1,16 @@
 package com.snapshare.web.vo;
 
-/**
- * 댓글 도메인 클래스
- * - 기존과 다르게 하나의 게시물 안에 들어가는 댓글들이므로 따로 뺐습니다. 
- */
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 public class ReplyVo {
 	
 	private int replyId; 	 // 댓글id

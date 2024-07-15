@@ -144,51 +144,46 @@
 }
 
 .post-box {
-	margin-top: 20px;
-    border-radius: 15px;
-    width: 80%;
+    margin-top: 20px;
+    border-radius: 30px;
+    width: 961px;
     display: flex;
     align-items: stretch; /* Align children to stretch to the same height */
     justify-content: flex-start; /* Align children to the start (left) */
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1), 0 0 6px rgba(0, 0, 0, 0.1), 0 0 6px rgba(0, 0, 0, 0.1), 0 0 6px rgba(0, 0, 0, 0.1);
-    /* margin-bottom: 16px; */
-    height: 100%; /* 부모 요소의 높이를 차지하도록 설정 */
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+    height: auto;
+}
+
+.aaa {
+	/* display:table; */
+	display: flex;
+	/* display: inline-block; */
+	width: 100%;
+}
+
+.img-box img {
+    border-radius: 30px 0 0 30px;
+    flex: 1;
+    height: auto;
+    width: 100%;
 }
 
 .info-box {
-    display: flex;
-    flex-direction: column; /* 수직으로 요소 배치 */
+	display: flex;
+    flex-direction: column;
     padding: 10px;
     align-items: center;
     width: 50%;
-    
 }
 
-.reply-insert {
-  flex: 1;
-  /* margin-top: auto; */
-  position: sticky;
-  bottom: 10px;
-  width: 100%;
-  height: auto;
-  padding: 0px 10px 10px 20px;
-  background-color: white;
+.post-box .img-box {
+    width: 50%;
+    height: auto;
 }
 
 .post-title, .reply, .reply-box {
 	width: 100%;
 	padding: 10px;
-}
-
-.post-menu {
-	float: left;
-	width: 100%;
-	padding: 20px 10px 20px 0;	
-}
-
-.post-menu {
-    display: flex;
-    justify-content: flex-start; /* Align the icons to the left */
 }
 
 .post-menu a {
@@ -217,6 +212,20 @@
 .reply {
 	margin-top: 40px;
 }
+
+.post-menu {
+	float: left;
+	width: 100%;
+	padding: 20px 10px 20px 0;	
+	flex: 1;
+	position: sticky;
+	top: 0px;
+	width: 100% 100%;
+	background-color: white;
+    display: flex;
+    justify-content: flex-start; /* Align the icons to the left */
+}
+
 .reply-container {
     overflow: auto;
     /* max-height: 100%; */ /* Set a max height for the scrollable area */
@@ -224,11 +233,22 @@
     scrollbar-width:none;
     margin-bottom: 0;
     height: 100%;
-    
+}
+
+.reply-insert {
+  flex: 1;
+  /* margin-top: auto; */
+  position: sticky;
+  bottom: 0px;
+  width: 100%;
+  height: auto;
+  padding: 0px 10px 10px 20px;
+  background-color: white;
 }
 
 .reply-box {
 	height: 10%;
+	align-items: center;
 }
 
 
@@ -265,12 +285,6 @@
 .user-info {
 	width: 100%;
 	padding: 30px 10px 10px 10px;;
-}
-
-
-.post-box img {
-    width: 50%;
-    border-radius: 15px 0 0 15px;
 }
 
 @media (max-width: 480px) {
@@ -409,4 +423,3 @@
 .container .box:hover .download-button {
     opacity: 1;
 }
-

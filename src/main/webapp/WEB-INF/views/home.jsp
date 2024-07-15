@@ -10,7 +10,7 @@
 <html>
 <head>
 	<title>ShapShare</title>
-	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/board-original.css' />?v=${now}" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/board.css' />?v=${now}" />
 	<script src="https://kit.fontawesome.com/6e1082867c.js" crossorigin="anonymous"></script> <!-- 아이콘 -->
 </head>
 <body>

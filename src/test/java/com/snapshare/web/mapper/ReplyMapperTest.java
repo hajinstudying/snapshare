@@ -1,4 +1,4 @@
-package com.snapshare.web.repository;
+package com.snapshare.web.mapper;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -15,8 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.snapshare.web.mapper.BookmarkMapperInterface;
-import com.snapshare.web.vo.BookmarkVo;
+import com.snapshare.web.mapper.ReplyMapperInterface;
+import com.snapshare.web.vo.ReplyVo;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,12 +28,12 @@ import lombok.extern.slf4j.Slf4j;
 @ContextConfiguration(locations = {
         "file:src/main/webapp/WEB-INF/spring/root-context.xml"})
 @Slf4j
-public class BookmarkMapperTest {
+public class ReplyMapperTest {
 	 
 	@Autowired
 	private DataSource dataSource;
 	@Autowired
-	private BookmarkMapperInterface bookmarkMapper;
+	private ReplyMapperInterface replyMapper;
 	
 	@Test //@Ignore
 	public void testDataSource() {
@@ -49,64 +49,70 @@ public class BookmarkMapperTest {
 	 * 매퍼 인터페이스의 의존성 주입이 정상적으로 되는지 확인하는 테스트 메소드
 	 */
 	@Test @Ignore
-	public void testBookmarkMapper() {
-		assertNotNull(bookmarkMapper);		
-		log.info("bookmarkMapper 객체 : " + bookmarkMapper);
+	public void testReplyMapper() {
+		assertNotNull(replyMapper);		
+		log.info("replyMapper 객체 : " + replyMapper);
 	}
 
-	// 북마크 상세보기 테스트
+	// 댓글 상세보기 테스트
 	@Test @Ignore
-	public void testGetBookmark() {
-		int bookmarkId = 1; // 실제 북마크 ID
-		BookmarkVo bookmarkVo = bookmarkMapper.getBookmark(bookmarkId);
-		log.info("북마크 : " + bookmarkVo);
+	public void testGetReply() {
+		int replyId = 1; // 실제 댓글 ID
+		ReplyVo replyVo = replyMapper.getReply(replyId);
+		log.info("댓글 : " + replyVo);
 	}
 	 
-	// 북마크 목록보기 테스트
+	// 댓글 목록보기 테스트
 	@Test @Ignore
-	public void testListBookmark() {
-		List<BookmarkVo> bookmarkList = bookmarkMapper.listBookmark();
-		assertNotNull(bookmarkList);
-		assertTrue(bookmarkList.size() > 0);
-		bookmarkList.forEach(bookmark -> System.out.println(bookmark));
+	public void testListReply() {
+		List<ReplyVo> replyList = replyMapper.listReply();
+		assertNotNull(replyList);
+		assertTrue(replyList.size() > 0);
+		replyList.forEach(reply -> System.out.println(reply));
 	}
 	 
-	// 북마크 등록 테스트
+	// 댓글 등록 테스트
 	@Test @Ignore
-	public void testCreateBookmark() {
+	public void testCreateReply() {
 		// 저장할 객체 생성
-		BookmarkVo bookmarkVo = new BookmarkVo();
-		bookmarkVo.setMemberId("java");
-		bookmarkVo.setBoardId(1);
+		ReplyVo replyVo = new ReplyVo();
+		replyVo.setMemberId("java");
+		replyVo.setBoardId(1);
+		replyVo.setReplyGroup(0);
+		replyVo.setReplyOrder(0);
+		replyVo.setReplyIndent(0);
 		 
 		// 객체 저장
-		int result = bookmarkMapper.createBookmark(bookmarkVo);
+		int result = replyMapper.createReply(replyVo);
 		assertTrue(result > 0);
 		log.info("저장된 행수 : " + result);
 	}
 	 
-	// 북마크 수정 테스트
+	// 댓글 수정 테스트
 	@Test @Ignore
-	public void testUpdateBookmark() {
+	public void testUpdateReply() {
 		// 수정할 객체 생성
-		BookmarkVo bookmarkVo = new BookmarkVo();
-		bookmarkVo.setBookmarkId(1);	// 실제로 DB에 있는 bookmarkId
-		bookmarkVo.setMemberId("java");
-		bookmarkVo.setBoardId(2);
+		ReplyVo replyVo = new ReplyVo();
+		replyVo.setReplyId(1);	// 실제로 DB에 있는 replyId
+		replyVo.setMemberId("java");
+		replyVo.setBoardId(2);
+		replyVo.setReplyGroup(0);
+		replyVo.setReplyOrder(1);
+		replyVo.setReplyIndent(1);
 		 
 		// 객체 수정
-		int result = bookmarkMapper.updateBookmark(bookmarkVo);
+		int result = replyMapper.updateReply(replyVo);
 		assertTrue(result > 0);
 		log.info("수정된 행수 : " + result);
 	}
 	 
-	// 북마크 삭제 테스트
+	// 댓글 삭제 테스트
 	@Test @Ignore
-	public void testDeleteBookmark() {
-		int bookmarkId = 1;	// 삭제할 bookmarkId, DB에 있는 번호
+	public void testDeleteReply() {
+		int replyId = 1;	// 삭제할 replyId, DB에 있는 번호
 		 
 		// 객체 삭제
-		int result = bookmarkMapper.deleteBookmark(bookmarkId);
+		int result = replyMapper.deleteReply(replyId);
 		assertTrue(result > 0);
 		log.info("삭제된 행수 : " + result);
 	}

@@ -1,4 +1,4 @@
-package com.snapshare.web.repository;
+package com.snapshare.web.mapper;
 
 import java.util.List;
 

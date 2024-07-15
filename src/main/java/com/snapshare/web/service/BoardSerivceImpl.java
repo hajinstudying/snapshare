@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.snapshare.web.repository.BoardMapperInterface;
+import com.snapshare.web.mapper.BoardMapperInterface;
 import com.snapshare.web.vo.BoardVo;
 
 import lombok.extern.slf4j.Slf4j;

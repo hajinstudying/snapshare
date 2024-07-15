@@ -12,9 +12,9 @@
 	<!-- 서비스 레이어 스캔 -->
 	<context:component-scan base-package="com.snapshare.web.service" />
 	<!-- 리파지토리 레이어 스캔 -->
-    <context:component-scan base-package="com.snapshare.web.repository" />
+    <context:component-scan base-package="com.snapshare.web.mapper" />
 	<!-- 매퍼 인터페이스의 위치를 지정하는 설정 --> 
-	<mybatis-spring:scan base-package="com.snapshare.web.repository"/>
+	<mybatis-spring:scan base-package="com.snapshare.web.mapper"/>
 	
 	<context:property-placeholder location="classpath:config/database.properties" />
  	

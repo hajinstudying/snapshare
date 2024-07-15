@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.snapshare.web.mapper.ReplyMapperInterface;
 import com.snapshare.web.vo.ReplyVo;
 
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +34,7 @@ public class ReplyMapperTest {
 	@Autowired
 	private ReplyMapperInterface replyMapper;
 	
-	@Test //@Ignore
+	@Test @Ignore
 	public void testDataSource() {
 		try(Connection conn = dataSource.getConnection()){
 			assertNotNull(conn);
@@ -73,18 +72,18 @@ public class ReplyMapperTest {
 	 
 	// 댓글 등록 테스트
 	@Test @Ignore
-	public void testCreateReply() {
-		// 저장할 객체 생성
-		ReplyVo replyVo = new ReplyVo();
-		replyVo.setMemberId("java");
-		replyVo.setBoardId(1);
-		replyVo.setReplyGroup(0);
-		replyVo.setReplyOrder(0);
-		replyVo.setReplyIndent(0);
-		 
-		// 객체 저장
-		int result = replyMapper.createReply(replyVo);
-		assertTrue(result > 0);
+	public void testCreateReplySelectKey() {
+	    // 저장할 객체 생성
+	    ReplyVo replyVo = new ReplyVo();
+	    replyVo.setMemberId("test");
+	    replyVo.setBoardId(4);
+	    replyVo.setReplyGroup(0);
+	    replyVo.setReplyOrder(0);
+	    replyVo.setReplyIndent(0);
+	     
+	    // 객체 저장
+	    int result = replyMapper.createReplySelectKey(replyVo);
+	    assertTrue(result > 0);
 		log.info("저장된 행수 : " + result);
 	}
 	 
@@ -93,8 +92,8 @@ public class ReplyMapperTest {
 	public void testUpdateReply() {
 		// 수정할 객체 생성
 		ReplyVo replyVo = new ReplyVo();
-		replyVo.setReplyId(1);	// 실제로 DB에 있는 replyId
-		replyVo.setMemberId("java");
+		replyVo.setReplyId(1);	
+		replyVo.setMemberId("test");
 		replyVo.setBoardId(2);
 		replyVo.setReplyGroup(0);
 		replyVo.setReplyOrder(1);
@@ -107,7 +106,7 @@ public class ReplyMapperTest {
 	}
 	 
 	// 댓글 삭제 테스트
-	@Test @Ignore
+	@Test //@Ignore
 	public void testDeleteReply() {
 		int replyId = 1;	// 삭제할 replyId, DB에 있는 번호
 		 

@@ -22,22 +22,13 @@
 		from bookmark
 		order by bookmark_id desc					
 	</select>
-	
-	<!-- 북마크 등록 메소드 -->
-	<insert id="createBookmark" parameterType="BookmarkVo">
-		insert into bookmark(
-			member_id, 
-			board_id)
-		values (
-			#{memberId}, 
-			#{boardId})
-	</insert>		
+		
 		
 	<!-- 북마크 등록 메소드 (selectKey 사용) -->
 	<insert id="createBookmarkSelectKey" parameterType="BookmarkVo">
 		<!-- selectKey를 사용하여 시퀀스 값 가져오기 -->
 		<selectKey keyProperty="bookmarkId" resultType="int" order="BEFORE">
-			select seq_board_id_seq.nextval from dual
+			select seq_bookmark_id.nextval from dual
 		</selectKey>
 		insert into bookmark(
 			bookmark_id,

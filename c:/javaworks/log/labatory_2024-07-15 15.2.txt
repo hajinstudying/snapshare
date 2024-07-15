@@ -1,0 +1,37 @@
+2024-07-15 15:55:32 [HikariPool-1 connection adder] [jdbc.connection] - 2. Connection opened
+2024-07-15 15:55:33 [HikariPool-1 connection adder] [jdbc.connection] - 3. Connection opened
+2024-07-15 15:55:33 [main] [jdbc.sqlonly] - select seq_reply_id.nextval from dual 
+
+2024-07-15 15:55:33 [main] [jdbc.sqltiming] -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. select seq_reply_id.nextval from dual 
+ {executed in 47 msec}
+2024-07-15 15:55:33 [main] [jdbc.resultsettable] - 
+|--------|
+|nextval |
+|--------|
+|6       |
+|--------|
+
+2024-07-15 15:55:33 [main] [jdbc.sqlonly] - insert into reply( reply_id, member_id, board_id, reply_group, reply_order, reply_indent) values 
+( 6, 'test', 4, 0, 0, 0) 
+
+2024-07-15 15:55:33 [main] [jdbc.sqltiming] -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. insert into reply( reply_id, member_id, board_id, reply_group, reply_order, reply_indent) values 
+( 6, 'test', 4, 0, 0, 0) 
+ {executed in 40 msec}
+2024-07-15 15:55:33 [main] [c.s.web.mapper.ReplyMapperTest] - 저장된 행수 : 1
+2024-07-15 15:55:33 [Thread-3] [o.s.c.s.GenericApplicationContext] - Closing org.springframework.context.support.GenericApplicationContext@6a57ae10: startup date [Mon Jul 15 15:55:31 KST 2024]; root of context hierarchy
+2024-07-15 15:55:33 [Thread-3] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
+2024-07-15 15:55:33 [HikariPool-1 connection adder] [jdbc.connection] - 4. Connection opened
+2024-07-15 15:55:33 [HikariPool-1 connection closer] [jdbc.connection] - 1. Connection closed
+2024-07-15 15:55:33 [HikariPool-1 connection closer] [jdbc.connection] - 1. Connection closed
+2024-07-15 15:55:33 [HikariPool-1 connection closer] [jdbc.connection] - 2. Connection closed
+2024-07-15 15:55:33 [HikariPool-1 connection closer] [jdbc.connection] - 2. Connection closed
+2024-07-15 15:55:33 [HikariPool-1 connection closer] [jdbc.connection] - 3. Connection closed
+2024-07-15 15:55:33 [HikariPool-1 connection closer] [jdbc.connection] - 3. Connection closed
+2024-07-15 15:55:33 [HikariPool-1 connection closer] [jdbc.connection] - 4. Connection closed
+2024-07-15 15:55:33 [HikariPool-1 connection closer] [jdbc.connection] - 4. Connection closed
+2024-07-15 15:55:33 [Thread-3] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
+2024-07-15 15:55:55 [main] [o.s.t.c.s.DefaultTestContextBootstrapper] - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2024-07-15 15:55:55 [main] [o.s.t.c.s.DefaultTestContextBootstrapper] - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@4ef74c30, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@7283d3eb, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@638ef7ed, org.springframework.test.context.support.DirtiesContextTestExecutionListener@4bff7da0, org.springframework.test.context.transaction.TransactionalTestExecutionListener@3f1d2e23, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@536dbea0]
+2024-07-15 15:55:55 [main] [o.s.b.f.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [file:src/main/webapp/WEB-INF/spring/root-context.xml]

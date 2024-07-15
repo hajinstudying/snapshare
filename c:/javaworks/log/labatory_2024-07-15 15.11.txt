@@ -1,0 +1,20 @@
+2024-07-15 15:58:16 [HikariPool-1 connection closer] [jdbc.connection] - 1. Connection closed
+2024-07-15 15:58:16 [HikariPool-1 connection closer] [jdbc.connection] - 2. Connection closed
+2024-07-15 15:58:16 [HikariPool-1 connection closer] [jdbc.connection] - 2. Connection closed
+2024-07-15 15:58:16 [HikariPool-1 connection closer] [jdbc.connection] - 3. Connection closed
+2024-07-15 15:58:16 [HikariPool-1 connection closer] [jdbc.connection] - 3. Connection closed
+2024-07-15 15:58:16 [HikariPool-1 connection closer] [jdbc.connection] - 4. Connection closed
+2024-07-15 15:58:16 [HikariPool-1 connection closer] [jdbc.connection] - 4. Connection closed
+2024-07-15 15:58:17 [HikariPool-1 connection adder] [jdbc.connection] - 5. Connection opened
+2024-07-15 15:58:17 [HikariPool-1 connection closer] [jdbc.connection] - 5. Connection closed
+2024-07-15 15:58:17 [HikariPool-1 connection closer] [jdbc.connection] - 5. Connection closed
+2024-07-15 15:58:17 [Thread-3] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
+2024-07-15 15:58:33 [main] [o.s.t.c.s.DefaultTestContextBootstrapper] - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2024-07-15 15:58:33 [main] [o.s.t.c.s.DefaultTestContextBootstrapper] - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@1cf56a1c, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@33f676f6, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@4c5ae43b, org.springframework.test.context.support.DirtiesContextTestExecutionListener@264f218, org.springframework.test.context.transaction.TransactionalTestExecutionListener@3576ddc2, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@35b74c5c]
+2024-07-15 15:58:33 [main] [o.s.b.f.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [file:src/main/webapp/WEB-INF/spring/root-context.xml]
+2024-07-15 15:58:34 [main] [o.s.c.s.GenericApplicationContext] - Refreshing org.springframework.context.support.GenericApplicationContext@1787bc24: startup date [Mon Jul 15 15:58:34 KST 2024]; root of context hierarchy
+2024-07-15 15:58:34 [main] [o.s.b.f.a.AutowiredAnnotationBeanPostProcessor] - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2024-07-15 15:58:35 [main] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+2024-07-15 15:58:36 [main] [jdbc.connection] - 1. Connection opened
+2024-07-15 15:58:36 [main] [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@f4cfd90
+2024-07-15 15:58:36 [main] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.

@@ -40,7 +40,7 @@ public class ReplyServiceTest {
 	
 	@Test @Ignore
 	public void testGetReply() {
-		int replyId = 1;
+		int replyId = 2;
 		ReplyVo replyVo = replyService.getReply(replyId);
 		assertNotNull(replyVo);
 		log.info("서비스에서 조회한 getReply() : " + replyVo);
@@ -52,35 +52,19 @@ public class ReplyServiceTest {
 		List<ReplyVo> replyList = replyService.listReply();
 		replyList.forEach(reply -> log.info(reply.toString()));		
 	}
-	
-	@Test @Ignore
-	public void testCreateReply() {
-		 // 저장할 객체 생성
-		 ReplyVo replyVo = new ReplyVo();
-		 replyVo.setMemberId("java");
-		 replyVo.setBoardId(1);
-		 replyVo.setReplyGroup(0);
-		 replyVo.setReplyOrder(0);
-		 replyVo.setReplyIndent(0);
-		 
-		 // 객체 저장
-		 int result = replyService.createReply(replyVo);
-		 assertTrue(result > 0);
-		 log.info("저장된 행수 : " + result);		
-	}
 	 
-	@Test
+	@Test @Ignore
 	public void testCreateReplySelectKey() {
 		// 저장할 객체 생성
 		ReplyVo replyVo = new ReplyVo();
-		replyVo.setMemberId("java");
+		replyVo.setMemberId("test");
 		replyVo.setBoardId(1);
 		replyVo.setReplyGroup(0);
 		replyVo.setReplyOrder(0);
 		replyVo.setReplyIndent(0);
 		
 		// 객체 저장
-		int result = replyService.createReply(replyVo);
+		int result = replyService.createReplySelectKey(replyVo);
 		assertTrue(result > 0);
 		log.info("저장된 행수 : " + result);
 	}
@@ -89,9 +73,9 @@ public class ReplyServiceTest {
 	public void testUpdateReply() {
 		 // 수정할 객체 생성
 		 ReplyVo replyVo = new ReplyVo();
-		 replyVo.setReplyId(1);	// 실제로 DB에 있는 replyId
-		 replyVo.setMemberId("java");
-		 replyVo.setBoardId(2);
+		 replyVo.setReplyId(2);	// 실제로 DB에 있는 replyId
+		 replyVo.setMemberId("test");
+		 replyVo.setBoardId(1);
 		 replyVo.setReplyGroup(0);
 		 replyVo.setReplyOrder(1);
 		 replyVo.setReplyIndent(1);
@@ -102,9 +86,9 @@ public class ReplyServiceTest {
 		 log.info("수정된 행수 : " + result);		
 	}
 
-	@Test @Ignore
+	@Test //@Ignore
 	public void testDeleteReply() {
-		int replyId = 1;	// 삭제할 replyId, DB에 있는 번호
+		int replyId = 8;	// 삭제할 replyId, DB에 있는 번호
 		 
 		// 객체 삭제
 		int result = replyService.deleteReply(replyId);

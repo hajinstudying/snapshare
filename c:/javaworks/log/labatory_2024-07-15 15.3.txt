@@ -1,0 +1,31 @@
+2024-07-15 15:55:56 [main] [o.s.c.s.GenericApplicationContext] - Refreshing org.springframework.context.support.GenericApplicationContext@51c693d: startup date [Mon Jul 15 15:55:56 KST 2024]; root of context hierarchy
+2024-07-15 15:55:57 [main] [o.s.b.f.a.AutowiredAnnotationBeanPostProcessor] - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2024-07-15 15:55:57 [main] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+2024-07-15 15:55:58 [main] [jdbc.connection] - 1. Connection opened
+2024-07-15 15:55:58 [main] [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@c6634d
+2024-07-15 15:55:58 [main] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+2024-07-15 15:55:58 [HikariPool-1 connection adder] [jdbc.connection] - 2. Connection opened
+2024-07-15 15:55:58 [HikariPool-1 connection adder] [jdbc.connection] - 3. Connection opened
+2024-07-15 15:55:58 [main] [jdbc.sqlonly] - update reply set member_id = 'test', board_id = 2, reply_group = 0, reply_order = 1, reply_indent 
+= 1 where reply_id = 1 
+
+2024-07-15 15:55:58 [main] [jdbc.sqltiming] -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+1. update reply set member_id = 'test', board_id = 2, reply_group = 0, reply_order = 1, reply_indent 
+= 1 where reply_id = 1 
+ {executed in 84 msec}
+2024-07-15 15:55:59 [main] [c.s.web.mapper.ReplyMapperTest] - 수정된 행수 : 1
+2024-07-15 15:55:59 [Thread-3] [o.s.c.s.GenericApplicationContext] - Closing org.springframework.context.support.GenericApplicationContext@51c693d: startup date [Mon Jul 15 15:55:56 KST 2024]; root of context hierarchy
+2024-07-15 15:55:59 [Thread-3] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
+2024-07-15 15:55:59 [HikariPool-1 connection adder] [jdbc.connection] - 4. Connection opened
+2024-07-15 15:55:59 [HikariPool-1 connection closer] [jdbc.connection] - 1. Connection closed
+2024-07-15 15:55:59 [HikariPool-1 connection closer] [jdbc.connection] - 1. Connection closed
+2024-07-15 15:55:59 [HikariPool-1 connection closer] [jdbc.connection] - 2. Connection closed
+2024-07-15 15:55:59 [HikariPool-1 connection closer] [jdbc.connection] - 2. Connection closed
+2024-07-15 15:55:59 [HikariPool-1 connection closer] [jdbc.connection] - 3. Connection closed
+2024-07-15 15:55:59 [HikariPool-1 connection closer] [jdbc.connection] - 3. Connection closed
+2024-07-15 15:55:59 [HikariPool-1 connection closer] [jdbc.connection] - 4. Connection closed
+2024-07-15 15:55:59 [HikariPool-1 connection closer] [jdbc.connection] - 4. Connection closed
+2024-07-15 15:55:59 [Thread-3] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
+2024-07-15 15:56:15 [main] [o.s.t.c.s.DefaultTestContextBootstrapper] - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2024-07-15 15:56:15 [main] [o.s.t.c.s.DefaultTestContextBootstrapper] - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@222a59e6, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@6c7a164b, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@4c2bb6e0, org.springframework.test.context.support.DirtiesContextTestExecutionListener@3e62d773, org.springframework.test.context.transaction.TransactionalTestExecutionListener@4ef74c30, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@7283d3eb]
+2024-07-15 15:56:15 [main] [o.s.b.f.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from URL [file:src/main/webapp/WEB-INF/spring/root-context.xml]

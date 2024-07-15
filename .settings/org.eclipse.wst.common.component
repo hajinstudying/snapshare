@@ -1,38 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-<<<<<<< HEAD
-            	
-    
-    
-    <wb-module deploy-name="web-1.0.0-BUILD-SNAPSHOT">
-                                
-        
-        
-        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
-                        		
-        
-        
-        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
-                        		
-        
-        
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
-                        		
-        
-        
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
-                        		
-        
-        
-        <property name="java-output-path" value="target/classes"/>
-        <property name="context-root" value="/"/>
-                        	
-    
-    
-    </wb-module>
-            
-
-=======
         	
     
     <wb-module deploy-name="snapshare">
@@ -57,6 +23,5 @@
     
     </wb-module>
         
->>>>>>> 878221a26f353d20937b20c43f491a2f76e3d0ee
 
 </project-modules>

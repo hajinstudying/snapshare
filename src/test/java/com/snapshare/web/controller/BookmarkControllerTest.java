@@ -115,7 +115,7 @@ public class BookmarkControllerTest {
                 .andExpect(redirectedUrl("/bookmark/list"));
     }
 
-    @Test //@Ignore
+    @Test @Ignore
     public void testDeleteBookmark() throws Exception {
         int bookmarkId = 1;
 

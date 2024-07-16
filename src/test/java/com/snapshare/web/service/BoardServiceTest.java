@@ -65,18 +65,13 @@ public class BoardServiceTest {
 	 * 게시물 등록 테스트 메소드
 	 * - createBoardSelectKey()가 아닌 createBoard()사용
 	 */
-	@Test @Ignore
-	public void testCreateBoard() {
-		//저장 객체 생성
-		BoardVo boardVo = new BoardVo();
-		boardVo.setFileName("imageName");
-		boardVo.setMemberId("test");
-		
-		// 객체 저장
-		int result = boardService.createBoard(boardVo);
-		assertTrue(result > 0);
-		log.info("저장된 행수 : " + result);
-	}
+	/*
+	 * @Test @Ignore public void testCreateBoard() { //저장 객체 생성 BoardVo boardVo =
+	 * new BoardVo(); boardVo.setFileName("imageName"); boardVo.setMemberId("test");
+	 * 
+	 * // 객체 저장 int result = boardService.createBoard(boardVo); assertTrue(result >
+	 * 0); log.info("저장된 행수 : " + result); }
+	 */
 	
 	/**
 	 *  게시물 삭제 테스트 메소드

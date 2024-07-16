@@ -25,21 +25,22 @@
 	
 		<!-- 태그 생성 메소드(selectKey 사용) -->
 		<insert id="createTagSelectKey" parameterType="TagVo">
-			<selectKey keyProperty="tagId" resultType="int" order="BEFORE">
-				SELECT seq_tag_id.nextval FROM dual				
-			</selectKey>
-				INSERT INTO tag(
-					tag_id,
-					tag_name)
-				VALUES(
-					seq_tag_id.nextval,
-					#{tagName},
+		    <selectKey keyProperty="tagId" resultType="int" order="BEFORE">
+		        SELECT seq_tag_id.nextval FROM dual
+		    </selectKey>
+		    INSERT INTO tag (
+		        tag_id,
+		        tag_name
+		    ) VALUES (
+		        #{tagId},
+		        #{tagName}
+		    )
 		</insert>
 		
 		<!-- 태그 삭제 쿼리 메소드 -->
 		<delete id="deleteTag" parameterType="int">
 			DELETE FROM tag
-			WHERE tag_id = #{boardId}
+			WHERE tag_id = #{tagId}
 		</delete>
 
 	</mapper>

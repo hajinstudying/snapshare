@@ -20,48 +20,8 @@
     <!-- Tagify CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.0.0/tagify.css">
     <!-- Custom CSS -->
-    <style>
-        .container {
-            margin-top: 50px;
-        }
-        .image-preview {
-            max-width: 100%;
-            height: 300px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 5px;
-            background-color: #f0f0f0;
-            border-radius: 30px;
-            position: relative;
-        }
-        .image-preview img {
-            max-width: 100%;
-            max-height: 100%;
-            display: none;
-        }
-        .image-preview .icon {
-            font-size: 48px;
-            color: #6c757d;
-        }
-        .image-preview:hover {
-            cursor: pointer;
-        }
-        .form-label {
-            text-align: center;
-        }
-        /* 추가된 스타일 */
-        #overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: transparent;
-            z-index: 1000;
-            cursor: pointer;
-        }
-    </style>
+   	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/boardCreate.css' />?v=${now}" />
+    
 </head>
 <body>
 <jsp:include page="/resources/common/header.jsp" />
@@ -78,12 +38,13 @@
         </div>
         <!-- 업로드 & 태그 -->
         <div class="col-md-6">
-            <form>
+            <form id="boardForm" action="${contextPath}/board/create" method="post"
+            enctype="multipart/form-data">
                 <div class="form-group text-center mb-3">
                     <label for="formFile" class="form-label">이미지 올리기</label>
                 </div>
                 <div class="form-group col-9 mx-auto mb-3">
-                    <input class="form-control image-upload" type="file" id="formFile">
+                    <input class="form-control image-upload" type="file" name="file" id="formFile" >
                 </div>
                 <div class="form-group col-9 mx-auto mb-3">
                     <input type="text" class="form-control" name="tags" id="tags" placeholder="태그 추가하기">
@@ -136,7 +97,19 @@ $(document).ready(function() {
 
     // Tagify 초기화
     var input = document.querySelector('input[name=tags]');
-    new Tagify(input);
+    var tagify = new Tagify(input, {
+        originalInputValueFormat: valuesArr => valuesArr.map(item => item.value).join(',')
+    });
+    
+ 	// 폼 제출 시 태그 값을 hidden input으로 추가
+    $("#boardForm").submit(function() {
+        var tagsValue = tagify.value.map(tag => tag.value).join(',');
+        $('<input>').attr({
+            type: 'hidden',
+            name: 'tagList',
+            value: tagsValue
+        }).appendTo('#boardForm');
+    });
 });
 </script>
 </body>

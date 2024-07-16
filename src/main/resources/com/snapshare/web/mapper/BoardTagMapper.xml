@@ -15,7 +15,7 @@
 	</select>
 
 	<!-- 게시물에 태그 추가 쿼리 -->
-	<insert id="addTagToBoard">
+	<insert id="addTagToBoard" parameterType="boardTagVo">
 		INSERT INTO board_tag (board_id, tag_id)
 		VALUES (#{boardId}, #{tagId})
 	</insert>

@@ -10,10 +10,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -67,9 +65,7 @@ public class BoardController {
 	 * 게시물 등록 폼 제공 메소드
 	 */
 	@GetMapping("/create")
-	public String createBoard(HttpSession session,
-							  RedirectAttributes redirectAttributes,
-							  Model model) {	
+	public String createBoard(Model model) {	
 		model.addAttribute("boardVo", new BoardVo());
 		return "board/boardCreate";
 	}
@@ -79,17 +75,21 @@ public class BoardController {
 	 * - 폼에서는 이미지파일을 "file"이라는 name으로 보내야한다.
 	 * - 저장되는 이미지파일명은 uniqueFileName이다.
 	 */
-	@Transactional
 	@PostMapping("/create")
-	public String createBoard(@ModelAttribute("boardVo") BoardVo boardVo,
-	                          @RequestParam("file") MultipartFile file,
-	                          HttpSession session,
+	public String createBoard(HttpSession session,
+							  @RequestParam("file") MultipartFile file,
+	                          @RequestParam("tagList") String tagList,
 	                          RedirectAttributes redirectAttributes) {
-		// 로그인 memberId를 boardVo에 저장
-	    MemberVo memberVo = (MemberVo) session.getAttribute("memberVo");
-	    boardVo.setMemberId(memberVo.getMemberId());
-
+		
+		log.info("boardController의 createBoard()");
+		
+		//세션에서 memberId 가져오기
+		MemberVo memberVo = (MemberVo) session.getAttribute("memberVo");
+		String memberId = memberVo.getMemberId();
+		log.info("세션에서 가져온 memberId" + memberId);
+		
 	    // 파일 업로드 처리
+		BoardVo boardVo = new BoardVo();
 	    if (!file.isEmpty()) {
 	        try {
 	        	
@@ -117,9 +117,10 @@ public class BoardController {
 	            
 	            // 고유 파일명을 boardVo에 설정
 	            boardVo.setFileName(uniqueFileName);
+	            boardVo.setMemberId(memberId);
 	            
 	            // 게시물 생성
-	            boardService.createBoard(boardVo);
+	            boardService.createBoard(boardVo, tagList);
 	            return "redirect:/board/list";
 	            
 	        } catch (IOException e) {

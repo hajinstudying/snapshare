@@ -2,6 +2,7 @@ package com.snapshare.web.mapper;
 
 import java.util.List;
 
+import com.snapshare.web.vo.BoardTagVo;
 import com.snapshare.web.vo.TagVo;
 
 /**
@@ -22,7 +23,8 @@ public interface BoardTagMapperInterface {
 	 * @param tagId 추가할 태그의 태그ID
 	 * @return 추가된 행의 수
 	 */
-	public int addTagToBoard(int boardId, int tagId);
+	public int addTagToBoard(BoardTagVo boardTagVo);
+	
 	
 	/**
 	 * 해당 게시물의 태그 삭제 추상메소드

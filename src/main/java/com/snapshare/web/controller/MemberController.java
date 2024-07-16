@@ -1,5 +1,6 @@
 package com.snapshare.web.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,16 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.snapshare.web.service.MemberService;
 import com.snapshare.web.vo.MemberVo;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequestMapping("/member")
 @Slf4j
-@RequiredArgsConstructor
 public class MemberController {
 
-    private final MemberService memberService;
+    @Autowired
+    private MemberService memberService;
 
     @GetMapping("/create")
     public String createMember(Model model) {
@@ -29,7 +29,7 @@ public class MemberController {
     }
 
     @PostMapping("/create")
-    public String createMember(@ModelAttribute("memberVo") MemberVo memberVo) {
+    public String createMember(@ModelAttribute MemberVo memberVo) {
     	log.info("createMember  메소드 : " + memberVo);
         memberService.createMember(memberVo);
         return "redirect:/member/list";

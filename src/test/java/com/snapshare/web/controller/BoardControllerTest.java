@@ -104,29 +104,31 @@ public class BoardControllerTest {
 	}
 
 	/**
-	 * 게시물 등록 테스트 - 세션의 로그인여부를 확인하는 부분이 있음
-	 *//*
-		 * @Test @Ignore public void testCreateBoard() throws Exception { BoardVo
-		 * boardVo = new BoardVo(1, "test", "imgName");
-		 * 
-		 * // given String memberId = "testUser";
-		 * Mockito.when(service.createBoard(Mockito.any(BoardVo.class))).thenReturn(1);
-		 * 
-		 * // 가짜 세션 생성 HttpSession session = mock(HttpSession.class);
-		 * when(session.getAttribute("memberVo")).thenReturn(new MemberVo(memberId));
-		 * 
-		 * // 가짜 이미지 파일 생성 InputStream inputStream =
-		 * getClass().getResourceAsStream("/test-image.png"); MockMultipartFile file =
-		 * new MockMultipartFile("file", "test-image.png", "image/png", inputStream);
-		 * 
-		 * // when this.mockMvc.perform(multipart("/board/create") .file(file)
-		 * .sessionAttr("memberVo", session.getAttribute("memberVo")) .param("boardId",
-		 * String.valueOf(boardVo.getBoardId())) .param("memberId",
-		 * String.valueOf(boardVo.getMemberId())) .param("fileName",
-		 * boardVo.getFileName())) // then .andExpect(status().is3xxRedirection())
-		 * .andExpect(redirectedUrl("/board/list")); }
-		 */
-
+	 * 게시물 등록 테스트
+	 * - 세션의 로그인여부를 확인하는 부분이 있음
+	 */
+	/*
+	 * @Test @Ignore public void testCreateBoard() throws Exception { BoardVo
+	 * boardVo = new BoardVo(1, "test", "imgName");
+	 * 
+	 * // given String memberId = "testUser";
+	 * Mockito.when(service.createBoard(Mockito.any(BoardVo.class))).thenReturn(1);
+	 * 
+	 * // 가짜 세션 생성 HttpSession session = mock(HttpSession.class);
+	 * when(session.getAttribute("memberVo")).thenReturn(new MemberVo(memberId));
+	 * 
+	 * // 가짜 이미지 파일 생성 InputStream inputStream =
+	 * getClass().getResourceAsStream("/test-image.png"); MockMultipartFile file =
+	 * new MockMultipartFile("file", "test-image.png", "image/png", inputStream);
+	 * 
+	 * // when this.mockMvc.perform(multipart("/board/create") .file(file)
+	 * .sessionAttr("memberVo", session.getAttribute("memberVo")) .param("boardId",
+	 * String.valueOf(boardVo.getBoardId())) .param("memberId",
+	 * String.valueOf(boardVo.getMemberId())) .param("fileName",
+	 * boardVo.getFileName())) // then .andExpect(status().is3xxRedirection())
+	 * .andExpect(redirectedUrl("/board/list")); }
+	 */
+	
 	/**
 	 * 게시물 삭제 테스트 - 세션의 memberId와 boardId를 통해 가져온 BoardVo 객체의 membrId가 일치하는지 검증하는
 	 * 부분을 설정한 뒤 삭제 메소드 테스트가 진행된다.

@@ -1,7 +1,9 @@
 package com.snapshare.web.controller;
 
+
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +16,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.snapshare.web.service.LoginService;
 import com.snapshare.web.vo.MemberVo;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -23,17 +24,18 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Controller
 @Slf4j
-@RequiredArgsConstructor
 public class LoginController {
 
-    private final LoginService loginService;
+    @Autowired
+    private LoginService loginService;
 
     /**
      * 로그인 폼 제공
      */
     @GetMapping("/login")
-    public String login(MemberVo memberVo, Model model) {
-        return "login/login"; 
+    public String login(Model model,  MemberVo memberVo) {
+        //model.addAttribute("member", memberVo);
+        return "login/login"; // login/login.jsp로 이동(forward방식)
     }
     /**
      * 로그인 처리
@@ -63,6 +65,7 @@ public class LoginController {
             return "redirect:/login"; // /login 요청(로그인 폼)
         }
     }
+    
     
     /**
      * 로그아웃 처리

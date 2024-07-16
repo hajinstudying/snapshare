@@ -29,8 +29,7 @@ public interface BoardTagMapperInterface {
 	/**
 	 * 해당 게시물의 태그 삭제 추상메소드
 	 * @param boardId 태그를 삭제할 게시물의 ID
-	 * @param tagId 삭제할 태그의 ID
 	 * @return 삭제된 행의 수
 	 */
-	public int deleteTagFromBoard(int boardId, int tagId);
+	public int deleteTagsFromBoard(int boardId);
 }

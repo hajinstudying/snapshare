@@ -1,21 +1,22 @@
 package com.snapshare.web.controller;
 
+import java.util.HashMap;
 import java.util.List;
-
-import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.snapshare.web.service.BookmarkService;
 import com.snapshare.web.vo.BookmarkVo;
-import com.snapshare.web.vo.MemberVo;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,57 +24,58 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/bookmark")
 @Slf4j
 public class BookmarkController {
-	
-	@Autowired
-	private BookmarkService bookmarkService;
-	
-	/**
-	 * 북마크 상세 보기 메소드
-	 */
-	@GetMapping("/detail")
-	public String getBookmark(@RequestParam("bookmarkId") int bookmarkId, Model model) {
-		log.info("BookmarkController getBookmark");
 
-		BookmarkVo bookmarkVo = bookmarkService.getBookmark(bookmarkId);
-		model.addAttribute("bookmarkVo", bookmarkVo);
-		return "bookmark/bookmarkDetail"; // 반환할 JSP 이름
-	}
-	
-	/**
-	 * 북마크 목록 보기 메소드
-	 */
-	@GetMapping("/list")
-	public String listBookmark(Model model) {
-		log.info("BookmarkController listBookmark");
+    private final BookmarkService bookmarkService;
 
-		List<BookmarkVo> listBookmark = bookmarkService.listBookmark();
-		model.addAttribute("listBookmark", listBookmark);
-		return "bookmark/bookmarkList"; // 반환할 JSP 이름
-	}
-	
-	/**
-	 * 북마크 등록 메소드(post 방식)
-	 */
-	@PostMapping("/create")
-	public String createBookmark(@ModelAttribute("bookmarkVo") BookmarkVo bookmarkVo, HttpSession session) {
-		// 세션에서 사용자 정보 조회
-		MemberVo memberVo = (MemberVo) session.getAttribute("memberVo");
-		if (memberVo == null) {
-			return "redirect:/login";
-		}
-		// 세션에서 조회한 사용자를 작성자로 설정
-		bookmarkVo.setMemberId(memberVo.getMemberId());
+    @Autowired
+    public BookmarkController(BookmarkService bookmarkService) {
+        this.bookmarkService = bookmarkService;
+    }
 
-		bookmarkService.createBookmarkSelectKey(bookmarkVo); // 선택 키를 사용하는 메서드 호출
-		return "redirect:/bookmark/list";	// 목록 요청(listBookmark() 호출)
-	}
-	
-	/**
-	 * 북마크 삭제 메소드
-	 */
-	@PostMapping("/delete")
-	public String deleteBookmark(@RequestParam("bookmarkId") int bookmarkId) {
-		bookmarkService.deleteBookmark(bookmarkId);
-		return "redirect:/bookmark/list";	// 목록 요청(listBookmark() 호출)
-	}
+    @GetMapping("/detail")
+    public String getBookmark(@RequestParam("bookmarkId") int bookmarkId, Model model) {
+        BookmarkVo bookmarkVo = bookmarkService.getBookmark(bookmarkId);
+        model.addAttribute("bookmarkVo", bookmarkVo);
+        return "redirect:/board/detail?boardId=" + bookmarkVo.getBoardId();
+    }
+
+    @GetMapping("/list")
+    public String listBookmarks(Model model) {
+        List<BookmarkVo> bookmarkList = bookmarkService.listBookmark();
+        model.addAttribute("bookmarkList", bookmarkList);
+        return "bookmark/bookmarklist";
+    }
+
+    @PostMapping("/create")
+    @ResponseBody
+    public ResponseEntity<Map<String, Object>> createBookmark(@RequestBody Map<String, Object> payload) {
+        int boardId = (int) payload.get("boardId");
+        String memberId = (String) payload.get("memberId");
+        log.info("게시판 ID: " + boardId + ", 회원 ID: " + memberId);
+        
+        int result = bookmarkService.insertBookmark(new BookmarkVo(boardId, memberId));
+        log.info("북마크 삽입 결과: " + result);
+        
+        Map<String, Object> response = new HashMap<>();
+        if (result > 0) {
+            response.put("success", true);
+        } else {
+            response.put("success", false);
+        }
+        return ResponseEntity.ok(response);
+    }
+
+
+    @PostMapping("/update")
+    public String updateBoardBookmarkCount(@RequestParam("memberId") String memberId,
+                                           @RequestParam("boardId") int boardId) {
+        bookmarkService.updateBoardBookmarkCount(memberId, boardId);
+        return "redirect:/bookmark/bookmarklist";
+    }
+
+    @PostMapping("/delete")
+    public String deleteBookmark(@RequestParam("bookmarkId") int bookmarkId) {
+        bookmarkService.deleteBookmark(bookmarkId);
+        return "redirect:/bookmark/bookmarklist";
+    }
 }

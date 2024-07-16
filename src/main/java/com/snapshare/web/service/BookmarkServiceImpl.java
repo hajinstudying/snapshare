@@ -20,8 +20,7 @@ public class BookmarkServiceImpl implements BookmarkService {
 
     @Override
     public BookmarkVo getBookmark(int bookmarkId) {
-        BookmarkVo bookmarkVo = bookmarkMapper.getBookmark(bookmarkId);
-        return bookmarkVo;
+        return bookmarkMapper.getBookmark(bookmarkId);
     }
 
     @Override
@@ -31,17 +30,19 @@ public class BookmarkServiceImpl implements BookmarkService {
 
     @Override
     @Transactional
-    public int createBookmark(BookmarkVo bookmarkVo) {
-        return bookmarkMapper.createBookmark(bookmarkVo);
+    public int insertBookmark(BookmarkVo bookmarkVo) {
+        return bookmarkMapper.insertBookmark(bookmarkVo);
+    }
+    
+    @Override
+    @Transactional
+    public int updateBoardBookmarkCount(String memberId, int boardId) {
+        return bookmarkMapper.updateBoardBookmarkCount(memberId, boardId);
     }
 
     @Override
+    @Transactional
     public int deleteBookmark(int bookmarkId) {
         return bookmarkMapper.deleteBookmark(bookmarkId);
-    }
-
-    @Override
-    public int createBookmarkSelectKey(BookmarkVo bookmarkVo) {
-        return bookmarkMapper.createBookmarkSelectKey(bookmarkVo);
     }
 }

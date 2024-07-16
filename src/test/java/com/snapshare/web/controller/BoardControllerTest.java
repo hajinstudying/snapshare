@@ -3,14 +3,12 @@ package com.snapshare.web.controller;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +24,6 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -117,33 +114,27 @@ public class BoardControllerTest {
 	 * 게시물 등록 테스트
 	 * - 세션의 로그인여부를 확인하는 부분이 있음
 	 */
-	@Test @Ignore
-	public void testCreateBoard() throws Exception {
-		BoardVo boardVo = new BoardVo(1, "test", "imgName");
-		
-		// given
-		String memberId = "testUser";
-		Mockito.when(service.createBoard(Mockito.any(BoardVo.class))).thenReturn(1);
-		
-		// 가짜 세션 생성
-        HttpSession session = mock(HttpSession.class);
-        when(session.getAttribute("memberVo")).thenReturn(new MemberVo(memberId));
-        
-		// 가짜 이미지 파일 생성
-        InputStream inputStream = getClass().getResourceAsStream("/test-image.png");
-        MockMultipartFile file = new MockMultipartFile("file", "test-image.png", "image/png", inputStream);
-
-		// when
-		this.mockMvc.perform(multipart("/board/create")
-				.file(file)
-	            .sessionAttr("memberVo", session.getAttribute("memberVo"))
-	            .param("boardId", String.valueOf(boardVo.getBoardId()))
-	            .param("memberId", String.valueOf(boardVo.getMemberId()))
-	            .param("fileName", boardVo.getFileName()))
-		// then 
-		.andExpect(status().is3xxRedirection())
-		.andExpect(redirectedUrl("/board/list"));
-	}	
+	/*
+	 * @Test @Ignore public void testCreateBoard() throws Exception { BoardVo
+	 * boardVo = new BoardVo(1, "test", "imgName");
+	 * 
+	 * // given String memberId = "testUser";
+	 * Mockito.when(service.createBoard(Mockito.any(BoardVo.class))).thenReturn(1);
+	 * 
+	 * // 가짜 세션 생성 HttpSession session = mock(HttpSession.class);
+	 * when(session.getAttribute("memberVo")).thenReturn(new MemberVo(memberId));
+	 * 
+	 * // 가짜 이미지 파일 생성 InputStream inputStream =
+	 * getClass().getResourceAsStream("/test-image.png"); MockMultipartFile file =
+	 * new MockMultipartFile("file", "test-image.png", "image/png", inputStream);
+	 * 
+	 * // when this.mockMvc.perform(multipart("/board/create") .file(file)
+	 * .sessionAttr("memberVo", session.getAttribute("memberVo")) .param("boardId",
+	 * String.valueOf(boardVo.getBoardId())) .param("memberId",
+	 * String.valueOf(boardVo.getMemberId())) .param("fileName",
+	 * boardVo.getFileName())) // then .andExpect(status().is3xxRedirection())
+	 * .andExpect(redirectedUrl("/board/list")); }
+	 */
 	
 	/**
 	 *  게시물 삭제 테스트

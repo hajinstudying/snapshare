@@ -6,6 +6,7 @@
 	 <div class="login">
             <a class="create" href="#">만들기</a>
             <a class="home" href="#">홈</a>
+            <a class="home" href="<c:url value='/login'/>">로그인</a>
         </div>
         
         <div class="search-box">

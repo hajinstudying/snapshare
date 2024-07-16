@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/header.css' />?v=${now}" />
 	<header class="header">
 	 <div class="login">
-            <a class="create" href="#">만들기</a>
+            <a class="create" href="<c:url value='/board/create'/>">만들기</a>
             <a class="home" href="<c:url value='/bookmark/list'/>">북마크</a>
             <a class="home" href="<c:url value='/login'/>">로그인</a>
         </div>

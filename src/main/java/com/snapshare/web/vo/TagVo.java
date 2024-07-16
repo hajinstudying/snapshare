@@ -19,4 +19,9 @@ public class TagVo {
 	
 	private int tagId; 		// 태그id
 	private String tagName; // 태그명
+	
+	// 태그 생성을 위한 생성자
+	public TagVo (String tagName) {
+		this.tagName = tagName;
+	}
 }

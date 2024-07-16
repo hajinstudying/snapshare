@@ -8,11 +8,10 @@ import java.util.UUID;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,6 +33,10 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/board") 
 public class BoardController {
 	
+	// 업로드 파일 경로 읽어오기 WEB-INF/config/file.properties
+	@Value("${file.path}")
+	private String filePath;
+
 	@Autowired
 	private BoardService boardService;
 	
@@ -55,16 +58,14 @@ public class BoardController {
 	public String listBoard(Model model) {
 		List<BoardVo> boardList = boardService.listBoard();
 		model.addAttribute("boardList", boardList);
-		return "board/boardList";
+		return "home";
 	}
 	
 	/**
 	 * 게시물 등록 폼 제공 메소드
 	 */
 	@GetMapping("/create")
-	public String createBoard(HttpSession session,
-							  RedirectAttributes redirectAttributes,
-							  Model model) {	
+	public String createBoard(Model model) {	
 		model.addAttribute("boardVo", new BoardVo());
 		return "board/boardCreate";
 	}
@@ -74,29 +75,30 @@ public class BoardController {
 	 * - 폼에서는 이미지파일을 "file"이라는 name으로 보내야한다.
 	 * - 저장되는 이미지파일명은 uniqueFileName이다.
 	 */
-	@Transactional
 	@PostMapping("/create")
-	public String createBoard(@ModelAttribute("boardVo") BoardVo boardVo,
-	                          @RequestParam("file") MultipartFile file,
-	                          HttpSession session,
+	public String createBoard(HttpSession session,
+							  @RequestParam("file") MultipartFile file,
+	                          @RequestParam("tagList") String tagList,
 	                          RedirectAttributes redirectAttributes) {
-		// 로그인 세션 확인
-	    MemberVo memberVo = (MemberVo) session.getAttribute("memberVo");
-	    if (memberVo == null) {
-	        redirectAttributes.addFlashAttribute("error", "회원만 게시물을 작성할 수 있습니다.");
-	        return "redirect:/login";
-	    }
-
-	    boardVo.setMemberId(memberVo.getMemberId());
-
+		
+		log.info("boardController의 createBoard()");
+		
+		//세션에서 memberId 가져오기
+		MemberVo memberVo = (MemberVo) session.getAttribute("memberVo");
+		String memberId = memberVo.getMemberId();
+		log.info("세션에서 가져온 memberId" + memberId);
+		
 	    // 파일 업로드 처리
+		BoardVo boardVo = new BoardVo();
 	    if (!file.isEmpty()) {
 	        try {
+	        	
 	            String fileRealName = file.getOriginalFilename();
+	            String fileNameWithoutExtension = fileRealName.substring(0, fileRealName.lastIndexOf("."));
 	            String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."));
 	            
 	            // 파일 업로드 경로 설정 (상대 경로 사용 예시. 원래 절대경로로 해야함)
-	            String uploadPath = "/upload";
+	            String uploadPath = filePath;
 	            File uploadDir = new File(uploadPath);
 	            if (!uploadDir.exists()) {
 	                uploadDir.mkdirs();
@@ -106,7 +108,7 @@ public class BoardController {
 	            String uuid = UUID.randomUUID().toString();  // 하이픈으로 연결되는 랜덤문자열 발행
 	            String[] uuids = uuid.toString().split("-"); // 하이픈을 구분자로 배열로 저장
 	    		String randomStr = uuids[0]; // 너무 길어서 0번째 인덱스만 사용
-	            String uniqueFileName = fileRealName + "_" + randomStr + fileExtension;
+	            String uniqueFileName = fileNameWithoutExtension + "_" + randomStr + fileExtension;
 	            log.info("저장되는 파일명 : " + uniqueFileName); // 원래파일명_랜덤문자열.확장자
 	            
 	            // 파일 저장
@@ -115,9 +117,10 @@ public class BoardController {
 	            
 	            // 고유 파일명을 boardVo에 설정
 	            boardVo.setFileName(uniqueFileName);
+	            boardVo.setMemberId(memberId);
 	            
 	            // 게시물 생성
-	            boardService.createBoard(boardVo);
+	            boardService.createBoard(boardVo, tagList);
 	            return "redirect:/board/list";
 	            
 	        } catch (IOException e) {
@@ -142,13 +145,7 @@ public class BoardController {
 		// 세션에서 사용자 정보 조회
 		MemberVo memberVo = (MemberVo) session.getAttribute("memberVo");
 		
-		// 사용자 정보가 없을 경우 로그인 페이지로 리다이렉트
-	    if (memberVo == null) {
-	        redirectAttributes.addFlashAttribute("error", "로그인 후 이용해주세요.");
-	        return "redirect:/login";
-	    }
-		
-		// 해당 글의 사용자 정보 조회를 위한 게시물 조회
+		// 해당 글의 작성자 정보 조회를 위한 게시물 조회
 	    BoardVo boardVo = boardService.getBoard(boardId);
 		// 게시물이 존재하지 않는 경우 처리
 	    if (boardVo == null) {

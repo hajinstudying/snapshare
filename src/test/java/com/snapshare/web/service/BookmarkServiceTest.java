@@ -37,44 +37,51 @@ public class BookmarkServiceTest {
 		assertNotNull(bookmarkService);
 		log.info("bookmarkService 인터페이스 : " + bookmarkService); // BookmarkServiceImpl@7063686f
 	}
-	
-	@Test @Ignore
-	public void testGetBookmark() {
-		int bookmarkId = 1;
-		BookmarkVo bookmarkVo = bookmarkService.getBookmark(bookmarkId);
-		assertNotNull(bookmarkVo);
-		log.info("서비스에서 조회한 getBookmark() : " + bookmarkVo);
-	}
-	
-	@Test @Ignore
-	public void testListBookmark() {
-		assertTrue(bookmarkService.listBookmark().size() > 0);
-		List<BookmarkVo> bookmarkList = bookmarkService.listBookmark();
-		bookmarkList.forEach(bookmark -> log.info(bookmark.toString()));		
-	}
-	
-	@Test @Ignore
-	public void testCreateBookmarkSelectKey() {
-		// 저장할 객체 생성
-		BookmarkVo bookmarkVo = new BookmarkVo();
-		bookmarkVo.setMemberId("test");
-		bookmarkVo.setBookmarkId(5);
-		bookmarkVo.setBoardId(6);
-		
-		// 객체 저장
-		int result = bookmarkService.createBookmarkSelectKey(bookmarkVo);
-		assertTrue(result > 0);
-		log.info("저장된 행수 : " + result);
-	}
-	
-	@Test //@Ignore
-	public void testDeleteBookmark() {
-		int bookmarkId = 6;	
-		 
-		// 객체 삭제
-		int result = bookmarkService.deleteBookmark(bookmarkId);
-		assertTrue(result > 0);
-		log.info("삭제된 행수 : " + result);
-	}	
-	
+
+ @Test @Ignore
+    public void testGetBookmark() {
+        int bookmarkId = 1;
+        BookmarkVo bookmarkVo = bookmarkService.getBookmark(bookmarkId);
+        assertNotNull(bookmarkVo);
+        log.info("조회된 북마크 : " + bookmarkVo);
+    }
+
+    @Test @Ignore
+    public void testListBookmark() {
+        List<BookmarkVo> bookmarkList = bookmarkService.listBookmark();
+        assertNotNull(bookmarkList);
+        assertTrue(bookmarkList.size() > 0);
+        bookmarkList.forEach(bookmark -> log.info("북마크 : " + bookmark));
+    }
+
+    @Test @Ignore
+    public void testInsertBookmark() {
+        BookmarkVo newBookmark = new BookmarkVo();
+        newBookmark.setMemberId("test");
+        newBookmark.setBoardId(1);
+        
+        int result = bookmarkService.insertBookmark(newBookmark);
+        assertTrue(result > 0);
+        log.info("새로 추가된 북마크의 ID: " + newBookmark.getBookmarkId());
+    }
+
+    @Test @Ignore
+    public void testUpdateBoardBookmarkCount() {
+    	String memberId = "test";
+    	int boardId = 1;
+    	
+    	int result = bookmarkService.updateBoardBookmarkCount(memberId, boardId);
+    	assertTrue(result > 0);
+    	log.info("북마크 추가 및 조회수 업데이트 결과 : " + result);
+    }
+    
+    @Test //@Ignore
+    public void testDeleteBookmark() {
+        int bookmarkId = 1;
+
+        int result = bookmarkService.deleteBookmark(bookmarkId);
+        assertTrue(result > 0);
+        log.info("북마크 삭제 결과 : " + result);
+    }
+
 }

@@ -7,10 +7,10 @@ import org.apache.ibatis.annotations.Param;
 import com.snapshare.web.vo.BookmarkVo;
 
 public interface BookmarkMapperInterface {
-    BookmarkVo getBookmark(@Param("bookmarkId") int bookmarkId);
-    List<BookmarkVo> listBookmark();
-    int createBookmarkSelectKey(@Param("memberId") String memberId, @Param("boardId") int boardId);
-    int deleteBookmark(@Param("bookmarkId") int bookmarkId);
-    int createBookmarkSelectKey(BookmarkVo bookmarkVo);
-    int updateBoardBookmarkCount(@Param("boardId") int boardId);
+    
+    public BookmarkVo getBookmark(int bookmarkId);
+    public List<BookmarkVo> listBookmark();
+    public int insertBookmark(BookmarkVo bookmarkVo);
+    public int deleteBookmark(int bookmarkId);
+	public int updateBoardBookmarkCount(@Param("memberId") String memberId, @Param("boardId") int boardId);
 }

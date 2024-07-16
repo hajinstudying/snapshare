@@ -21,31 +21,16 @@
         ORDER BY b.bookmark_id DESC
     </select>
 
-    <!-- 북마크 등록 메소드 (selectKey 사용) -->
-    <insert id="createBookmarkSelectKey" parameterType="BookmarkVo">
-        <selectKey keyProperty="bookmarkId" resultType="int" order="BEFORE">
-            SELECT seq_bookmark_id.nextval FROM dual
-        </selectKey>
-        INSERT INTO bookmark (bookmark_id, member_id, board_id, bookmark_count)
-        VALUES (#{bookmarkId}, #{memberId}, #{boardId}, #{bookmarkCount}) <!-- 초기 북마크 조회수는 0으로 설정 -->
-    </insert>
-
-    <!-- 북마크 조회수 업데이트 메소드 -->
-    <update id="updateBookmarkCount" parameterType="int">
-        UPDATE board
-        SET bookmark_count = bookmark_count + 1
-        WHERE board_id = (
-            SELECT board_id FROM bookmark WHERE bookmark_id = #{bookmarkId}
-        )
-    </update>
-
-    <!-- 북마크 수정 메소드 -->
-    <update id="updateBookmark" parameterType="BookmarkVo">
-        UPDATE bookmark
-        SET member_id = #{memberId},
-            board_id = #{boardId}
-        WHERE bookmark_id = #{bookmarkId}
-    </update>
+   <insert id="insertBookmark" parameterType="BookmarkVo">
+	    INSERT INTO bookmark (bookmark_id, member_id, board_id)
+	    VALUES (#{bookmarkId}, #{memberId}, #{boardId})
+	</insert>
+	
+	<update id="updateBoardBookmarkCount" parameterType="BoardVo">
+	    UPDATE board
+	    SET bookmark_count = bookmark_count + 1
+	    WHERE board_id = #{boardId}
+	</update>
 
     <!-- 북마크 삭제 메소드 -->
     <delete id="deleteBookmark" parameterType="int">

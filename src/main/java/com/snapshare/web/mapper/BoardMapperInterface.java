@@ -2,8 +2,6 @@ package com.snapshare.web.mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-
 import com.snapshare.web.vo.BoardVo;
 
 
@@ -19,6 +17,4 @@ public interface BoardMapperInterface {
 	public int createBoardSelectKey(BoardVo boardVo); // selectKey 사용 메소드
 	// 게시물 삭제
 	public int deleteBoard(int boardId);
-	// 북마크 조회수 카운트
-	public int updateBookmarkCount(@Param("boardId") int boardId);
 }

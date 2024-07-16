@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,8 +45,8 @@ public class BoardController {
 	 * 게시물 내용 보기 메소드
 	 * - boardService.getBoard(boardId)에서 트랜잭션으로 조회수 증가 처리됨
 	 */
-	@GetMapping("/detail")
-	public String getBoard(@RequestParam("boardId") int boardId, Model model) {
+	@GetMapping("/detail/{boardId}")
+	public String getBoard(@PathVariable("boardId") int boardId, Model model) {
 		BoardVo boardVo = boardService.getBoard(boardId);
 		model.addAttribute("boardVo", boardVo);
 		return "board/boardDetail";
@@ -135,7 +136,8 @@ public class BoardController {
 	
 	/**
 	 * 게시물 삭제 메소드
-	 * - 해당 게시물의 작성자(memberId)와 세션의 memberId가 같아야 삭제 가능 
+	 * - 해당 게시물의 작성자(memberId)와 세션의 memberId가 같아야 삭제 가능
+	 * - 해당 게시물이 가지고 있는 태그들과의 관계 boardTagVo도 전부 삭제되어야함
 	 */
 	@PostMapping("/delete")
 	public String deleteBoard(@RequestParam("boardId") int boardId,
@@ -144,9 +146,12 @@ public class BoardController {
 		
 		// 세션에서 사용자 정보 조회
 		MemberVo memberVo = (MemberVo) session.getAttribute("memberVo");
+		log.info("로그인된 사용자 : " + memberVo);
 		
 		// 해당 글의 작성자 정보 조회를 위한 게시물 조회
 	    BoardVo boardVo = boardService.getBoard(boardId);
+	    log.info("삭제할 게시물 조회 : " + boardVo);
+	    
 		// 게시물이 존재하지 않는 경우 처리
 	    if (boardVo == null) {
 	        redirectAttributes.addFlashAttribute("error", "존재하지 않는 게시물입니다.");
@@ -154,11 +159,18 @@ public class BoardController {
 	    }
 		// 작성자와 로그인 아이디가 다를 경우
 		if(!boardVo.getMemberId().equals(memberVo.getMemberId())) {
+			log.info("작성자와 로그인 아이디 다름. 작성자 : " + boardVo.getMemberId());
 			redirectAttributes.addFlashAttribute("error", "작성자가 아니면 삭제할 수 없습니다.");
 			return  "redirect:/board/detail?boardId=" + boardId;
 		}
 		 // 작성자와 일치할 경우 게시물 삭제
 		boardService.deleteBoard(boardId);			
 		return "redirect:/board/list";
-	}	
+	}
+	
+	/*
+	 * 삭제 테스트메소드
+	 * @GetMapping("/deleteTest") public String deleteTest(Model model) { return
+	 * "board/deleteTest"; }
+	 */
 }

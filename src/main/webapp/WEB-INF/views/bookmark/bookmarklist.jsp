@@ -34,3 +34,4 @@
     <script src="<c:url value='/resources/js/bookmark.js' />"></script>
 </body>
 </html>
+</html>

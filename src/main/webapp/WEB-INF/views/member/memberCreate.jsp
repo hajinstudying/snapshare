@@ -1,9 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!-- 컨텍스트패스(진입점폴더) 변수 설정 -->
-<c:set var="contextPath" value="${pageContext.request.contextPath }" />
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
 <html>
@@ -108,94 +107,62 @@
         <div class="right-panel">
             <h2>SIGN UP</h2>
             <form id="regForm" action="<c:url value='/member/create'/>" method="post">
-                <div>
-                    <label for="firstName">First Name</label>
-                    <input type="text" name="firstName" id="firstName">
-                </div>
-                <div>
-                    <label for="lastName">Last Name</label>
-                    <input type="text" name="lastName" id="lastName">
-                </div>
-                <div>
-                    <label for="email">Email Address</label>
-                    <input type="email" name="email" id="email">
-                </div>
-                <div>
-                    <label for="password">Enter Password</label>
-                    <input type="password" name="password" id="password">
-                </div>
-                <div>
-                    <label for="pwdConfirm">Retype Password</label>
-                    <input type="password" id="pwdConfirm">
-                </div>
-                <div class="button-group">
-                    <input type="submit" id="btnSubmit" value="REGISTER">
-                    <button onclick="location.href='<c:url value="/login"/>'">LOGIN</button>
-                </div>
-            </form>
+    <div>
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name">
+    </div>
+    <div>
+        <label for="email">Email Address</label>
+        <input type="email" name="email" id="email">
+    </div>
+    <div>
+        <label for="password">Enter Password</label>
+        <input type="password" name="password" id="password">
+    </div>
+    <div>
+        <label for="pwdConfirm">Retype Password</label>
+        <input type="password" id="pwdConfirm">
+    </div>
+    <div class="button-group">
+        <input type="submit" id="btnSubmit" value="REGISTER">
+        <button type="button" onclick="location.href='<c:url value='/login'/>'">LOGIN</button>
+    </div>
+</form>
+
         </div>
     </div>
     <script>
-        const form = document.getElementById("regForm"); 
-        form.addEventListener("submit", function(event) { 
-            event.preventDefault();   
-            const idInput = document.getElementById("memberId");
-            const pwdInput = document.getElementById("password");
-            const pwdConfirmInput = document.getElementById("pwdConfirm");
-            const firstNameInput = document.getElementById("firstName");
-            const lastNameInput = document.getElementById("lastName");
-            const emailInput = document.getElementById("email");
-            const id = idInput.value.trim();
-            const pwd = pwdInput.value.trim();
-            const pwdConfirm = pwdConfirmInput.value.trim();
-            const firstName = firstNameInput.value.trim();
-            const lastName = lastNameInput.value.trim();
-            const email = emailInput.value.trim();
-            const regExpId = /^[a-zA-Z][a-zA-Z0-9]{4,7}$/;
-            const regExppwd = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{5,8}$/;
-            const regExpEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-            if (id === '') {
-                alert('아이디를 입력하세요.');
-                idInput.focus();
-                return;
-            }
-            if (!regExpId.test(id)) {
-                alert("아이디는 영문자로 시작하고 5자리에서 8자리로 입력하세요");
-                idInput.focus();
-                return;
-            }
-            if (pwd === '') {
-                alert('비밀번호를 입력하세요.');
-                pwdInput.focus();
-                return;
-            }
-            if (!regExppwd.test(pwd)) {
-                alert("비밀번호는 영문 대소문자와 숫자, 특수문자가 포함 5자리에서 8자리까지 입력하세요.");
-                pwdInput.focus();
-                return;
-            }
-            if (pwd !== pwdConfirm) {
-                alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.');
-                pwdConfirmInput.focus();
-                return;
-            }
-            if (firstName === '') {
-                alert('이름을 입력하세요.');
-                firstNameInput.focus();
-                return;
-            }
-            if (lastName === '') {
-                alert('성을 입력하세요.');
-                lastNameInput.focus();
-                return;
-            }
-            if (!regExpEmail.test(email)) {
-                alert("이메일을 확인해주세요");
-                emailInput.focus();
-                return;
-            }
-            form.submit();
-        });
+    const form = document.getElementById("regForm");
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        const nameInput = document.getElementById("name");
+        const emailInput = document.getElementById("email");
+        const pwdInput = document.getElementById("password");
+        const pwdConfirmInput = document.getElementById("pwdConfirm");
+
+        const name = nameInput.value.trim();  // Ensure name is trimmed
+
+        // Validate other fields as before
+        const email = emailInput.value.trim();
+        const pwd = pwdInput.value.trim();
+        const pwdConfirm = pwdConfirmInput.value.trim();
+
+        // Add your validation checks here
+
+        // Check if name is empty
+        if (name === '') {
+            alert('Name is required.');
+            nameInput.focus();
+            return;
+        }
+
+        // Set name field value
+        nameInput.value = name;  // Ensure name is set properly
+
+        // Submit the form
+        form.submit();
+    });
+
     </script>    
 </body>
 </html>

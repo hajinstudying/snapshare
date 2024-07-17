@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.snapshare.web.mapper.MemberMapper;
 import com.snapshare.web.vo.MemberVo;
 
-
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 멤버 서비스 인터페이스 구현체
@@ -15,25 +15,42 @@ import com.snapshare.web.vo.MemberVo;
  *
  */
 @Service
+@Slf4j
 public class MemberServiceImpl implements MemberService {
 
     @Autowired
     private MemberMapper memberMapper;
 
     @Override
+    @Transactional
     public int createMember(MemberVo memberVo) {
+        validateMemberId(memberVo.getMemberId());
         int result = memberMapper.createMember(memberVo);
         return result;
     }
-    
-	@Override
+
+    @Override
     @Transactional
     public void updateMemberPoint(String memberId) {
+        validateMemberId(memberId);
         memberMapper.updateMemberPoint(memberId);
     }
 
-	@Override
-	public MemberVo getMember(String memberId) {
-		return memberMapper.getMember(memberId);
-	}
+    @Override
+    public MemberVo getMember(String memberId) {
+        validateMemberId(memberId);
+        MemberVo member = memberMapper.getMember(memberId);
+        // Handle null or default value for 'point' if necessary
+        if (member != null && member.getPoint() == null) {
+            member.setPoint(0); // Default to 0 if 'point' is null
+        }
+        return member;
+    }
+
+    private void validateMemberId(String memberId) {
+        if (memberId == null || memberId.isEmpty()) {
+            log.error("Member ID cannot be null or empty");
+            throw new IllegalArgumentException("Member ID cannot be null or empty");
+        }
+    }
 }

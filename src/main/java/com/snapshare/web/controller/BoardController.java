@@ -51,6 +51,7 @@ public class BoardController {
 							Model model) {
 		BoardDto boardDto = boardService.getBoardDto(boardId);
 		model.addAttribute("boardDto", boardDto);
+		model.addAttribute("filePath", filePath);
 		return "board/boardDetail";
 	}
 	
@@ -61,6 +62,7 @@ public class BoardController {
 	public String listBoard(Model model) {
 		List<BoardVo> boardList = boardService.listBoard();
 		model.addAttribute("boardList", boardList);
+		model.addAttribute("filePath", filePath);
 		return "home";
 	}
 	

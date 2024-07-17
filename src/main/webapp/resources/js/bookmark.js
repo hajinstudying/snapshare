@@ -2,7 +2,7 @@ function createBookmark(element) {
     var boardId = element.getAttribute('data-board-id');
     var memberId = element.getAttribute('data-member-id');
 
-    fetch('<c:url value="/bookmark/create" />', {
+    fetch('<c:url value="/create" />', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

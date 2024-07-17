@@ -58,7 +58,7 @@ public class BoardController {
 	public String listBoard(Model model) {
 		List<BoardVo> boardList = boardService.listBoard();
 		model.addAttribute("boardList", boardList);
-		return "home";
+		return "board/boardList";
 	}
 	
 	/**

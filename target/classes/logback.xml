@@ -29,7 +29,7 @@
     <logger name="org.springframework" level="info"/>   
     
 	<!-- 애플리케이션의 로그 레벨 설정 -->
-    <logger name="com.javalab.mybatis" level="info"/>
+    <logger name="com.snapshare.web.mybatis" level="info"/>
 
     <!-- SQL 관련 설정 -->
     <logger name="jdbc.sqltiming" level="DEBUG"/>	   

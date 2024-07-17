@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,7 +85,8 @@ public class BoardController {
 	public String createBoard(HttpSession session,
 							  @RequestParam("file") MultipartFile file,
 	                          @RequestParam("tagList") String tagList,
-	                          RedirectAttributes redirectAttributes) {
+	                          RedirectAttributes redirectAttributes,
+	                          HttpServletRequest request) {
 		
 		log.info("boardController의 createBoard()");
 		
@@ -103,7 +105,7 @@ public class BoardController {
 	            String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."));
 	            
 	            // 파일 업로드 경로 설정 (상대 경로 사용 예시. 원래 절대경로로 해야함)
-	            String uploadPath = filePath;
+	            String uploadPath = request.getServletContext().getRealPath(filePath);
 	            File uploadDir = new File(uploadPath);
 	            if (!uploadDir.exists()) {
 	                uploadDir.mkdirs();
@@ -140,7 +142,8 @@ public class BoardController {
 	
 	/**
 	 * 게시물 삭제 메소드
-	 * - 해당 게시물의 작성자(memberId)와 세션의 memberId가 같아야 삭제 가능 
+	 * - 해당 게시물의 작성자(memberId)와 세션의 memberId가 같아야 삭제 가능
+	 * - 해당 게시물이 가지고 있는 태그들과의 관계 boardTagVo도 전부 삭제되어야함
 	 */
 	@PostMapping("/delete")
 	public String deleteBoard(@RequestParam("boardId") int boardId,
@@ -149,9 +152,12 @@ public class BoardController {
 		
 		// 세션에서 사용자 정보 조회
 		MemberVo memberVo = (MemberVo) session.getAttribute("memberVo");
+		log.info("로그인된 사용자 : " + memberVo);
 		
 		// 해당 글의 작성자 정보 조회를 위한 게시물 조회
 	    BoardVo boardVo = boardService.getBoard(boardId);
+	    log.info("삭제할 게시물 조회 : " + boardVo);
+	    
 		// 게시물이 존재하지 않는 경우 처리
 	    if (boardVo == null) {
 	        redirectAttributes.addFlashAttribute("error", "존재하지 않는 게시물입니다.");
@@ -159,11 +165,18 @@ public class BoardController {
 	    }
 		// 작성자와 로그인 아이디가 다를 경우
 		if(!boardVo.getMemberId().equals(memberVo.getMemberId())) {
+			log.info("작성자와 로그인 아이디 다름. 작성자 : " + boardVo.getMemberId());
 			redirectAttributes.addFlashAttribute("error", "작성자가 아니면 삭제할 수 없습니다.");
 			return  "redirect:/board/detail?boardId=" + boardId;
 		}
 		 // 작성자와 일치할 경우 게시물 삭제
 		boardService.deleteBoard(boardId);			
 		return "redirect:/board/list";
-	}	
+	}
+	
+	/*
+	 * 삭제 테스트메소드
+	 * @GetMapping("/deleteTest") public String deleteTest(Model model) { return
+	 * "board/deleteTest"; }
+	 */
 }

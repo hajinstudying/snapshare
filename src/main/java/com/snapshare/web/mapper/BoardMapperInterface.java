@@ -2,9 +2,11 @@ package com.snapshare.web.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.snapshare.web.vo.BoardVo;
 
-
+@Mapper
 public interface BoardMapperInterface {
 	
 	// 게시물 상세보기 추상메소드

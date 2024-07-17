@@ -128,9 +128,15 @@ public class BoardSerivceImpl implements BoardService {
 	
 	/**
 	 * 게시물 삭제 메소드
+	 * - 게시물을 삭제하기 전에 먼저 해당 게시물에 있는 태그관계를 삭제
 	 */
+	@Transactional
 	@Override
 	public int deleteBoard(int boardId) {
+		// 먼저 해당 boardId의 태그 삭제
+		int deletedTagsNum = boardTagMapper.deleteTagsFromBoard(boardId);
+		log.info("삭제하려는 게시물id : " + boardId);
+		log.info("해당 게시물의 삭제된 태그의 수 : " + deletedTagsNum);
 		return boardMapper.deleteBoard(boardId);
 	}
 

@@ -20,9 +20,9 @@
 		VALUES (#{boardId}, #{tagId})
 	</insert>
 
-	<!-- 게시물에서 태그 삭제 쿼리 -->
-	<delete id="deleteTagFromBoard">
+	<!-- 게시물에서 태그 전부 삭제 쿼리 -->
+	<delete id="deleteTagsFromBoard">
 		DELETE FROM board_tag
-		WHERE board_id = #{boardId} AND tag_id = #{tagId}
+		WHERE board_id = #{boardId}
 	</delete>
 </mapper>

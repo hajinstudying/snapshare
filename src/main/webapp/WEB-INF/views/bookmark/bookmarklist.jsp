@@ -15,7 +15,6 @@
 </head>
 <body>
     <jsp:include page="/resources/common/header.jsp" />
-<<<<<<< HEAD
     <div class="container">
         <c:forEach var="bookmark" items="${bookmarkedBoards}">
             <div class="box">
@@ -35,6 +34,4 @@
     <script src="<c:url value='/resources/js/bookmark.js' />"></script>
 </body>
 </html>
-=======
 </html>
->>>>>>> reply

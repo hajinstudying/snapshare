@@ -17,6 +17,8 @@ public interface BoardService {
 	public BoardVo getBoard(int boardId);
 	// 게시물 목록보기 추상메소드
 	public List<BoardVo> listBoard();
+	// 태그로 게시물 검색 메소드
+	public List<BoardVo> listBoardByTag(String keyword);
 	// 게시물 등록 추상메소드
 	public int createBoard(BoardVo boardVo, String tags);
 	// 게시물 삭제 추상메소드

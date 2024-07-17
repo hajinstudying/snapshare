@@ -80,6 +80,14 @@ public class BoardSerivceImpl implements BoardService {
 	}
 
 	/**
+	 * 검색어(태그)로 게시물 목록을 받아오는 메소드
+	 */
+	@Override
+	public List<BoardVo> listBoardByTag(String keyword) {
+		return boardMapper.listBoardByTag(keyword);
+	}
+	
+	/**
 	 * 게시물 등록 메소드
 	 */
 	@Override
@@ -139,5 +147,4 @@ public class BoardSerivceImpl implements BoardService {
 		log.info("해당 게시물의 삭제된 태그의 수 : " + deletedTagsNum);
 		return boardMapper.deleteBoard(boardId);
 	}
-
 }

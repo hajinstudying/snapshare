@@ -15,6 +15,8 @@ public interface BoardMapperInterface {
 	void incrementHitNo(int boardId);
 	// 게시물 목록보기
 	public List<BoardVo> listBoard();
+	// 태그로 게시물 검색 메소드
+	public List<BoardVo> listBoardByTag(String keyword);
 	// 게시물 등록
 	public int createBoardSelectKey(BoardVo boardVo); // selectKey 사용 메소드
 	// 게시물 삭제

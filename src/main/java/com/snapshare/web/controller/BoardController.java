@@ -77,6 +77,23 @@ public class BoardController {
 	}
 	
 	/**
+	 * 게시물 검색 메소드
+	 * @param keyword
+	 */
+	@GetMapping("/search")
+    public String searchBoards(@RequestParam("keyword") String keyword,
+    							Model model) {
+		log.info("검색 키워드 : " + keyword);
+        List<BoardVo> boardList = boardService.listBoardByTag(keyword);
+        model.addAttribute("boardList", boardList);
+        model.addAttribute("filePath", filePath);
+        return "home";
+    }
+	
+	
+	
+	
+	/**
 	 * 게시물 등록 메소드 (Post)
 	 * - 폼에서는 이미지파일을 "file"이라는 name으로 보내야한다.
 	 * - 저장되는 이미지파일명은 uniqueFileName이다.

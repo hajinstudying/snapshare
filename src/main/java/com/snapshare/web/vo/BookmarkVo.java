@@ -24,4 +24,8 @@ public class BookmarkVo {
 		this.memberId = memberId;
 		this.boardId = boardId;
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> reply

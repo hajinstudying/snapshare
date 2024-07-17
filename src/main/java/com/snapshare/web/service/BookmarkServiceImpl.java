@@ -45,4 +45,13 @@ public class BookmarkServiceImpl implements BookmarkService {
     public int deleteBookmark(int bookmarkId) {
         return bookmarkMapper.deleteBookmark(bookmarkId);
     }
+<<<<<<< HEAD
 }
+=======
+
+    @Override
+    public List<BookmarkVo> getBookmarkedBoards() {
+        return bookmarkMapper.getBookmarkedBoards();
+    }
+}
+>>>>>>> reply

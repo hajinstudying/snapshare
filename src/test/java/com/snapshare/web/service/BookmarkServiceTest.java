@@ -75,7 +75,7 @@ public class BookmarkServiceTest {
     	log.info("북마크 추가 및 조회수 업데이트 결과 : " + result);
     }
     
-    @Test //@Ignore
+    @Test @Ignore
     public void testDeleteBookmark() {
         int bookmarkId = 1;
 

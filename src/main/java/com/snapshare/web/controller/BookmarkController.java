@@ -47,6 +47,7 @@ public class BookmarkController {
     }
 
     @PostMapping("/create")
+<<<<<<< HEAD
     @ResponseBody
     public ResponseEntity<Map<String, Object>> createBookmark(@RequestBody Map<String, Object> payload) {
         int boardId = (int) payload.get("boardId");
@@ -66,6 +67,38 @@ public class BookmarkController {
     }
 
 
+=======
+    public String insertBookmark(@RequestParam("boardId") Integer boardId, @RequestParam("memberId") String memberId) {
+        try {
+            // 요청 데이터 검증
+            if (boardId == null || memberId == null || memberId.isEmpty()) {
+                log.info("북마크 생성 실패: boardId 또는 memberId가 유효하지 않습니다.");
+                return "redirect:/login";
+            }
+
+            log.info("북마크 추가 요청 - boardId: {}, memberId: {}", boardId, memberId);
+
+            // BookmarkVo 객체 생성
+            BookmarkVo bookmarkVo = new BookmarkVo();
+            bookmarkVo.setBoardId(boardId);
+            bookmarkVo.setMemberId(memberId);
+
+            // 북마크 생성 서비스 호출
+            int result = bookmarkService.insertBookmark(bookmarkVo);
+
+            if (result > 0) {
+                log.info("북마크가 추가되었습니다 - boardId: {}, memberId: {}", boardId, memberId);
+                return "redirect:/bookmark/list";
+            } else {
+                log.warn("북마크 추가 실패 - boardId: {}, memberId: {}", boardId, memberId);
+                return "redirect:/home";
+            }
+        } catch (Exception e) {
+            log.error("북마크 추가 중 오류 발생", e);
+            return "redirect:/home";
+        }
+    }
+>>>>>>> reply
     @PostMapping("/update")
     public String updateBoardBookmarkCount(@RequestParam("memberId") String memberId,
                                            @RequestParam("boardId") int boardId) {

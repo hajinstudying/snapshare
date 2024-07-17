@@ -13,4 +13,6 @@ public interface BookmarkMapperInterface {
     public int insertBookmark(BookmarkVo bookmarkVo);
     public int deleteBookmark(int bookmarkId);
 	public int updateBoardBookmarkCount(@Param("memberId") String memberId, @Param("boardId") int boardId);
+	public List<BookmarkVo> getBookmarkedBoards();
+	
 }

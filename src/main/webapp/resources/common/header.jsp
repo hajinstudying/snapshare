@@ -4,7 +4,11 @@
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/header.css' />?v=${now}" />
 	<header class="header">
 	 <div class="login">
+<<<<<<< HEAD
             <a class="create" href="<c:url value='/board/create'/>">만들기</a>
+=======
+            <a class="create" href="#">만들기</a>
+>>>>>>> reply
             <a class="home" href="<c:url value='/bookmark/list'/>">북마크</a>
             <a class="home" href="<c:url value='/login'/>">로그인</a>
         </div>

@@ -1,5 +1,7 @@
 package com.snapshare.web.controller;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,24 +25,28 @@ public class MemberController {
     private MemberService memberService;
 
     @GetMapping("/create")
-    public String createMember(Model model) {
+    public String createMemberForm(Model model) {
         model.addAttribute("memberVo", new MemberVo());
         return "member/memberCreate";
     }
-
     @PostMapping("/create")
     public String createMember(@ModelAttribute MemberVo memberVo) {
-    	log.info("createMember  메소드 : " + memberVo);
+        log.info("createMember method: {}", memberVo);
+        memberVo.setMemberId(memberVo.getName());
+        memberVo.setRole("User");
         memberService.createMember(memberVo);
         return "redirect:/member/list";
     }
-    
-    @GetMapping("/{memberId}")
-    public String getMember(@PathVariable("memberId") String memberId,
-    						Model model) {
-    	MemberVo memberVo = memberService.getMember(memberId);
-    	model.addAttribute("memberVo", memberVo);
-    	return "member/memberDetail";
-    }
 
+
+    @GetMapping("/{memberId}")
+    public String getMember(@PathVariable("memberId") String memberId, Model model) {
+        MemberVo memberVo = memberService.getMember(memberId);
+        if (memberVo == null) {
+            log.error("Member not found with ID: {}", memberId);
+            return "login/login";
+        }
+        model.addAttribute("memberVo", memberVo);
+        return "member/memberDetail";
+    }
 }

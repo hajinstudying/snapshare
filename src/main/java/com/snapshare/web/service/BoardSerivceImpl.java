@@ -1,5 +1,6 @@
 package com.snapshare.web.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.snapshare.web.mapper.BoardMapperInterface;
 import com.snapshare.web.mapper.BoardTagMapperInterface;
 import com.snapshare.web.mapper.TagMapperInterface;
+import com.snapshare.web.vo.BoardDto;
 import com.snapshare.web.vo.BoardTagVo;
 import com.snapshare.web.vo.BoardVo;
 import com.snapshare.web.vo.TagVo;
@@ -33,13 +35,41 @@ public class BoardSerivceImpl implements BoardService {
 	/**
 	 * 게시물 상세 조회 메소드
 	 * - 조회수 증가 메소드를 트랜잭션으로 실행
+	 * - 해당 게시물의 태그를 함께 가져옴
 	 */
 	@Override
 	@Transactional
-	public BoardVo getBoard(int boardId) {
+	public BoardDto getBoardDto(int boardId) {
+		// 게시물 객체 가져오기
+		BoardVo boardVo = new BoardVo();
+		boardVo = boardMapper.getBoard(boardId);
+		// 해당 게시물 조회수 증가
 		boardMapper.incrementHitNo(boardId);
+		// 태그 목록 가져오기
+		List<TagVo> tagList = new ArrayList<>();
+		tagList = boardTagMapper.getTagsByBoardId(boardId);
+		
+		//Dto에 담아서 반환
+		BoardDto boardDto = new BoardDto();
+		// BoardVo의 속성들을 BoardDto에 복사
+	    boardDto.setBoardId(boardVo.getBoardId());
+	    boardDto.setFileName(boardVo.getFileName());
+	    boardDto.setMemberId(boardVo.getMemberId());
+	    boardDto.setHitNo(boardVo.getHitNo());
+	    // tagList를 BoardDto에 설정
+	    boardDto.setTagList(tagList);
+		
+		return boardDto;
+	}
+	
+	/**
+	 * 게시물 객체만 반환하는 게시물 상세조회 메소드
+	 */
+	@Override
+	public BoardVo getBoard(int boardId) {
 		return boardMapper.getBoard(boardId);
 	}
+	
 
 	/**
 	 * 게시물 목록 조회 메소드

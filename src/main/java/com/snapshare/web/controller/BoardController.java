@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.snapshare.web.service.BoardService;
+import com.snapshare.web.vo.BoardDto;
 import com.snapshare.web.vo.BoardVo;
 import com.snapshare.web.vo.MemberVo;
 
@@ -46,9 +47,11 @@ public class BoardController {
 	 * - boardService.getBoard(boardId)에서 트랜잭션으로 조회수 증가 처리됨
 	 */
 	@GetMapping("/detail/{boardId}")
-	public String getBoard(@PathVariable("boardId") int boardId, Model model) {
-		BoardVo boardVo = boardService.getBoard(boardId);
-		model.addAttribute("boardVo", boardVo);
+	public String getBoard(@PathVariable("boardId") int boardId,
+							Model model) {
+		BoardDto boardDto = boardService.getBoardDto(boardId);
+		model.addAttribute("boardDto", boardDto);
+		model.addAttribute("filePath", filePath);
 		return "board/boardDetail";
 	}
 	
@@ -59,6 +62,7 @@ public class BoardController {
 	public String listBoard(Model model) {
 		List<BoardVo> boardList = boardService.listBoard();
 		model.addAttribute("boardList", boardList);
+		model.addAttribute("filePath", filePath);
 		return "home";
 	}
 	

@@ -11,12 +11,20 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.snapshare.web.vo.MemberVo;
 
+
+/**
+ * 스프링 인터셉터
+ * - 디스패처에서 컨트롤러 사이에서 사용자의 요청을 가로채서 해당 메소드를 호출하게 만든다.
+ * @author magic
+ *
+ */
 public class LoginInterceptor extends HandlerInterceptorAdapter {
 
     private static final Logger log = LoggerFactory.getLogger(LoginInterceptor.class);
 
     /*
      * 컨트롤러(즉 RequestMapping이 선언된 메서드 진입) 실행 직전에 동작.
+     * 반환 값이 true일 경우 정상적으로 진행이 되고, false일 경우 실행이 멈춥니다.(컨트롤러 진입 안함)
      */
 
     @Override
@@ -54,19 +62,25 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
     
     /*
      * 컨트롤러가 처리되고 그 결과가 화면에 보여지기 직전에 수행되는 메서드
+     * 전달인자의 modelAndView을 통해 화면 단에 들어가는 데이터 등의 조작이 가능함.
+     * Controller에서 Exception이 발생 할 경우 posthandle로 요청이 넘어오지 않는다.
      */
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, 
     						Object handler, ModelAndView modelAndView) throws Exception {
     	super.postHandle(request, response, handler, modelAndView);
+    	log.info("postHandle 메소드, 딱히 하는 일이 없음, 그냥 거쳐감");
 
     }
 
     // [무조건 실행] 컨트롤러의 메소드(핸들러)가 실행되고 난 다음에 무조건 실행되는 로직 구현
+    // 컨트롤러에서 Exception이 발생해도 이 메소드는 실행된다. 즉, 뷰단은 실행된다.
+    // view 까지 처리하고 난 후에 처리됨
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
             throws Exception {
         super.afterCompletion(request, response, handler, ex);
+    	log.info("afterCompletion 메소드, 무조건 실행, 그냥 거쳐감");
     }    
     
 }

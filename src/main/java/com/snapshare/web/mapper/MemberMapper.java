@@ -10,5 +10,4 @@ import com.snapshare.web.vo.MemberVo;
 public interface MemberMapper {
     int createMember(MemberVo memberVo);	// 회원가입
     MemberVo getMember(String memberId);	// 회원 한명 조회
-    void updateMemberPoint(String memberId);// 포인트 지급
 }

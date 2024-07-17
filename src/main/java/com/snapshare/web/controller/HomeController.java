@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -25,5 +26,11 @@ public class HomeController {
 		
 		return "redirect:/board/list";
 	}
+	
+	@GetMapping("/board/admin")
+    public String adminPage(Model model) {
+        // Add any necessary attributes to the model
+        return "board/admin"; // This should correspond to /WEB-INF/views/board/admin.jsp or equivalent view
+    }
 	
 }

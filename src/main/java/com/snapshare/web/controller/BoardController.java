@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,7 +85,8 @@ public class BoardController {
 	public String createBoard(HttpSession session,
 							  @RequestParam("file") MultipartFile file,
 	                          @RequestParam("tagList") String tagList,
-	                          RedirectAttributes redirectAttributes) {
+	                          RedirectAttributes redirectAttributes,
+	                          HttpServletRequest request) {
 		
 		log.info("boardController의 createBoard()");
 		
@@ -103,7 +105,7 @@ public class BoardController {
 	            String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."));
 	            
 	            // 파일 업로드 경로 설정 (상대 경로 사용 예시. 원래 절대경로로 해야함)
-	            String uploadPath = filePath;
+	            String uploadPath = request.getServletContext().getRealPath(filePath);
 	            File uploadDir = new File(uploadPath);
 	            if (!uploadDir.exists()) {
 	                uploadDir.mkdirs();

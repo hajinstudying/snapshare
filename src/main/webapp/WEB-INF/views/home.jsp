@@ -34,7 +34,7 @@
 					</a>
 				</div>
 
-			<img id="clickImage" src="<c:url value='/resources/image/14.jpg'/>" />
+			<img id="clickImage" src="${filePath}/${board.fileName}" />
 			<%-- <div class="info"><img src="<c:url value='/resources/image/user.jpeg'/>"><p>사용자</p></div> --%>
 			<div class="download-button"><a href=#><i class="fa-solid fa-download"></i></a></div> <!-- 다운로드 버튼 -->
 			<div class="share-button"><a href=#><i class="fa-solid fa-arrow-up-from-bracket"></a></i></div> <!-- 공유 버튼 -->

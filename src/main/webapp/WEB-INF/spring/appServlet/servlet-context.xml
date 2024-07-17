@@ -56,8 +56,10 @@
 			<!-- 인터셉터에서 임시적으로 제외 -->
 	        <exclude-mapping path="/board/list"/>
 	        <exclude-mapping path="/board/detail"/>
+	        <exclude-mapping path="/board/search"/>
             <exclude-mapping path="/login"/>
             <exclude-mapping path="/member"/>
+            
 	        <beans:ref bean="loginInterceptor"/>
 	    </interceptor>
 	</interceptors>

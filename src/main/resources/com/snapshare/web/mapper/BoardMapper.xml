@@ -63,4 +63,20 @@
 			WHERE board_id = #{boardId}
 		</delete>
 
+		<!-- 태그로 게시물 검색 메소드 -->
+		<select id="listBoardByTag" parameterType="String" resultType="BoardVo">
+		    SELECT b.board_id,
+				b.file_name,
+				b.member_id,
+				b.bookmark_count,
+				b.reg_date,
+				b.hit_no
+		    FROM board b
+		    INNER JOIN board_tag bt ON b.board_id = bt.board_id
+		    WHERE bt.tag_id IN (
+		        SELECT tag_id
+		        FROM tag t
+		        WHERE t.tag_name LIKE '%' || #{tagKeyword} || '%'
+		    )
+</select>
 	</mapper>

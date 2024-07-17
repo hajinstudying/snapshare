@@ -7,7 +7,7 @@
 
 	<!-- 해당 게시물의 태그 조회 쿼리 -->
 	<select id="getTagsByBoardId"
-		resultType="com.snapshare.web.vo.TagVo">
+		resultType="TagVo">
 		SELECT t.tag_id, t.tag_name
 		FROM tag t
 		JOIN board_tag bt ON t.tag_id = bt.tag_id

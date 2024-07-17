@@ -2,6 +2,7 @@ package com.snapshare.web.service;
 
 import java.util.List;
 
+import com.snapshare.web.vo.BoardDto;
 import com.snapshare.web.vo.BoardVo;
 
 
@@ -10,7 +11,9 @@ import com.snapshare.web.vo.BoardVo;
  */
 public interface BoardService {
 	
-	// 게시물 상세보기 추상메소드 (매퍼메소드)
+	// 태그포함 게시물 상세보기 추상메소드
+	public BoardDto getBoardDto(int boardId);
+	// 게시물 상세보기 추상메소드2
 	public BoardVo getBoard(int boardId);
 	// 게시물 목록보기 추상메소드
 	public List<BoardVo> listBoard();

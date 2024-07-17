@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.snapshare.web.service.BoardService;
+import com.snapshare.web.vo.BoardDto;
 import com.snapshare.web.vo.BoardVo;
 import com.snapshare.web.vo.MemberVo;
 
@@ -44,10 +46,11 @@ public class BoardController {
 	 * 게시물 내용 보기 메소드
 	 * - boardService.getBoard(boardId)에서 트랜잭션으로 조회수 증가 처리됨
 	 */
-	@GetMapping("/detail")
-	public String getBoard(@RequestParam("boardId") int boardId, Model model) {
-		BoardVo boardVo = boardService.getBoard(boardId);
-		model.addAttribute("boardVo", boardVo);
+	@GetMapping("/detail/{boardId}")
+	public String getBoard(@PathVariable("boardId") int boardId,
+							Model model) {
+		BoardDto boardDto = boardService.getBoardDto(boardId);
+		model.addAttribute("boardDto", boardDto);
 		return "board/boardDetail";
 	}
 	
@@ -58,7 +61,7 @@ public class BoardController {
 	public String listBoard(Model model) {
 		List<BoardVo> boardList = boardService.listBoard();
 		model.addAttribute("boardList", boardList);
-		return "board/boardList";
+		return "home";
 	}
 	
 	/**

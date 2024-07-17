@@ -7,22 +7,15 @@
 
     <!-- 회원가입 -->
     <insert id="createMember" parameterType="MemberVo">
-        INSERT INTO member (member_id, password, name, email)
-        VALUES (#{memberId}, #{password}, #{name}, #{email})
-    </insert>
-
-    <!-- 회원 포인트 증가 -->
-    <update id="updateMemberPoint" parameterType="String">
-        UPDATE member
-        SET point = point + 1
-        WHERE member_id = #{memberId}
-    </update>
+	    INSERT INTO member (member_id, password, name, email, role)
+	    VALUES (#{memberId, jdbcType=VARCHAR}, #{password, jdbcType=VARCHAR}, #{name, jdbcType=VARCHAR}, #{email, jdbcType=VARCHAR}, #{role, jdbcType=VARCHAR})
+	</insert>
 
     <!-- 회원 정보 조회 -->
-    <select id="getMember" parameterType="String" resultType="MemberVo">
-        SELECT member_id, password, name, email, point
-        FROM member
-        WHERE member_id = #{memberId}
-    </select>
+    <select id="getMember" parameterType="string" resultType="com.snapshare.web.vo.MemberVo">
+    SELECT member_id, password, name, email
+    FROM member
+    WHERE member_id = #{memberId}
+	</select>
 
 </mapper>

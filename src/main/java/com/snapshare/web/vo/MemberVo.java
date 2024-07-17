@@ -20,7 +20,6 @@ public class MemberVo {
 	private String password; // 비밀번호
 	private String email;	 // 이메일
 	private String name;	 // 이름
-	private Integer point;
 	 private String role = "user"; // Default role is "user"
 	
 	// Board 컨트롤러 테스트를 위한 생성자

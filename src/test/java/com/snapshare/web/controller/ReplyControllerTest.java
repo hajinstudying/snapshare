@@ -179,8 +179,12 @@ public class ReplyControllerTest {
 		replyVo.setReplyContent("수정된 댓글 내용");
         Mockito.when(service.updateReply(Mockito.any(ReplyVo.class))).thenReturn(1);
 
-        // Given: 세션에 로그인된 사용자 정보를 설정합니다.
-        MemberVo memberVo = new MemberVo("test", "1234", "name", "email");
+     // Given: 세션에 로그인된 사용자 정보를 설정합니다.
+        MemberVo memberVo = new MemberVo("test"); 
+        memberVo.setPassword("1234");  
+        memberVo.setEmail("a@a.com");  
+        memberVo.setName("test"); 
+
         MockHttpSession session = new MockHttpSession();
         session.setAttribute("memberVo", memberVo);
 

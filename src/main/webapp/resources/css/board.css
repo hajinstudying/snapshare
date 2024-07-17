@@ -114,7 +114,7 @@
 	padding: 0 100px; /* 왼쪽과 오른쪽에 간격을 만들기 위해 패딩 추가 */
 }
 
-<<<<<<< Updated upstream
+
 .more {
 	display: flex;
     justify-content: center; /* 가로 중앙 정렬 */
@@ -123,9 +123,7 @@
     padding: 0 100px;
     margin-bottom: 16px;
 }
-=======
 
->>>>>>> Stashed changes
 
 @media (max-width: 480px) {
     .container, .new-content {
@@ -267,7 +265,6 @@
 
 /* 게시물 상세 */
 
-<<<<<<< Updated upstream
 
 .post-container {
 	border-radius: 30px;
@@ -288,5 +285,3 @@
 	border-radius: 30px 0 0 30px;
 }
 
-=======
->>>>>>> Stashed changes

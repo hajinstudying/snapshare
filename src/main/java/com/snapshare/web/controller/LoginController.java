@@ -1,6 +1,5 @@
 package com.snapshare.web.controller;
 
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +32,11 @@ public class LoginController {
      * 로그인 폼 제공
      */
     @GetMapping("/login")
-    public String login(Model model,  MemberVo memberVo) {
-        //model.addAttribute("member", memberVo);
+    public String login(Model model, MemberVo memberVo) {
+        // model.addAttribute("member", memberVo);
         return "login/login"; // login/login.jsp로 이동(forward방식)
     }
+
     /**
      * 로그인 처리
      * @param memberVo
@@ -45,28 +45,34 @@ public class LoginController {
      */
     @PostMapping("/login")
     public String login(@ModelAttribute("memberVo") MemberVo memberVo, 
-    					HttpSession session, 
-    					RedirectAttributes redirectAttributes, 
-    					Model model) {
-    	// 사용자 조회
-        MemberVo LoginMemberVo = loginService.login(memberVo);
+                        HttpSession session, 
+                        RedirectAttributes redirectAttributes, 
+                        Model model) {
+        // 사용자 조회
+        MemberVo loginMemberVo = loginService.login(memberVo);
         // 조회 결과가 있으면 세션에 저장
-        if (LoginMemberVo != null) {
-            session.setAttribute("memberVo", LoginMemberVo);
+        if (loginMemberVo != null) {
+            session.setAttribute("memberVo", loginMemberVo);
             log.info("세션에 사용자 저장 완료 ");
-            // 세션에 저장한 사용자 정보 조회
-            //MemberVo member = (MemberVo) session.getAttribute("memberVo");
-            return "redirect:/board/list"; // 게시물 목록 페이지로 리다이렉트
+            
+            // Add logging to check the role
+            log.info("Logged in user role: {}", loginMemberVo.getRole());
+
+            // Check the role and redirect accordingly
+            if ("admin".equalsIgnoreCase(loginMemberVo.getRole())) {
+                return "redirect:/board/admin"; // Redirect to the admin page
+            } else {
+                return "redirect:/board/list"; // Redirect to the home page
+            }
         } else {
-            //model.addAttribute("error", "아이디와 비밀번호를 확인하세요");
-        	redirectAttributes.addFlashAttribute("error", "아이디와 비밀번호를 확인하세요");
-        	// 다음 jsp 화면에서 memberVo 이름으로 조회가능. 단 일회성으로 새로고침하면 사라짐
-        	redirectAttributes.addFlashAttribute("memberVo", memberVo); 
+            // 로그인 실패 시 처리
+            redirectAttributes.addFlashAttribute("error", "아이디와 비밀번호를 확인하세요");
+            // 다음 jsp 화면에서 memberVo 이름으로 조회가능. 단 일회성으로 새로고침하면 사라짐
+            redirectAttributes.addFlashAttribute("memberVo", memberVo); 
             return "redirect:/login"; // /login 요청(로그인 폼)
         }
     }
-    
-    
+
     /**
      * 로그아웃 처리
      * @param session

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -21,8 +22,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.snapshare.web.service.BoardService;
-import com.snapshare.web.service.TagService;
-import com.snapshare.web.service.TagServiceImpl;
 import com.snapshare.web.vo.BoardDto;
 import com.snapshare.web.vo.BoardVo;
 import com.snapshare.web.vo.MemberVo;
@@ -59,8 +58,14 @@ public class BoardController {
 		model.addAttribute("filePath", filePath);
 		model.addAttribute("fileName", boardDto.getFileName());
 		model.addAttribute("memberId", boardDto.getMemberId());
-		model.addAttribute("tag", boardDto.getTagList());
 		model.addAttribute("hitNo", boardDto.getHitNo());
+		
+		List<TagVo> tagList = boardDto.getTagList();
+		List<String> tagNames = tagList.stream()
+                .map(TagVo::getTagName)
+                .collect(Collectors.toList());
+		model.addAttribute("tagNames", tagNames);
+		
 		
 		System.out.println("boardId : " + boardId);
 		return "board/boardDetail";

@@ -176,8 +176,17 @@ border-top: 1px solid #E9E9E9;
 .aa{
 	height: 100%;
 }
+<!--태그 css -->
+.tag {
+    display: inline-block;
+    background-color: #e0e0e0;
+    padding: 5px 10px;
+    margin: 2px;
+    border-radius: 20px;
+    font-size: 14px;
+}
 </style>
-
+<script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
 </head>
 
 <body>
@@ -203,7 +212,7 @@ border-top: 1px solid #E9E9E9;
       </div>
       <div class="aa">
       <div class="scroll-container">
-      	<div><p><c:out value="${tag }" /></p></div>
+      	<div id="tagContainer"></div>
       	<div class="user-infoBox"><h3><c:out value="${memberId }" /></h3></div>
       	<h4 style="margin-bottom:20px;">댓글</h4>
         <div class="reply">댓글입니다.</div>
@@ -238,8 +247,21 @@ $(document).ready(function() {
     $('#backButton').click(function() {   
         $('.a1').hide();  
         $('html, body').animate({scrollTop: 0}, 'fast'); 
-    });  
-});  
+    });
+    
+    //tagNmaes가져오기
+    var tagNames = ${tagNames};
+ 	// 태그를 표시할 컨테이너 요소를 가져옵니다.
+    var tagContainer = document.getElementById('tagContainer');
+ 	// 각 태그에 대해 span 요소를 생성하고 컨테이너에 추가합니다.
+    tagNames.forEach(function(tagName) {
+        var tagSpan = document.createElement('span');
+        tagSpan.textContent = tagName;
+        tagSpan.className = 'tag';
+        tagContainer.appendChild(tagSpan);
+    });
+});
+
 </script>    
 </body>
 </html>	

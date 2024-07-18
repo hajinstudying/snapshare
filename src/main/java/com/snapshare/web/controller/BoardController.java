@@ -60,14 +60,11 @@ public class BoardController {
 		model.addAttribute("memberId", boardDto.getMemberId());
 		model.addAttribute("tag", boardDto.getTagList());
 		model.addAttribute("hitNo", boardDto.getHitNo());
-		
 		// TagVo 리스트에서 tagName만 추출하여 쉼표로 구분된 문자열로 변환
-        String tagNames = boardDto.getTagList().stream()
-                .map(TagVo::getTagName)
-                .collect(Collectors.joining(","));
-
-        // 변환된 문자열을 모델에 추가
-        model.addAttribute("tagNames", tagNames);
+		String tagNamesStr = boardDto.getTagList().stream()
+						.map(TagVo::getTagName).collect(Collectors.joining(","));
+		// 변환된 문자열을 모델에 추가
+		model.addAttribute("tagNamesStr", tagNamesStr);
 		return "board/boardDetail";
 	}
 	

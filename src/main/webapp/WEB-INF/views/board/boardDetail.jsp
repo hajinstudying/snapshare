@@ -177,16 +177,29 @@ border-top: 1px solid #E9E9E9;
 	height: 100%;
 }
 <!--태그 css -->
-.tag {
-    display: inline-block;
-    background-color: #e0e0e0;
+.tagify {
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    /* border: 2px solid #ccc; */
+    border: none;
+    border-radius: 30px;
+    background-color: #f9f9f9;
+    font-size: 16px;
+}
+
+/* 각 태그 스타일 */
+.tagify__tag {
+    margin: 5px;
     padding: 5px 10px;
-    margin: 2px;
     border-radius: 20px;
+    background-color: #e0e0e0;
+    color: black;
     font-size: 14px;
 }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+<link href="https://unpkg.com/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -212,7 +225,8 @@ border-top: 1px solid #E9E9E9;
       </div>
       <div class="aa">
       <div class="scroll-container">
-      	<div id="tagContainer"></div>
+      	<!-- 태그를 표시할 요소 -->
+		<input name='tags' class='tagify--outside' value='${tagNames}' readonly>
       	<div class="user-infoBox"><h3><c:out value="${memberId }" /></h3></div>
       	<h4 style="margin-bottom:20px;">댓글</h4>
         <div class="reply">댓글입니다.</div>
@@ -241,7 +255,11 @@ border-top: 1px solid #E9E9E9;
 <div class="more"><h3>더 찾아보기</h3></div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  
+<!-- jQuery와 Tagify 스크립트 -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/@yaireo/tagify"></script>
+
+<script>  
 <script>  
 $(document).ready(function() {  
     $('#backButton').click(function() {   
@@ -249,19 +267,44 @@ $(document).ready(function() {
         $('html, body').animate({scrollTop: 0}, 'fast'); 
     });
     
-    //tagNmaes가져오기
-    var tagNames = ${tagNames};
- 	// 태그를 표시할 컨테이너 요소를 가져옵니다.
-    var tagContainer = document.getElementById('tagContainer');
- 	// 각 태그에 대해 span 요소를 생성하고 컨테이너에 추가합니다.
-    tagNames.forEach(function(tagName) {
-        var tagSpan = document.createElement('span');
-        tagSpan.textContent = tagName;
-        tagSpan.className = 'tag';
-        tagContainer.appendChild(tagSpan);
+    // 서버에서 전달받은 tagNames 문자열
+    var tagNamesString = "${tagNames}";
+    
+    // 쉼표로 구분된 문자열을 배열로 변환
+    var tagNames = tagNamesString.split(',');
+
+    // Tagify 설정
+    var input = document.querySelector('input[name=tags]');
+    var tagify = new Tagify(input, {
+        enforceWhitelist: true,
+        whitelist: tagNames,
+        readonly: true,
+        editTags: false,
+        dropdown: {
+            enabled: 0
+        }
+    });
+
+    // 초기 태그 추가
+    tagify.addTags(tagNames);
+
+    // 태그 컨테이너 스타일 조정 (선택적)
+    $('.tagify').css({
+        'display': 'inline-block',
+        'border': 'none',
+        'background': 'none'
+    });
+
+    // 각 태그 스타일 조정 (선택적)
+    $('.tagify__tag').css({
+        'margin': '2px',
+        'padding': '5px 10px',
+        'border-radius': '20px',
+        'background-color': '#e0e0e0',
+        'color': 'black'
     });
 });
-
-</script>    
+});
+</script> 
 </body>
 </html>	

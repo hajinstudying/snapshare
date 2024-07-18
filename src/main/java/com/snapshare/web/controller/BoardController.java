@@ -58,16 +58,16 @@ public class BoardController {
 		model.addAttribute("filePath", filePath);
 		model.addAttribute("fileName", boardDto.getFileName());
 		model.addAttribute("memberId", boardDto.getMemberId());
+		model.addAttribute("tag", boardDto.getTagList());
 		model.addAttribute("hitNo", boardDto.getHitNo());
 		
-		List<TagVo> tagList = boardDto.getTagList();
-		List<String> tagNames = tagList.stream()
+		// TagVo 리스트에서 tagName만 추출하여 쉼표로 구분된 문자열로 변환
+        String tagNames = boardDto.getTagList().stream()
                 .map(TagVo::getTagName)
-                .collect(Collectors.toList());
-		model.addAttribute("tagNames", tagNames);
-		
-		
-		System.out.println("boardId : " + boardId);
+                .collect(Collectors.joining(","));
+
+        // 변환된 문자열을 모델에 추가
+        model.addAttribute("tagNames", tagNames);
 		return "board/boardDetail";
 	}
 	

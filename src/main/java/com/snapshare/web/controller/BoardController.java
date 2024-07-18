@@ -56,6 +56,17 @@ public class BoardController {
 		return "board/boardDetail";
 	}
 	
+    /**
+	 * 관리자용 게시물 목록 보기 메소드
+	 */
+	@GetMapping("/adminList")
+	public String adminListBoard(Model model) {
+		log.info("여기는 adminListBoard 메소드"); 
+		List<BoardVo> boardList = boardService.listBoard();
+		model.addAttribute("boardList", boardList);
+		return "admin"; // admin.jsp 이름
+	}
+	
 	/**
 	 * 게시물 목록 보기 메소드 
 	 */

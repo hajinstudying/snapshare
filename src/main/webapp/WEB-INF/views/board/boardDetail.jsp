@@ -63,6 +63,7 @@
 	flex-direction: column;
 	justify-content: space-between;
 	/* position: relative; */
+	padding-left: 30px;
 }
 
 .menu-box {
@@ -171,21 +172,23 @@
 }
 
 /* 태그 스타일 */
-/* .tagBox{
-	display:flex;
+#tagBox {
+	
+	padding: 5px;
+	
+	padding: 0 0 20px 0;
 }
-.tag{
+
+.tag {
+	display: inline-block;
 	background-color: #e0e0e0;
-	font-color:#333333;
+	color: #333333;
 	padding: 5px;
 	border: none;
 	border-radius: 30px;
 	margin-right: 3px;
-} */
+}
 </style>
-<script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
-<link href="https://unpkg.com/@yaireo/tagify/dist/tagify.css"
-	rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -196,84 +199,84 @@
 	</c:if>
 
 	<div>
-	<div class="container1">
-		<div class="back">
-			<i class="fa-solid fa-arrow-left-long" id="backButton"> 뒤로가기</i>
-		</div>
-		<div class="img-box">
-			<img src="<c:url value='${filePath }/${fileName }'/>" />
-		</div>
-		<div class="info-container">
-			<div class="new-container">
-				<div class="menu-box">
-					<div class="share-btn">
-						<a href="#"><i class="fa-solid fa-arrow-up-from-bracket"></i></a>
-					</div>
-					<div class="more-btn">
-						<a href="#"><i class="fa-solid fa-ellipsis"></i></a>
-					</div>
-				</div>
-				<div class="aa">
-					<div class="scroll-container">
-						<!-- 태그를 표시할 요소 -->
-						<div id="tagBox"></div>
-						<div class="user-infoBox">
-							<h3>
-								<c:out value="${memberId }" />
-							</h3>
+		<div class="container1">
+			<div class="back">
+				<i class="fa-solid fa-arrow-left-long" id="backButton"> 뒤로가기</i>
+			</div>
+			<div class="img-box">
+				<img src="<c:url value='${filePath }/${fileName }'/>" />
+			</div>
+			<div class="info-container">
+				<div class="new-container">
+					<div class="menu-box">
+						<div class="share-btn">
+							<a href="#"><i class="fa-solid fa-arrow-up-from-bracket"></i></a>
 						</div>
-						<h4 style="margin-bottom: 20px;">댓글</h4>
-						<div class="reply">댓글입니다.</div>
-						<div class="reply">댓글입니다.</div>
-						<div class="reply">댓글입니다.</div>
-						<div class="reply">댓글입니다.</div>
-						<div class="reply">댓글입니다.</div>
-						<div class="reply">댓글입니다.</div>
-						<div class="reply">댓글입니다.</div>
-						<div class="reply">댓글입니다.</div>
-						<div class="reply">댓글입니다.</div>
+						<div class="more-btn">
+							<a href="#"><i class="fa-solid fa-ellipsis"></i></a>
+						</div>
+					</div>
+					<div class="aa">
+						<div class="scroll-container">
+							<!-- 태그를 표시할 요소 -->
+							<div id="tagBox"></div>
+							<div class="user-infoBox">
+								<h3>
+									<c:out value="${memberId }" />
+								</h3>
+							</div>
+							<h4 style="margin-bottom: 20px;">댓글</h4>
+							<div class="reply">댓글입니다.</div>
+							<div class="reply">댓글입니다.</div>
+							<div class="reply">댓글입니다.</div>
+							<div class="reply">댓글입니다.</div>
+							<div class="reply">댓글입니다.</div>
+							<div class="reply">댓글입니다.</div>
+							<div class="reply">댓글입니다.</div>
+							<div class="reply">댓글입니다.</div>
+							<div class="reply">댓글입니다.</div>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="reply-insert">
-				<div class="ccc" style="height: 60px;">
-					<h3>어떠셨나요?</h3>
-				</div>
-				<div class="reply-insert-box">
-					<div class="input-box">
-						<input />
+				<div class="reply-insert">
+					<div class="ccc" style="height: 60px;">
+						<h3>어떠셨나요?</h3>
+					</div>
+					<div class="reply-insert-box">
+						<div class="input-box">
+							<input />
+						</div>
 					</div>
 				</div>
+				<div class="more">
+					<h3>더 찾아보기</h3>
+				</div>
 			</div>
-
 		</div>
-		<div class="more">
-			<h3>더 찾아보기</h3>
-		</div>
-	</div>
-	</div>
-	<script>
-		$(document).ready(function() {
-			$('#backButton').click(function() {
-				$('.a1').hide();
-				$('html, body').animate({
-					scrollTop : 0
-				}, 'fast');
-			});
+		<script>
+			$(document).ready(
+					function() {
+						$('#backButton').click(function() {
+							$('.a1').hide();
+							$('html, body').animate({
+								scrollTop : 0
+							}, 'fast');
+						});
 
-			// 태그가 들어갈 곳
-			var tagBox = $('#tagBox');
+						// 태그가 들어갈 곳
+						var tagBox = $('#tagBox');
 
-			// 서버에서 전달받은 tagNamesStr을 배열로 전환
-			let tagNamesStr = "${tagNamesStr}";
-			 if(tagNamesStr && tagNamesStr.trim() !== "") {
-				let tagNames = tagNamesStr.split(',');
-				//각 태그를 span태그로 붙임
-				tagNames.forEach(function(tagName) {
-				    tagBox.append('<span class="tag">' + tagName.trim() + '</span>');
-				});				
-			}
-		});
-	</script>
+						// 서버에서 전달받은 tagNamesStr을 배열로 전환
+						let tagNamesStr = "${tagNamesStr}";
+						if (tagNamesStr && tagNamesStr.trim() !== "") {
+							let tagNames = tagNamesStr.split(',');
+							//각 태그를 span태그로 붙임
+							tagNames.forEach(function(tagName) {
+								tagBox.append('<span class="tag">'
+										+ tagName.trim() + '</span>');
+							});
+						}
+					});
+		</script>
 </body>
 </html>

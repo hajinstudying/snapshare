@@ -7,7 +7,7 @@
 
     <!-- login -->
     <select id="login" parameterType="MemberVo" resultType="MemberVo">
-        select member_id, password, name, email
+        select member_id, password, name, email, role
         from member
         where member_id = #{memberId}
         and password = #{password}

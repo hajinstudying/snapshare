@@ -60,6 +60,7 @@
 
   .new-container {
     flex-grow: 1;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -106,13 +107,12 @@
   background-color: #f0f0f0;
 }
 
-  .scroll-container {
-    overflow: auto;
-    
-    padding: 0 0 0 20px;
-    background-color: #fff;
-    flex-grow: 1;
-  }
+.scroll-container {  
+  overflow: auto;  
+  	max-height: 100vh;
+} 
+
+
   .reply {
   margin-bottom: 15px;
   }
@@ -172,6 +172,10 @@ border-top: 1px solid #E9E9E9;
 	top: 110px;
 	left: 20px;
 }
+
+.aa{
+	height: 100%;
+}
 </style>
 
 </head>
@@ -184,7 +188,7 @@ border-top: 1px solid #E9E9E9;
     </c:if>
 
 
-
+<div class="a1">
 <div class="container1">
 <div class="back"><i class="fa-solid fa-arrow-left-long" id="backButton">  뒤로가기</i></div>
   <div class="img-box">
@@ -197,6 +201,7 @@ border-top: 1px solid #E9E9E9;
         <div class="share-btn"><a href="#"><i class="fa-solid fa-arrow-up-from-bracket"></i></a></div>
         <div class="more-btn"><a href="#"><i class="fa-solid fa-ellipsis"></i></a></div>
       </div>
+      <div class="aa">
       <div class="scroll-container">
       	<div><p><c:out value="${tag }" /></p></div>
       	<div class="user-infoBox"><h3><c:out value="${memberId }" /></h3></div>
@@ -204,6 +209,13 @@ border-top: 1px solid #E9E9E9;
         <div class="reply">댓글입니다.</div>
         <div class="reply">댓글입니다.</div>
         <div class="reply">댓글입니다.</div>
+        <div class="reply">댓글입니다.</div>
+        <div class="reply">댓글입니다.</div>
+        <div class="reply">댓글입니다.</div>
+        <div class="reply">댓글입니다.</div>
+        <div class="reply">댓글입니다.</div>
+        <div class="reply">댓글입니다.</div>
+      </div>
       </div>
     </div>
     <div class="reply-insert">
@@ -215,15 +227,17 @@ border-top: 1px solid #E9E9E9;
 	</div>
     </div>
   </div>
+  
+</div>
+<div class="more"><h3>더 찾아보기</h3></div>
 </div>
 
-<div class="more"><h3>더 찾아보기</h3></div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  
 <script>  
 $(document).ready(function() {  
-    $('#backButton').click(function() {  
-        // Hide the detailPost section  
-        $('.container1').hide();  
+    $('#backButton').click(function() {   
+        $('.a1').hide();  
+        $('html, body').animate({scrollTop: 0}, 'fast'); 
     });  
 });  
 </script>    

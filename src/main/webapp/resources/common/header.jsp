@@ -1,12 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="now" value="<%= new java.util.Date() %>" />
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/header.css' />?v=${now}" />
+
 	<header class="header">
 	 <div class="login">
-            <a class="create" href="<c:url value='/board/create'/>">만들기</a>
-            <a class="home" href="<c:url value='/bookmark/list'/>">북마크</a>
-            <a class="home" href="<c:url value='/login'/>">로그인</a>
+            <a class="create headerBtn" href="<c:url value='/board/create'/>">만들기</a>
+            <a class="home headerBtn" href="<c:url value='/bookmark/list'/>">북마크</a>
+            <c:if test="${not empty sessionScope.memberVo}">
+				<div class="home headerBtn userName">${sessionScope.memberVo.name}님</div>
+			</c:if>
+			<c:if test="${empty sessionScope.memberVo}">
+				<a class="home headerBtn" href="<c:url value='/login'/>">로그인</a>
+			</c:if>
+            
         </div>
         
         <div class="search-box">

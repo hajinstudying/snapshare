@@ -9,7 +9,7 @@
             <a class="create headerBtn" href="<c:url value='/board/create'/>">만들기</a>
             <a class="home headerBtn" href="<c:url value='/bookmark/list'/>">북마크</a>
             <c:if test="${not empty sessionScope.memberVo}">
-				<div class="home headerBtn userName">${sessionScope.memberVo.name}님</div>
+				<a class="home headerBtn" href="<c:url value='/logout'/>">로그아웃</a>
 			</c:if>
 			<c:if test="${empty sessionScope.memberVo}">
 				<a class="home headerBtn" href="<c:url value='/login'/>">로그인</a>

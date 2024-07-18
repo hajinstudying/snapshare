@@ -30,20 +30,9 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    @Transactional
-    public void updateMemberPoint(String memberId) {
-        validateMemberId(memberId);
-        memberMapper.updateMemberPoint(memberId);
-    }
-
-    @Override
     public MemberVo getMember(String memberId) {
         validateMemberId(memberId);
         MemberVo member = memberMapper.getMember(memberId);
-        // Handle null or default value for 'point' if necessary
-        if (member != null && member.getPoint() == null) {
-            member.setPoint(0); // Default to 0 if 'point' is null
-        }
         return member;
     }
 

@@ -7,6 +7,6 @@ import com.snapshare.web.vo.MemberVo;
  */
 //@Mapper
 public interface MemberMapperInterface {
-    int createMember(MemberVo memberVo);	// 회원가입
-    MemberVo getMember(String memberId);	// 회원 한명 조회
+    int createMember(MemberVo memberVo);   // 회원가입
+    MemberVo getMember(String memberId);   // 회원 한명 조회
 }

@@ -94,7 +94,6 @@ public class BoardSerivceImpl implements BoardService {
 		
 		// 게시물 등록
 		boardMapper.createBoardSelectKey(boardVo);
-		log.info("등록한 boardVo" + boardVo);
 	    
 		// 태그 처리
         if (tags != null && !tags.isEmpty()) {
@@ -109,7 +108,6 @@ public class BoardSerivceImpl implements BoardService {
                         tagVo = new TagVo();
                         tagVo.setTagName(tagName);
                         tagMapper.createTagSelectKey(tagVo); // 태그 생성
-                        log.info("생성된 tagVo :" + tagVo);
                     }
                     
                     // 게시물과 태그 연결
@@ -117,8 +115,6 @@ public class BoardSerivceImpl implements BoardService {
                     boardTagVo.setBoardId(boardVo.getBoardId());
                     boardTagVo.setTagId(tagVo.getTagId());
                     int taggingResult = boardTagMapper.addTagToBoard(boardTagVo);
-                    log.info("일. taggingResult : " + taggingResult);
-                    log.info("이. boardVo.getBoardId() : " + boardVo.getBoardId());
                     if(taggingResult > 0) {
                     	log.info("boardTagVo : " + boardTagVo.toString());
                     } else {

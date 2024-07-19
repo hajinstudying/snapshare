@@ -40,7 +40,7 @@
             searchBox.classList.remove('active');
         });
         
-        //엔터키를 누르면 검색 메소드 실행시키는 메소드
+        // 엔터키를 누르면 검색 메소드 실행시키는 메소드
         function handleKeyPress(event) {
             if (event.keyCode === 13) { // 엔터키
                 searchBoards();
@@ -50,19 +50,15 @@
         // 검색 메소드
         function searchBoards() {
             var keyword = document.getElementById("searchInput").value;
-            // ajax 호출
+            // fetchBoards 메소드 호출
             fetchBoards(keyword);
         }
 		
-        //
         function fetchBoards(keyword) {
             fetch('searchBoards.jsp?search=' + encodeURIComponent(searchTerm))
                 .then(response => response.json())
                 .then(data => {
-                    // Process the fetched data (assuming JSON format)
                     console.log(data);
-                    // Example: Update UI with the fetched data
-                    // renderBoardList(data);
                 })
                 .catch(error => console.error('Error fetching boards:', error));
         }

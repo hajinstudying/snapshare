@@ -18,8 +18,7 @@ public interface BoardTagMapperInterface {
 	
 	/**
 	 * 해당 게시물에 태그 추가 추상메소드
-	 * @param boardId 태그를 추가할 게시물의 ID
-	 * @param tagId 추가할 태그의 태그ID
+	 * @param boardTagVo 게시물의 ID와 태그ID가 담긴 객체
 	 * @return 추가된 행의 수
 	 */
 	public int addTagToBoard(BoardTagVo boardTagVo);

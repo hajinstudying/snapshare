@@ -78,5 +78,5 @@
 		        FROM tag t
 		        WHERE t.tag_name LIKE '%' || #{tagKeyword} || '%'
 		    )
-</select>
+		</select>
 	</mapper>

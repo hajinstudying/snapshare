@@ -110,37 +110,53 @@
 }
 
 .reply {
-	margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 
 .reply-insert {
-	border-top: 1px solid #E9E9E9;
-	background-color: white;
-	border-radius: 0 0 30px 0;
-	position: sticky;
-	bottom: 0;
-	padding: 0;
-	text-align: center;
+    border-top: 1px solid #E9E9E9;
+    background-color: white;
+    border-radius: 0 0 30px 0;
+    position: sticky;
+    bottom: 0;
+    padding: 0;
+    text-align: center;
 }
-
+  
 .reply-insert-box {
-	padding: 10px 20px 20px 20px;
+    padding: 20px; /* 좀 더 여백 추가 */
+    display: flex; /* 입력 폼과 버튼을 옆으로 나란히 배치하기 위해 flex 사용 */
+    align-items: center; /* 세로 중앙 정렬 */
 }
 
-.reply-insert .input-box {
-	width: 100%;
-	height: 50px;
-	border: 2.5px solid;
+.input-box {
+    flex: 1; /* 입력 폼이 나머지 공간을 모두 차지하도록 설정 */
+    display: flex; /* 내부 요소들을 옆으로 나란히 배치하기 위해 flex 사용 */
+    height: 60px; /* 높이를 더 크게 설정 */
+    border: 2.5px solid;
 	border-color: #E9E9E9;
 	border-radius: 30px;
 }
 
 .input-box input {
-	width: 100%;
-	height: 100%;
-	border-radius: 30px;
-	border-width: 0;
-	padding: 0 0 0 20px;
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    border-width: 0;
+    padding: 0 20px; /* 텍스트 왼쪽에 여백 추가 */
+    font-size: 16px; /* 폰트 사이즈 조정 */
+}
+
+#replySubmitBtn {
+    height: 60px; /* 입력 폼과 높이 맞춤 */
+    border: none;
+    background-color: #007bff; /* 입력 버튼 색상 */
+    color: white;
+    cursor: pointer;
+    border-radius: 30px;
+    padding: 0 20px; /* 버튼의 왼쪽 오른쪽 패딩 추가 */
+    margin-left: 10px; /* 입력 폼과 버튼 사이 여백 */
+    font-size: 16px; /* 폰트 사이즈 조정 */
 }
 
 .more {
@@ -235,24 +251,22 @@
 							<div class="reply">댓글입니다.</div>
 							<div class="reply">댓글입니다.</div>
 							<div class="reply">댓글입니다.</div>
-						</div>
-					</div>
-				</div>
-				<div class="reply-insert">
-					<div class="ccc" style="height: 60px;">
-						<h3>어떠셨나요?</h3>
-					</div>
-					<div class="reply-insert-box">
-						<div class="input-box">
-							<input />
-						</div>
-					</div>
-				</div>
-				<div class="more">
-					<h3>더 찾아보기</h3>
-				</div>
-			</div>
-		</div>
+						 </div>
+                </div>
+            </div>
+            <div class="reply-insert">
+                <div class="ccc" style="height: 60px;"><h3>어떠셨나요?</h3></div>
+                <div class="reply-insert-box">
+                    <div class="input-box">
+                        <input id="replyInput" type="text" placeholder="댓글을 입력하세요...">
+                    </div>
+                    <button id="replySubmitBtn">입력</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="more"><h3>더 찾아보기</h3></div>
+</div>
 		<script>
 			$(document).ready(
 					function() {

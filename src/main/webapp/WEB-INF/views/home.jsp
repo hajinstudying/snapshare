@@ -26,11 +26,12 @@
         <c:forEach items="${boardList}" var="board" varStatus="i">
             <div class="box">
                 <!-- 북마크 버튼 -->
-                <div class="bookmark-button">
-                    <a href="<c:url value='/bookmark/create' />" class="bookmark-link">
-                        <i class="fa-solid fa-bookmark"></i>
-                    </a>
-                </div>
+               <div class="bookmark-button">
+    			<a href="<c:url value='/bookmark/create' />" class="bookmark-link" data-board-id="${board.boardId}" 
+					data-member-id="${memberVo.memberId}">
+       			 <i class="fa-solid fa-bookmark"></i>
+					    </a>
+					</div>
 
                 <img class="clickImage" src="${filePath}/${board.fileName}" data-board-id="${board.boardId}" />
                 <div class="download-button"><a href="#"><i class="fa-solid fa-download"></i></a></div> <!-- 다운로드 버튼 -->

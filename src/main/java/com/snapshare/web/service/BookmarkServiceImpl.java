@@ -50,5 +50,10 @@ public class BookmarkServiceImpl implements BookmarkService {
     public List<BookmarkVo> getBookmarkedBoards() {
         return bookmarkMapper.getBookmarkedBoards();
     }
+
+	@Override
+	public boolean checkDuplicateBookmark(int boardId, String memberId) {
+		return false;
+	}
 }
 

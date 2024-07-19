@@ -55,7 +55,7 @@
         }
 		
         function fetchBoards(keyword) {
-            fetch('searchBoards.jsp?search=' + encodeURIComponent(searchTerm))
+            fetch('searchBoards.jsp?search=' + encodeURIComponent(keyword))
                 .then(response => response.json())
                 .then(data => {
                     console.log(data);

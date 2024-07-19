@@ -242,15 +242,16 @@
 								</h3>
 							</div>
 							<h4 style="margin-bottom: 20px;">댓글</h4>
-							<div class="reply">댓글입니다.</div>
-							<div class="reply">댓글입니다.</div>
-							<div class="reply">댓글입니다.</div>
-							<div class="reply">댓글입니다.</div>
-							<div class="reply">댓글입니다.</div>
-							<div class="reply">댓글입니다.</div>
-							<div class="reply">댓글입니다.</div>
-							<div class="reply">댓글입니다.</div>
-							<div class="reply">댓글입니다.</div>
+							<c:choose>
+								<c:when test="${not empty replyList}">
+									<c:forEach items="${replyList}" var="reply">
+										<div class="reply">${reply.replyContent}</div>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<p>댓글이 없습니다.</p>
+								</c:otherwise>
+							</c:choose>
 						 </div>
                 </div>
             </div>
@@ -291,6 +292,8 @@
 					    tagNames.forEach(function(tagName) {
 					        tagBox.append('<span class="tag">' + tagName.trim() + '</span>');
 					    });
+					    
+					    
 					});
 		</script>
 </body>

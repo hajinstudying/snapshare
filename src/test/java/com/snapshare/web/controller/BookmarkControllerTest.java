@@ -57,7 +57,7 @@ public class BookmarkControllerTest {
     @Test @Ignore
     public void testGetBookmark() throws Exception {
         int bookmarkId = 1;
-        BookmarkVo bookmarkVo = new BookmarkVo(bookmarkId, "Test Bookmark", 1);
+        BookmarkVo bookmarkVo = new BookmarkVo(bookmarkId, "Test Bookmark", 1, "1.jpg");
         Mockito.when(bookmarkService.getBookmark(bookmarkId)).thenReturn(bookmarkVo);
 
         this.mockMvc.perform(get("/bookmark/detail")
@@ -69,8 +69,8 @@ public class BookmarkControllerTest {
 
     @Test @Ignore
     public void testListBookmark() throws Exception {
-        BookmarkVo bookmarkVo1 = new BookmarkVo(1, "Java", 1);
-        BookmarkVo bookmarkVo2 = new BookmarkVo(2, "Spring", 2);
+        BookmarkVo bookmarkVo1 = new BookmarkVo(1, "Java", 1, "1.jpg");
+        BookmarkVo bookmarkVo2 = new BookmarkVo(2, "Spring", 2, "1.jpg");
         List<BookmarkVo> bookmarkList = new ArrayList<>();
         bookmarkList.add(bookmarkVo1);
         bookmarkList.add(bookmarkVo2);

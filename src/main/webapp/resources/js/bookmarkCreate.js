@@ -1,29 +1,35 @@
 $(document).ready(function() {
-    $('.bookmark-link').click(function(event) {
+    $('.bookmark-link').on('click', function(event) {
         event.preventDefault(); 
 
-        var boardId = $(this).data('board-id');
-        var memberId = $(this).data('member-id');
-        
-        createBookmark(boardId, memberId);
+        var $bookmarkLink = $(this); 
+        var boardId = $bookmarkLink.data('board-id'); 
+        var memberId = $bookmarkLink.data('member-id'); 
+
+        console.log('boardId:', boardId); 
+        console.log('memberId:', memberId); 
+
+        if (!memberId) {
+            alert('북마크를 하려면 로그인해야 합니다.');
+            return;
+        }
+
+        // 북마크 생성 요청 AJAX
+        $.ajax({
+            type: 'POST',
+            url: '/bookmark/create', // 북마크 생성 URL
+            data: {
+                boardId: boardId,
+                memberId: memberId,
+            },
+            success: function(response) {
+                alert('북마크가 성공적으로 생성되었습니다!'); // 성공 메시지 표시
+                window.location.href = '/bookmark/list';
+            },
+            error: function(xhr, status, error) {
+                console.error('북마크 생성 중 오류 발생:', error);
+                alert('북마크 생성에 실패했습니다.');
+            }
+        });
     });
 });
-
-function createBookmark(boardId, memberId) {
-    $.ajax({
-        type: 'POST', 
-        url: '/bookmark/create', // 포스트 매핑 엔드포인트 경로
-        contentType: 'application/json',
-        data: JSON.stringify({
-            boardId: boardId,
-            memberId: memberId
-        }),
-        success: function(response) {
-            alert('북마크가 추가되었습니다!');
-        },
-        error: function(xhr, status, error) {
-            alert('북마크 추가에 실패했습니다.');
-            console.error('Error:', error);
-        }
-    });
-}

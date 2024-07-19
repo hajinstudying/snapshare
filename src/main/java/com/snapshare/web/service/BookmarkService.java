@@ -13,5 +13,8 @@ public interface BookmarkService {
     public int deleteBookmark(int bookmarkId);
     public int updateBoardBookmarkCount(@Param("memberId") String memberId, @Param("boardId") int boardId);
     public List<BookmarkVo> getBookmarkedBoards();
-}
+ // 북마크 중복 체크 메서드
+    public boolean checkDuplicateBookmark(int boardId, String memberId);
+    }
+
 

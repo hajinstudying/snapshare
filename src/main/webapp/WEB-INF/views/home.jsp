@@ -26,11 +26,12 @@
         <c:forEach items="${boardList}" var="board" varStatus="i">
             <div class="box">
                 <!-- 북마크 버튼 -->
-                <div class="bookmark-button">
-                    <a href="<c:url value='/bookmark/create' />" class="bookmark-link">
-                        <i class="fa-solid fa-bookmark"></i>
-                    </a>
-                </div>
+               <div class="bookmark-button">
+    			<a href="<c:url value='/bookmark/create' />" class="bookmark-link" data-board-id="${board.boardId}" 
+					data-member-id="${memberVo.memberId}">
+       			 <i class="fa-solid fa-bookmark"></i>
+					    </a>
+					</div>
 
                 <img class="clickImage" src="${filePath}/${board.fileName}" data-board-id="${board.boardId}" />
                 <div class="download-button"><a href="#"><i class="fa-solid fa-download"></i></a></div> <!-- 다운로드 버튼 -->
@@ -40,24 +41,27 @@
         </c:forEach>
     </div>
 
-    <script>
-    $(document).ready(function() {  
-        $('.clickImage').on('click', function() {  
-            var boardId = $(this).data('board-id'); // Get the board ID from the clicked element  
+    <script>  
+$(document).ready(function() {  
+    $('.clickImage').on('click', function() {  
+        var boardId = $(this).data('board-id');  
 
-            $.ajax({  
-                type: 'GET', // Use GET method to fetch board details  
-                url: '<c:url value="/board/detail/" />' + boardId, // Pass the board ID as part of the URL  
-                success: function(response) {  
-                    // Update the content of the detailPost div and show it
-                    $('#detailPost').html(response).show();
-                },  
-                error: function(xhr, status, error) {  
-                    console.error('Error occurred while fetching board details:', error);  
-                }  
-            });  
+        $.ajax({  
+            type: 'GET',  
+            url: '<c:url value="/board/detail/" />' + boardId,  
+            success: function(response) {  
+                 
+                $('#detailPost').html(response).show();  
+                
+                // 페이지 맨위로 이동 
+                $('html, body').animate({scrollTop: 0}, 'fast');  
+            },  
+            error: function(xhr, status, error) {  
+                console.error('Error occurred while fetching board details:', error);  
+            }  
         });  
-    });
-    </script>
+    });  
+});  
+</script>
 </body>
 </html>

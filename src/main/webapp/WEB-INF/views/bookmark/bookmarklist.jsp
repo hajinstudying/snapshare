@@ -21,12 +21,13 @@
    <div class="container">
     <c:forEach items="${bookmarkList}" var="bookmark">
       <div class="box">
-    <a href="<c:url value='/bookmark/detail' />" class="board-image" 
-       data-bookmark-id="${bookmark.bookmarkId}" 
-       data-board-id="${bookmark.boardId}" 
-       data-member-id="${bookmark.memberId}">
+    <!-- 북마크 버튼 -->
+               <div class="bookmark-button">
+    			<a href="#" class="bookmark-link" data-bookmark-id="${bookmark.bookmarkId}" >
+       			 <i class="fa-solid fa-bookmark"></i>
+					    </a>
+					</div>
         <img src="${filePath}/${bookmark.fileName}" alt="Bookmark Image">
-    </a>
 </div>
 
     </c:forEach>

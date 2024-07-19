@@ -3,7 +3,6 @@ package com.snapshare.web.mapper;
 import java.util.List;
 
 import com.snapshare.web.vo.BoardTagVo;
-import com.snapshare.web.vo.TagVo;
 
 /**
  * 게시물과 태그를 연결하는 보드태그 매퍼 인터페이스 
@@ -15,7 +14,7 @@ public interface BoardTagMapperInterface {
 	 * @param boardId 조회할 게시물의 ID
 	 * @return 게시물에 달린 태그 목록
 	 */
-	public List<TagVo> getTagsByBoardId(int boardId);
+	public List<String> getTagsByBoardId(int boardId);
 	
 	/**
 	 * 해당 게시물에 태그 추가 추상메소드

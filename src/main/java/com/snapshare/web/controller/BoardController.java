@@ -21,12 +21,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.snapshare.web.service.BoardService;
-import com.snapshare.web.service.TagService;
-import com.snapshare.web.service.TagServiceImpl;
 import com.snapshare.web.vo.BoardDto;
 import com.snapshare.web.vo.BoardVo;
 import com.snapshare.web.vo.MemberVo;
-import com.snapshare.web.vo.TagVo;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -59,10 +56,8 @@ public class BoardController {
 		model.addAttribute("filePath", filePath);
 		model.addAttribute("fileName", boardDto.getFileName());
 		model.addAttribute("memberId", boardDto.getMemberId());
-		model.addAttribute("tag", boardDto.getTagList());
+		model.addAttribute("tagNames", boardDto.getTagNames());
 		model.addAttribute("hitNo", boardDto.getHitNo());
-		
-		System.out.println("boardId : " + boardId);
 		return "board/boardDetail";
 	}
 	

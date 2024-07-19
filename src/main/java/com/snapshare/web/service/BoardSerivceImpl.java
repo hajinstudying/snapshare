@@ -1,6 +1,5 @@
 package com.snapshare.web.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,13 +40,11 @@ public class BoardSerivceImpl implements BoardService {
 	@Transactional
 	public BoardDto getBoardDto(int boardId) {
 		// 게시물 객체 가져오기
-		BoardVo boardVo = new BoardVo();
-		boardVo = boardMapper.getBoard(boardId);
+		BoardVo boardVo = boardMapper.getBoard(boardId);
 		// 해당 게시물 조회수 증가
 		boardMapper.incrementHitNo(boardId);
 		// 태그 목록 가져오기
-		List<TagVo> tagList = new ArrayList<>();
-		tagList = boardTagMapper.getTagsByBoardId(boardId);
+		List<String> tagNames = boardTagMapper.getTagsByBoardId(boardId);
 		
 		//Dto에 담아서 반환
 		BoardDto boardDto = new BoardDto();
@@ -57,7 +54,7 @@ public class BoardSerivceImpl implements BoardService {
 	    boardDto.setMemberId(boardVo.getMemberId());
 	    boardDto.setHitNo(boardVo.getHitNo());
 	    // tagList를 BoardDto에 설정
-	    boardDto.setTagList(tagList);
+	    boardDto.setTagNames(tagNames);
 		
 		return boardDto;
 	}

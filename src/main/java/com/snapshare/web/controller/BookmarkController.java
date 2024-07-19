@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.snapshare.web.service.BookmarkService;
 import com.snapshare.web.vo.BookmarkVo;
@@ -98,6 +99,7 @@ public class BookmarkController {
     }
 
     @PostMapping("/delete")
+    @ResponseBody
     public String deleteBookmark(@RequestParam("bookmarkId") int bookmarkId) {
         bookmarkService.deleteBookmark(bookmarkId);
         return "redirect:/bookmark/bookmarklist";

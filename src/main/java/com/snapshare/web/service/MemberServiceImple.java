@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Service
 @Slf4j
-public class MemberServiceImpl implements MemberService {
+public class MemberServiceImple implements MemberService {
 
     @Autowired
     private MemberMapper memberMapper;

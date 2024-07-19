@@ -14,6 +14,8 @@
 <meta charset="UTF-8">
 <title>boardList.jsp</title>
 <%-- <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/board.css' />?v=${now}" /> --%>
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery -->
+    <script src="<c:url value='/resources/js/reply.js' />"></script> <!-- 자바스크립트 파일 추가 -->
 <style>
 .container1 {
 	display: flex;

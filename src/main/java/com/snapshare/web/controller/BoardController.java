@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -25,7 +24,6 @@ import com.snapshare.web.service.BoardService;
 import com.snapshare.web.vo.BoardDto;
 import com.snapshare.web.vo.BoardVo;
 import com.snapshare.web.vo.MemberVo;
-import com.snapshare.web.vo.TagVo;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -58,13 +56,8 @@ public class BoardController {
 		model.addAttribute("filePath", filePath);
 		model.addAttribute("fileName", boardDto.getFileName());
 		model.addAttribute("memberId", boardDto.getMemberId());
-		model.addAttribute("tag", boardDto.getTagList());
+		model.addAttribute("tagNames", boardDto.getTagNames());
 		model.addAttribute("hitNo", boardDto.getHitNo());
-		// TagVo 리스트에서 tagName만 추출하여 쉼표로 구분된 문자열로 변환
-		String tagNamesStr = boardDto.getTagList().stream()
-						.map(TagVo::getTagName).collect(Collectors.joining(","));
-		// 변환된 문자열을 모델에 추가
-		model.addAttribute("tagNamesStr", tagNamesStr);
 		return "board/boardDetail";
 	}
 	

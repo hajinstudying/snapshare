@@ -23,6 +23,6 @@ public class BoardDto extends BoardVo {
 	// BoardVo의 속성들
 	
 	// 전달할 추가 속성
-	private List<TagVo> tagList;
+	private List<String> tagNames;
 
 }

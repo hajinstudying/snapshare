@@ -277,19 +277,20 @@
 							}, 'fast');
 						});
 
-						// 태그가 들어갈 곳
-						var tagBox = $('#tagBox');
+					    // 태그가 들어갈 곳
+					    var tagBox = $('#tagBox');
 
-						// 서버에서 전달받은 tagNamesStr을 배열로 전환
-						let tagNamesStr = "${tagNamesStr}";
-						if (tagNamesStr && tagNamesStr.trim() !== "") {
-							let tagNames = tagNamesStr.split(',');
-							//각 태그를 span태그로 붙임
-							tagNames.forEach(function(tagName) {
-								tagBox.append('<span class="tag">'
-										+ tagName.trim() + '</span>');
-							});
-						}
+					    // 서버에서 전달받은 tagNames를 JavaScript 배열로 변환
+					    var tagNames = [
+					        <c:forEach items="${tagNames}" var="tagName" varStatus="status">
+					            "${tagName}"<c:if test="${!status.last}">,</c:if>
+					        </c:forEach>
+					    ];
+
+					    // 각 태그를 span 태그로 추가
+					    tagNames.forEach(function(tagName) {
+					        tagBox.append('<span class="tag">' + tagName.trim() + '</span>');
+					    });
 					});
 		</script>
 </body>
